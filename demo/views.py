@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.core.files.storage import default_storage
 
+from django.contrib import messages
+from django.core.files.storage import default_storage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
-from django.contrib import messages
 
 from .forms import ContactForm, FilesForm, ContactFormSet
 
