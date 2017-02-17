@@ -28,7 +28,7 @@ install:
 # Command to run tests, e.g. python setup.py test
 script:
 #  - coverage run --source=django_propeller manage.py test
-  -python demo/manage.py check
+  - python demo/manage.py check
 
 matrix:
   exclude:
