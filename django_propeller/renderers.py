@@ -17,7 +17,7 @@ from django.forms.formsets import BaseFormSet
 from django.utils.html import conditional_escape, escape, strip_tags
 from django.utils.safestring import mark_safe
 
-from .bootstrap import get_bootstrap_setting, DBS3_SET_REQUIRED_SET_DISABLED
+from .bootstrap import get_bootstrap_setting, PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import BootstrapError
 from .forms import (
     render_form, render_field, render_label, render_form_group,
@@ -58,7 +58,8 @@ class BaseRenderer(object):
             get_bootstrap_setting('horizontal_field_class')
         )
 
-    def parse_size(self, size):
+    @staticmethod
+    def parse_size(size):
         size = text_value(size).lower().strip()
         if size in ('sm', 'small'):
             return 'small'
@@ -97,7 +98,8 @@ class FormsetRenderer(BaseRenderer):
     def render_management_form(self):
         return text_value(self.formset.management_form)
 
-    def render_form(self, form, **kwargs):
+    @staticmethod
+    def render_form(form, **kwargs):
         return render_form(form, **kwargs)
 
     def render_forms(self):
@@ -158,7 +160,7 @@ class FormRenderer(BaseRenderer):
         super(FormRenderer, self).__init__(*args, **kwargs)
 
         # Handle form.empty_permitted
-        if DBS3_SET_REQUIRED_SET_DISABLED and self.form.empty_permitted:
+        if PROPELLER_SET_REQUIRED_SET_DISABLED and self.form.empty_permitted:
             self.set_required = False
 
         self.error_css_class = kwargs.get('error_css_class', None)
@@ -196,13 +198,13 @@ class FormRenderer(BaseRenderer):
                 form_errors += field.errors
         return form_errors
 
-    def render_errors(self, type='all'):
+    def render_errors(self, _type='all'):
         form_errors = None
-        if type == 'all':
+        if _type == 'all':
             form_errors = self.get_fields_errors() + self.form.non_field_errors()
-        elif type == 'fields':
+        elif _type == 'fields':
             form_errors = self.get_fields_errors()
-        elif type == 'non_fields':
+        elif _type == 'non_fields':
             form_errors = self.form.non_field_errors()
 
         if form_errors:
@@ -212,7 +214,7 @@ class FormRenderer(BaseRenderer):
                     'errors': form_errors,
                     'form': self.form,
                     'layout': self.layout,
-                    'type': type,
+                    'type': _type,
                 }
             )
 
@@ -264,7 +266,7 @@ class FieldRenderer(BaseRenderer):
         self.addon_after_class = kwargs.get('addon_after_class',
                                             self.widget.attrs.pop('addon_after_class', 'input-group-addon'))
 
-        # These are set in Django or in the global BOOTSTRAP3 settings, and
+        # These are set in Django or in the global PROPELLER settings, and
         # they can be overwritten in the template
         error_css_class = kwargs.get('error_css_class', None)
         required_css_class = kwargs.get('required_css_class', None)
@@ -296,7 +298,7 @@ class FieldRenderer(BaseRenderer):
             self.required_css_class = ''
 
         # Special case to support Django 1.8 required / disabled
-        if DBS3_SET_REQUIRED_SET_DISABLED:
+        if PROPELLER_SET_REQUIRED_SET_DISABLED:
             if self.field.form.empty_permitted:
                 self.set_required = False
             self.set_disabled = kwargs.get('set_disabled', False)
@@ -361,7 +363,7 @@ class FieldRenderer(BaseRenderer):
             self.add_class_attrs(widget)
             self.add_placeholder_attrs(widget)
             self.add_help_attrs(widget)
-            if DBS3_SET_REQUIRED_SET_DISABLED:
+            if PROPELLER_SET_REQUIRED_SET_DISABLED:
                 self.add_required_attrs(widget)
                 self.add_disabled_attrs(widget)
 
@@ -388,14 +390,16 @@ class FieldRenderer(BaseRenderer):
             label_title=escape(strip_tags(self.field_help))
         )
 
-    def fix_date_select_input(self, html):
+    @staticmethod
+    def fix_date_select_input(html):
         div1 = '<div class="col-xs-4">'
         div2 = '</div>'
         html = html.replace('<select', div1 + '<select')
         html = html.replace('</select>', '</select>' + div2)
         return '<div class="row bootstrap3-multi-input">' + html + '</div>'
 
-    def fix_clearable_file_input(self, html):
+    @staticmethod
+    def fix_clearable_file_input(html):
         """
         Fix a clearable file input
         TODO: This needs improvement

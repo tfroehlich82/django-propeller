@@ -12,7 +12,7 @@ from django.utils.safestring import mark_safe
 from .bootstrap import (
     get_bootstrap_setting, get_form_renderer, get_field_renderer,
     get_formset_renderer,
-    DBS3_SET_REQUIRED_SET_DISABLED)
+    PROPELLER_SET_REQUIRED_SET_DISABLED)
 from .components import render_icon
 from .exceptions import BootstrapError
 from .text import text_concat, text_value
@@ -45,12 +45,12 @@ def render_form(form, **kwargs):
     return renderer_cls(form, **kwargs).render()
 
 
-def render_form_errors(form, type='all', **kwargs):
+def render_form_errors(form, _type='all', **kwargs):
     """
     Render form errors to a Bootstrap layout
     """
     renderer_cls = get_form_renderer(**kwargs)
-    return renderer_cls(form, **kwargs).render_errors(type)
+    return renderer_cls(form, **kwargs).render_errors(_type)
 
 
 def render_field(field, **kwargs):
@@ -77,7 +77,7 @@ def render_label(content, label_for=None, label_class=None, label_title=''):
 
 def render_button(
         content, button_type=None, icon=None, button_class='btn-default', size='',
-        href='', name=None, value=None, title=None, extra_classes='', id=''):
+        href='', name=None, value=None, title=None, extra_classes='', _id=''):
     """
     Render a button with content
     """
@@ -110,8 +110,8 @@ def render_button(
         tag = 'a'
     else:
         tag = 'button'
-    if id:
-        attrs['id'] = id
+    if _id:
+        attrs['id'] = _id
     if name:
         attrs['name'] = name
     if value:
@@ -127,7 +127,7 @@ def render_button(
 
 def render_field_and_label(
         field, label, field_class='', label_for=None, label_class='',
-        layout='', **kwargs):
+        layout=''):
     """
     Render a field with its label
     """
@@ -163,7 +163,7 @@ def is_widget_required_attribute(widget):
     """
     Is this widget required?
     """
-    if DBS3_SET_REQUIRED_SET_DISABLED and not get_bootstrap_setting('set_required'):
+    if PROPELLER_SET_REQUIRED_SET_DISABLED and not get_bootstrap_setting('set_required'):
         return False
     if not widget.is_required:
         return False

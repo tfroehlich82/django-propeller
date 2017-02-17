@@ -448,12 +448,12 @@ def bootstrap_field(*args, **kwargs):
             :default: ``'col-md-9'``. Can be changed in :doc:`settings`
 
         addon_before
-            Text that should be prepended to the form field. See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>`_
-            for an example.
+            Text that should be prepended to the form field.
+            See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>` for an example.
 
         addon_after
-            Text that should be appended to the form field. See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>`_
-            for an example.
+            Text that should be appended to the form field.
+            See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>` for an example.
 
         addon_before_class
             Class used on the span when ``addon_before`` is used.
@@ -706,7 +706,7 @@ def bootstrap_buttons(parser, token):
 
 
 class ButtonsNode(template.Node):
-    def __init__(self, nodelist, args, kwargs, asvar, **kwargs2):
+    def __init__(self, nodelist, args, kwargs, asvar):
         self.nodelist = nodelist
         self.args = args
         self.kwargs = kwargs
@@ -737,7 +737,7 @@ class ButtonsNode(template.Node):
 
 
 @register.simple_tag(takes_context=True)
-def bootstrap_messages(context, *args, **kwargs):
+def bootstrap_messages(context):
     """
     Show django.contrib.messages Messages in Bootstrap alert containers.
 
