@@ -134,3 +134,11 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+.idea/django-propeller.iml
+.idea/encodings.xml
+.idea/inspectionProfiles/
+.idea/misc.xml
+.idea/modules.xml
+db.sqlite3
+docs/_static/
+docs/_templates/
