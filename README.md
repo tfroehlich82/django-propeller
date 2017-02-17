@@ -57,7 +57,7 @@ Example template
 Documentation
 -------------
 
-The full documentation is at http://django-propeller.readthedocs.io/.
+The full documentation is at http://django-propeller.readthedocs.io/en/latest/
 
 
 Bugs and suggestions
