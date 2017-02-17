@@ -127,7 +127,7 @@ def render_button(
 
 def render_field_and_label(
         field, label, field_class='', label_for=None, label_class='',
-        layout=''):
+        layout='', **kwargs):
     """
     Render a field with its label
     """

@@ -706,7 +706,7 @@ def bootstrap_buttons(parser, token):
 
 
 class ButtonsNode(template.Node):
-    def __init__(self, nodelist, args, kwargs, asvar):
+    def __init__(self, nodelist, args, kwargs, asvar, **kwargs2):
         self.nodelist = nodelist
         self.args = args
         self.kwargs = kwargs
@@ -737,7 +737,7 @@ class ButtonsNode(template.Node):
 
 
 @register.simple_tag(takes_context=True)
-def bootstrap_messages(context):
+def bootstrap_messages(context, *args, **kwargs):
     """
     Show django.contrib.messages Messages in Bootstrap alert containers.
 
