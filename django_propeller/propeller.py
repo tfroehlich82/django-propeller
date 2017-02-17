@@ -77,14 +77,14 @@ def javascript_url():
     """
     Return the full url to the Propeller JavaScript file
     """
-    return get_propeller_setting('javascript_url') or propeller_url('js/propeller.min.js')
+    return get_propeller_setting('javascript_url') or propeller_url('js/bootstrap.min.js')
 
 
 def css_url():
     """
     Return the full url to the Propeller CSS file
     """
-    return get_propeller_setting('css_url') or propeller_url('css/propeller.min.css')
+    return get_propeller_setting('css_url') or propeller_url('css/bootstrap.min.css')
 
 
 def theme_url():
