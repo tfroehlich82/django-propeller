@@ -38,16 +38,16 @@ Example template
 ----------------
 
 ```
-    {% load bootstrap3 %}
+    {% load propeller %}
 
     {# Display a form #}
 
     <form action="/url/to/submit/" method="post" class="form">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {% propeller_form form %}
         {% buttons %}
             <button type="submit" class="btn btn-primary">
-                {% bootstrap_icon "star" %} Submit
+                {% propeller_icon "star" %} Submit
             </button>
         {% endbuttons %}
     </form>
@@ -66,6 +66,14 @@ Bugs and suggestions
 If you have found a bug or if you have a request for additional functionality, please use the issue tracker on GitHub.
 
 https://github.com/tfroehlich82/django-propeller/issues
+
+
+Further Information
+-------------------
+
+Propeller: http://propeller.in/
+Bootstrap: http://getbootstrap.com/
+Google Material Design: https://design.google.com/
 
 
 License

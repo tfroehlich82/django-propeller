@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Pagination
@@ -18,8 +18,8 @@
 
     <hr>
 
-    {% bootstrap_pagination lines url="/pagination?page=1&flop=flip" extra="q=foo" size="small" %}
+    {% propeller_pagination lines url="/pagination?page=1&flop=flip" extra="q=foo" size="small" %}
 
-    {% bootstrap_pagination lines url="/pagination?page=1" size="large" %}
+    {% propeller_pagination lines url="/pagination?page=1" size="large" %}
 
 {% endblock %}

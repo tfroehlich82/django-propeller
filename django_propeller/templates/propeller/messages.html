@@ -1,6 +1,6 @@
-{% load django_propeller %}
+{% load propeller %}
 {% for message in messages %}
-    <div class="{{ message|bootstrap_message_classes }} alert-dismissable">
+    <div class="{{ message|propeller_message_classes }} alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
         {{ message }}
     </div>

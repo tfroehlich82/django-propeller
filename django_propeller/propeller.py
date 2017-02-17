@@ -52,46 +52,46 @@ PROPELLER = PROPELLER_DEFAULTS.copy()
 PROPELLER.update(getattr(settings, 'PROPELLER', {}))
 
 
-def get_bootstrap_setting(setting, default=None):
+def get_propeller_setting(setting, default=None):
     """
     Read a setting
     """
     return PROPELLER.get(setting, default)
 
 
-def bootstrap_url(postfix):
+def propeller_url(postfix):
     """
-    Prefix a relative url with the bootstrap base url
+    Prefix a relative url with the Propeller base url
     """
-    return get_bootstrap_setting('base_url') + postfix
+    return get_propeller_setting('base_url') + postfix
 
 
 def jquery_url():
     """
     Return the full url to jQuery file to use
     """
-    return get_bootstrap_setting('jquery_url')
+    return get_propeller_setting('jquery_url')
 
 
 def javascript_url():
     """
-    Return the full url to the Bootstrap JavaScript file
+    Return the full url to the Propeller JavaScript file
     """
-    return get_bootstrap_setting('javascript_url') or bootstrap_url('js/bootstrap.min.js')
+    return get_propeller_setting('javascript_url') or propeller_url('js/propeller.min.js')
 
 
 def css_url():
     """
-    Return the full url to the Bootstrap CSS file
+    Return the full url to the Propeller CSS file
     """
-    return get_bootstrap_setting('css_url') or bootstrap_url('css/bootstrap.min.css')
+    return get_propeller_setting('css_url') or propeller_url('css/propeller.min.css')
 
 
 def theme_url():
     """
     Return the full url to the theme CSS file
     """
-    return get_bootstrap_setting('theme_url')
+    return get_propeller_setting('theme_url')
 
 
 def get_renderer(renderers, **kwargs):
@@ -102,15 +102,15 @@ def get_renderer(renderers, **kwargs):
 
 
 def get_formset_renderer(**kwargs):
-    renderers = get_bootstrap_setting('formset_renderers')
+    renderers = get_propeller_setting('formset_renderers')
     return get_renderer(renderers, **kwargs)
 
 
 def get_form_renderer(**kwargs):
-    renderers = get_bootstrap_setting('form_renderers')
+    renderers = get_propeller_setting('form_renderers')
     return get_renderer(renderers, **kwargs)
 
 
 def get_field_renderer(**kwargs):
-    renderers = get_bootstrap_setting('field_renderers')
+    renderers = get_propeller_setting('field_renderers')
     return get_renderer(renderers, **kwargs)

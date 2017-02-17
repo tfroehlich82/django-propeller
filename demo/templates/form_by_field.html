@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Forms
@@ -10,9 +10,9 @@
 
     <form role="form" method="post">
         {% csrf_token %}
-        {% bootstrap_form_errors form type='non_fields' %}
-        {% bootstrap_field form.subject layout='horizontal' size='sm' %}
-        {% bootstrap_field form.message placeholder='bonkers' %}
+        {% propeller_form_errors form type='non_fields' %}
+        {% propeller_field form.subject layout='horizontal' size='sm' %}
+        {% propeller_field form.message placeholder='bonkers' %}
         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
     </form>
 

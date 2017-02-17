@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Forms
@@ -10,7 +10,7 @@
 
     <form role="form" method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {% propeller_form form %}
         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
     </form>
 

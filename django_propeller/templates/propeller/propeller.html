@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% load django_propeller staticfiles %}
+{% load propeller staticfiles %}
 <html{% if request.LANGUAGE_CODE %} lang="{{ request.LANGUAGE_CODE }}"{% endif %}>
 
 <head>
@@ -9,7 +9,7 @@
     <title>{% block propeller_title %}django_propeller template title{% endblock %}</title>
 
     <!-- Bootstrap css-->
-    {% bootstrap_css %}
+    {% propeller_css %}
 
     <!--Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,8 +23,8 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    {% if 'javascript_in_head'|bootstrap_setting %}
-        {% bootstrap_javascript jquery=True %}
+    {% if 'javascript_in_head'|propeller_setting %}
+        {% propeller_javascript jquery=True %}
         <script type="text/javascript" src="{% static 'js/propeller.min.js' %}"></script>
     {% endif %}
     {% block propeller_extra_head %}{% endblock %}
@@ -32,8 +32,8 @@
 
 <body>
 {% block propeller_content %}django-propeller template content{% endblock %}
-{% if not 'javascript_in_head'|bootstrap_setting %}
-    {% bootstrap_javascript jquery=True %}
+{% if not 'javascript_in_head'|propeller_setting %}
+    {% propeller_javascript jquery=True %}
     <script type="text/javascript" src="{% static 'js/propeller.min.js' %}"></script>
 {% endif %}
 {% block propeller_extra_script %}{% endblock %}

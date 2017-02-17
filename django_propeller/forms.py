@@ -9,12 +9,12 @@ from django.forms import (
 from django.forms.widgets import CheckboxInput
 from django.utils.safestring import mark_safe
 
-from .bootstrap import (
-    get_bootstrap_setting, get_form_renderer, get_field_renderer,
+from .propeller import (
+    get_propeller_setting, get_form_renderer, get_field_renderer,
     get_formset_renderer,
     PROPELLER_SET_REQUIRED_SET_DISABLED)
 from .components import render_icon
-from .exceptions import BootstrapError
+from .exceptions import PropellerError
 from .text import text_concat, text_value
 from .utils import add_css_class, render_tag
 
@@ -93,12 +93,12 @@ def render_button(
     elif size == 'md' or size == 'medium':
         pass
     elif size:
-        raise BootstrapError(
+        raise PropellerError(
             'Parameter "size" should be "xs", "sm", "lg" or ' +
             'empty ("{}" given).'.format(size))
     if button_type:
         if button_type not in ('submit', 'reset', 'button', 'link'):
-            raise BootstrapError(
+            raise PropellerError(
                 'Parameter "button_type" should be "submit", "reset", ' +
                 '"button", "link" or empty  ("{}" given).'.format(button_type))
         attrs['type'] = button_type
@@ -133,9 +133,9 @@ def render_field_and_label(
     """
     if layout == 'horizontal':
         if not label_class:
-            label_class = get_bootstrap_setting('horizontal_label_class')
+            label_class = get_propeller_setting('horizontal_label_class')
         if not field_class:
-            field_class = get_bootstrap_setting('horizontal_field_class')
+            field_class = get_propeller_setting('horizontal_field_class')
         if not label:
             label = mark_safe('&#160;')
         label_class = add_css_class(label_class, 'control-label')
@@ -163,7 +163,7 @@ def is_widget_required_attribute(widget):
     """
     Is this widget required?
     """
-    if PROPELLER_SET_REQUIRED_SET_DISABLED and not get_bootstrap_setting('set_required'):
+    if PROPELLER_SET_REQUIRED_SET_DISABLED and not get_propeller_setting('set_required'):
         return False
     if not widget.is_required:
         return False

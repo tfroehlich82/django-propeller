@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Formset
 {% endblock %}
 
 {% block content %}
-    {% bootstrap_formset_errors form %}
+    {% propeller_formset_errors form %}
     <form role="form" method="post">
         {% csrf_token %}
-        {% bootstrap_formset form %}
+        {% propeller_formset form %}
         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
     </form>
 

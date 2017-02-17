@@ -17,8 +17,8 @@ from django.forms.formsets import BaseFormSet
 from django.utils.html import conditional_escape, escape, strip_tags
 from django.utils.safestring import mark_safe
 
-from .bootstrap import get_bootstrap_setting, PROPELLER_SET_REQUIRED_SET_DISABLED
-from .exceptions import BootstrapError
+from .propeller import get_propeller_setting, PROPELLER_SET_REQUIRED_SET_DISABLED
+from .exceptions import PropellerError
 from .forms import (
     render_form, render_field, render_label, render_form_group,
     is_widget_with_placeholder, FORM_GROUP_CLASS,
@@ -51,11 +51,11 @@ class BaseRenderer(object):
         self.size = self.parse_size(kwargs.get('size', ''))
         self.horizontal_label_class = kwargs.get(
             'horizontal_label_class',
-            get_bootstrap_setting('horizontal_label_class')
+            get_propeller_setting('horizontal_label_class')
         )
         self.horizontal_field_class = kwargs.get(
             'horizontal_field_class',
-            get_bootstrap_setting('horizontal_field_class')
+            get_propeller_setting('horizontal_field_class')
         )
 
     @staticmethod
@@ -67,7 +67,7 @@ class BaseRenderer(object):
             return 'large'
         if size in ('md', 'medium', ''):
             return 'medium'
-        raise BootstrapError('Invalid value "%s" for parameter "size" (expected "sm", "md", "lg" or "").' % size)
+        raise PropellerError('Invalid value "%s" for parameter "size" (expected "sm", "md", "lg" or "").' % size)
 
     def get_size_class(self, prefix='input'):
         if self.size == 'small':
@@ -90,7 +90,7 @@ class FormsetRenderer(BaseRenderer):
 
     def __init__(self, formset, *args, **kwargs):
         if not isinstance(formset, BaseFormSet):
-            raise BootstrapError(
+            raise PropellerError(
                 'Parameter "formset" should contain a valid Django Formset.')
         self.formset = formset
         super(FormsetRenderer, self).__init__(*args, **kwargs)
@@ -154,7 +154,7 @@ class FormRenderer(BaseRenderer):
 
     def __init__(self, form, *args, **kwargs):
         if not isinstance(form, BaseForm):
-            raise BootstrapError(
+            raise PropellerError(
                 'Parameter "form" should contain a valid Django Form.')
         self.form = form
         super(FormRenderer, self).__init__(*args, **kwargs)
@@ -239,7 +239,7 @@ class FieldRenderer(BaseRenderer):
 
     def __init__(self, field, *args, **kwargs):
         if not isinstance(field, BoundField):
-            raise BootstrapError('Parameter "field" should contain a valid Django BoundField.')
+            raise PropellerError('Parameter "field" should contain a valid Django BoundField.')
         self.field = field
         super(FieldRenderer, self).__init__(*args, **kwargs)
 
@@ -252,7 +252,7 @@ class FieldRenderer(BaseRenderer):
         if 'placeholder' in kwargs:
             # Find the placeholder in kwargs, even if it's empty
             self.placeholder = kwargs['placeholder']
-        elif get_bootstrap_setting('set_placeholder'):
+        elif get_propeller_setting('set_placeholder'):
             # If not found, see if we set the label
             self.placeholder = field.label
         else:
@@ -276,21 +276,21 @@ class FieldRenderer(BaseRenderer):
         else:
             self.error_css_class = getattr(
                 field.form, 'error_css_class',
-                get_bootstrap_setting('error_css_class')
+                get_propeller_setting('error_css_class')
             )
         if required_css_class is not None:
             self.required_css_class = required_css_class
         else:
             self.required_css_class = getattr(
                 field.form, 'required_css_class',
-                get_bootstrap_setting('required_css_class')
+                get_propeller_setting('required_css_class')
             )
         if bound_css_class is not None:
             self.success_css_class = bound_css_class
         else:
             self.success_css_class = getattr(
                 field.form, 'bound_css_class',
-                get_bootstrap_setting('success_css_class')
+                get_propeller_setting('success_css_class')
             )
 
         # If the form is marked as form.empty_permitted, do not set required class

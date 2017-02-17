@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Forms
@@ -10,7 +10,7 @@
 
     <form role="form" class="form-horizontal" method="post">
         {% csrf_token %}
-        {% bootstrap_form form layout="horizontal" %}
+        {% propeller_form form layout="horizontal" %}
         {% buttons submit='OK' reset='Cancel' layout='horizontal' %}{% endbuttons %}
     </form>
 

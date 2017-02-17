@@ -10,8 +10,8 @@ from django.contrib.messages import constants as message_constants
 from django.template import Context
 from django.utils.safestring import mark_safe
 
-from ..bootstrap import (
-    css_url, javascript_url, jquery_url, theme_url, get_bootstrap_setting
+from ..propeller import (
+    css_url, javascript_url, jquery_url, theme_url, get_propeller_setting
 )
 from ..components import render_icon, render_alert
 from ..forms import (
@@ -35,17 +35,17 @@ register = template.Library()
 
 
 @register.filter
-def bootstrap_setting(value):
+def propeller_setting(value):
     """
-    A simple way to read bootstrap settings in a template.
+    A simple way to read Propeller settings in a template.
     Please consider this filter private for now, do not use it in your own
     templates.
     """
-    return get_bootstrap_setting(value)
+    return get_propeller_setting(value)
 
 
 @register.filter
-def bootstrap_message_classes(message):
+def propeller_message_classes(message):
     """
     Return the message classes for a message
     """
@@ -70,11 +70,11 @@ def bootstrap_message_classes(message):
 
 
 @register.simple_tag
-def bootstrap_jquery_url():
+def propeller_jquery_url():
     """
     **Tag name**::
 
-        bootstrap_jquery_url
+        propeller_jquery_url
 
     Return the full url to jQuery file to use
 
@@ -84,19 +84,19 @@ def bootstrap_jquery_url():
 
     **Usage**::
 
-        {% bootstrap_jquery_url %}
+        {% propeller_jquery_url %}
 
     **Example**::
 
-        {% bootstrap_jquery_url %}
+        {% propeller_jquery_url %}
     """
     return jquery_url()
 
 
 @register.simple_tag
-def bootstrap_javascript_url():
+def propeller_javascript_url():
     """
-    Return the full url to the Bootstrap JavaScript library
+    Return the full url to the Propeller JavaScript library
 
     Default value: ``None``
 
@@ -104,23 +104,23 @@ def bootstrap_javascript_url():
 
     **Tag name**::
 
-        bootstrap_javascript_url
+        propeller_javascript_url
 
     **Usage**::
 
-        {% bootstrap_javascript_url %}
+        {% propeller_javascript_url %}
 
     **Example**::
 
-        {% bootstrap_javascript_url %}
+        {% propeller_javascript_url %}
     """
     return javascript_url()
 
 
 @register.simple_tag
-def bootstrap_css_url():
+def propeller_css_url():
     """
-    Return the full url to the Bootstrap CSS library
+    Return the full url to the Propeller CSS library
 
     Default value: ``None``
 
@@ -128,23 +128,23 @@ def bootstrap_css_url():
 
     **Tag name**::
 
-        bootstrap_css_url
+        propeller_css_url
 
     **Usage**::
 
-        {% bootstrap_css_url %}
+        {% propeller_css_url %}
 
     **Example**::
 
-        {% bootstrap_css_url %}
+        {% propeller_css_url %}
     """
     return css_url()
 
 
 @register.simple_tag
-def bootstrap_theme_url():
+def propeller_theme_url():
     """
-    Return the full url to a Bootstrap theme CSS library
+    Return the full url to a Propeller theme CSS library
 
     Default value: ``None``
 
@@ -152,23 +152,23 @@ def bootstrap_theme_url():
 
     **Tag name**::
 
-        bootstrap_theme_url
+        propeller_theme_url
 
     **Usage**::
 
-        {% bootstrap_theme_url %}
+        {% propeller_theme_url %}
 
     **Example**::
 
-        {% bootstrap_theme_url %}
+        {% propeller_theme_url %}
     """
     return theme_url()
 
 
 @register.simple_tag
-def bootstrap_css():
+def propeller_css():
     """
-    Return HTML for Bootstrap CSS.
+    Return HTML for Propeller CSS.
     Adjust url in settings. If no url is returned, we don't want this statement
     to return any HTML.
     This is intended behavior.
@@ -179,26 +179,26 @@ def bootstrap_css():
 
     **Tag name**::
 
-        bootstrap_css
+        propeller_css
 
     **Usage**::
 
-        {% bootstrap_css %}
+        {% propeller_css %}
 
     **Example**::
 
-        {% bootstrap_css %}
+        {% propeller_css %}
     """
-    rendered_urls = [render_link_tag(bootstrap_css_url()), ]
-    if bootstrap_theme_url():
-        rendered_urls.append(render_link_tag(bootstrap_theme_url()))
+    rendered_urls = [render_link_tag(propeller_css_url()), ]
+    if propeller_theme_url():
+        rendered_urls.append(render_link_tag(propeller_theme_url()))
     return mark_safe(''.join([url for url in rendered_urls]))
 
 
 @register.simple_tag
-def bootstrap_javascript(jquery=None):
+def propeller_javascript(jquery=None):
     """
-    Return HTML for Bootstrap JavaScript.
+    Return HTML for Propeller JavaScript.
 
     Adjust url in settings. If no url is returned, we don't want this
     statement to return any HTML.
@@ -210,31 +210,31 @@ def bootstrap_javascript(jquery=None):
 
     **Tag name**::
 
-        bootstrap_javascript
+        propeller_javascript
 
     **Parameters**:
 
-        :jquery: Truthy to include jQuery as well as Bootstrap
+        :jquery: Truthy to include jQuery as well as propeller
 
     **Usage**::
 
-        {% bootstrap_javascript %}
+        {% propeller_javascript %}
 
     **Example**::
 
-        {% bootstrap_javascript jquery=1 %}
+        {% propeller_javascript jquery=1 %}
     """
 
     javascript = ''
     # See if we have to include jQuery
     if jquery is None:
-        jquery = get_bootstrap_setting('include_jquery', False)
+        jquery = get_propeller_setting('include_jquery', False)
     # NOTE: No async on scripts, not mature enough. See issue #52 and #56
     if jquery:
-        url = bootstrap_jquery_url()
+        url = propeller_jquery_url()
         if url:
             javascript += render_tag('script', attrs={'src': url})
-    url = bootstrap_javascript_url()
+    url = propeller_javascript_url()
     if url:
         attrs = {'src': url}
         javascript += render_tag('script', attrs=attrs)
@@ -242,14 +242,14 @@ def bootstrap_javascript(jquery=None):
 
 
 @register.simple_tag
-def bootstrap_formset(*args, **kwargs):
+def propeller_formset(*args, **kwargs):
     """
     Render a formset
 
 
     **Tag name**::
 
-        bootstrap_formset
+        propeller_formset
 
     **Parameters**:
 
@@ -257,28 +257,28 @@ def bootstrap_formset(*args, **kwargs):
             The formset that is being rendered
 
 
-        See bootstrap_field_ for other arguments
+        See propeller_field_ for other arguments
 
     **Usage**::
 
-        {% bootstrap_formset formset %}
+        {% propeller_formset formset %}
 
     **Example**::
 
-        {% bootstrap_formset formset layout='horizontal' %}
+        {% propeller_formset formset layout='horizontal' %}
 
     """
     return render_formset(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_formset_errors(*args, **kwargs):
+def propeller_formset_errors(*args, **kwargs):
     """
     Render formset errors
 
     **Tag name**::
 
-        bootstrap_formset_errors
+        propeller_formset_errors
 
     **Parameters**:
 
@@ -290,23 +290,23 @@ def bootstrap_formset_errors(*args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_formset_errors formset %}
+        {% propeller_formset_errors formset %}
 
     **Example**::
 
-        {% bootstrap_formset_errors formset layout='inline' %}
+        {% propeller_formset_errors formset layout='inline' %}
     """
     return render_formset_errors(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_form(*args, **kwargs):
+def propeller_form(*args, **kwargs):
     """
     Render a form
 
     **Tag name**::
 
-        bootstrap_form
+        propeller_form
 
     **Parameters**:
 
@@ -317,27 +317,27 @@ def bootstrap_form(*args, **kwargs):
             A list of field names (comma separated) that should not be rendered
             E.g. exclude=subject,bcc
 
-        See bootstrap_field_ for other arguments
+        See propeller_field_ for other arguments
 
     **Usage**::
 
-        {% bootstrap_form form %}
+        {% propeller_form form %}
 
     **Example**::
 
-        {% bootstrap_form form layout='inline' %}
+        {% propeller_form form layout='inline' %}
     """
     return render_form(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_form_errors(*args, **kwargs):
+def propeller_form_errors(*args, **kwargs):
     """
     Render form errors
 
     **Tag name**::
 
-        bootstrap_form_errors
+        propeller_form_errors
 
     **Parameters**:
 
@@ -360,23 +360,23 @@ def bootstrap_form_errors(*args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_form_errors form %}
+        {% propeller_form_errors form %}
 
     **Example**::
 
-        {% bootstrap_form_errors form layout='inline' %}
+        {% propeller_form_errors form layout='inline' %}
     """
     return render_form_errors(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_field(*args, **kwargs):
+def propeller_field(*args, **kwargs):
     """
     Render a field
 
     **Tag name**::
 
-        bootstrap_field
+        propeller_field
 
     **Parameters**:
 
@@ -449,11 +449,11 @@ def bootstrap_field(*args, **kwargs):
 
         addon_before
             Text that should be prepended to the form field.
-            See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>` for an example.
+            See the `propeller docs <http://getpropeller.com/components/#input-groups-basic>` for an example.
 
         addon_after
             Text that should be appended to the form field.
-            See the `Bootstrap docs <http://getbootstrap.com/components/#input-groups-basic>` for an example.
+            See the `propeller docs <http://getpropeller.com/components/#input-groups-basic>` for an example.
 
         addon_before_class
             Class used on the span when ``addon_before`` is used.
@@ -492,23 +492,23 @@ def bootstrap_field(*args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_field field %}
+        {% propeller_field field %}
 
     **Example**::
 
-        {% bootstrap_field field show_label=False %}
+        {% propeller_field field show_label=False %}
     """
     return render_field(*args, **kwargs)
 
 
 @register.simple_tag()
-def bootstrap_label(*args, **kwargs):
+def propeller_label(*args, **kwargs):
     """
     Render a label
 
     **Tag name**::
 
-        bootstrap_label
+        propeller_label
 
     **Parameters**:
 
@@ -526,24 +526,24 @@ def bootstrap_label(*args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_label content %}
+        {% propeller_label content %}
 
     **Example**::
 
-        {% bootstrap_label "Email address" label_for="exampleInputEmail1" %}
+        {% propeller_label "Email address" label_for="exampleInputEmail1" %}
 
     """
     return render_label(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_button(*args, **kwargs):
+def propeller_button(*args, **kwargs):
     """
     Render a button
 
     **Tag name**::
 
-        bootstrap_button
+        propeller_button
 
     **Parameters**:
 
@@ -560,7 +560,7 @@ def bootstrap_button(*args, **kwargs):
                 * ``'button'``
                 * ``'link'``
         icon
-            Name of an icon to render in the button's visible content. See bootstrap_icon_ for acceptable values.
+            Name of an icon to render in the button's visible content. See propeller_icon_ for acceptable values.
 
         button_class
             The class of button to use. If none is given, btn-default will be used.
@@ -593,28 +593,28 @@ def bootstrap_button(*args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_button content %}
+        {% propeller_button content %}
 
     **Example**::
 
-        {% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+        {% propeller_button "Save" button_type="submit" button_class="btn-primary" %}
     """
     return render_button(*args, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_icon(icon, **kwargs):
+def propeller_icon(icon, **kwargs):
     """
     Render an icon
 
     **Tag name**::
 
-        bootstrap_icon
+        propeller_icon
 
     **Parameters**:
 
         icon
-            Icon name. See the `Bootstrap docs <http://getbootstrap.com/components/#glyphicons>`_ for all icons.
+            Icon name. See the `propeller docs <http://getpropeller.com/components/#glyphicons>`_ for all icons.
 
         extra_classes
             Extra CSS classes to add to the icon HTML
@@ -624,24 +624,24 @@ def bootstrap_icon(icon, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_icon icon %}
+        {% propeller_icon icon %}
 
     **Example**::
 
-        {% bootstrap_icon "star" %}
+        {% propeller_icon "star" %}
 
     """
     return render_icon(icon, **kwargs)
 
 
 @register.simple_tag
-def bootstrap_alert(content, alert_type='info', dismissable=True):
+def propeller_alert(content, alert_type='info', dismissable=True):
     """
     Render an alert
 
     **Tag name**::
 
-        bootstrap_alert
+        propeller_alert
 
     **Parameters**:
 
@@ -663,18 +663,18 @@ def bootstrap_alert(content, alert_type='info', dismissable=True):
 
     **Usage**::
 
-        {% bootstrap_alert content %}
+        {% propeller_alert content %}
 
     **Example**::
 
-        {% bootstrap_alert "Something went wrong" alert_type='error' %}
+        {% propeller_alert "Something went wrong" alert_type='error' %}
 
     """
     return render_alert(content, alert_type, dismissable)
 
 
 @register.tag('buttons')
-def bootstrap_buttons(parser, token):
+def propeller_buttons(parser, token):
     """
     Render buttons for form
 
@@ -720,9 +720,9 @@ class ButtonsNode(template.Node):
         submit = output_kwargs.get('submit', None)
         reset = output_kwargs.get('reset', None)
         if submit:
-            buttons.append(bootstrap_button(submit, 'submit'))
+            buttons.append(propeller_button(submit, 'submit'))
         if reset:
-            buttons.append(bootstrap_button(reset, 'reset'))
+            buttons.append(propeller_button(reset, 'reset'))
         buttons = ' '.join(buttons) + self.nodelist.render(context)
         output_kwargs.update({
             'label': None,
@@ -737,19 +737,19 @@ class ButtonsNode(template.Node):
 
 
 @register.simple_tag(takes_context=True)
-def bootstrap_messages(context, *args, **kwargs):
+def propeller_messages(context, *args, **kwargs):
     """
-    Show django.contrib.messages Messages in Bootstrap alert containers.
+    Show django.contrib.messages Messages in propeller alert containers.
 
     In order to make the alerts dismissable (with the close button),
     we have to set the jquery parameter too when using the
-    bootstrap_javascript tag.
+    propeller_javascript tag.
 
     Uses the template ``propeller/messages.html``.
 
     **Tag name**::
 
-        bootstrap_messages
+        propeller_messages
 
     **Parameters**:
 
@@ -757,12 +757,12 @@ def bootstrap_messages(context, *args, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_messages %}
+        {% propeller_messages %}
 
     **Example**::
 
-        {% bootstrap_javascript jquery=1 %}
-        {% bootstrap_messages %}
+        {% propeller_javascript jquery=1 %}
+        {% propeller_messages %}
 
     """
 
@@ -775,13 +775,13 @@ def bootstrap_messages(context, *args, **kwargs):
 
 
 @register.inclusion_tag('propeller/pagination.html')
-def bootstrap_pagination(page, **kwargs):
+def propeller_pagination(page, **kwargs):
     """
     Render pagination for a page
 
     **Tag name**::
 
-        bootstrap_pagination
+        propeller_pagination
 
     **Parameters**:
 
@@ -820,11 +820,11 @@ def bootstrap_pagination(page, **kwargs):
 
     **Usage**::
 
-        {% bootstrap_pagination page %}
+        {% propeller_pagination page %}
 
     **Example**::
 
-        {% bootstrap_pagination lines url="/pagination?page=1" size="large" %}
+        {% propeller_pagination lines url="/pagination?page=1" size="large" %}
 
     """
 
@@ -834,7 +834,7 @@ def bootstrap_pagination(page, **kwargs):
 
 
 @register.simple_tag
-def bootstrap_url_replace_param(url, name, value):
+def propeller_url_replace_param(url, name, value):
     return url_replace_param(url, name, value)
 
 
@@ -842,7 +842,7 @@ def get_pagination_context(page, pages_to_show=11,
                            url=None, size=None, extra=None,
                            parameter_name='page'):
     """
-    Generate Bootstrap pagination context from a page object
+    Generate propeller pagination context from a page object
     """
     pages_to_show = int(pages_to_show)
     if pages_to_show < 1:
@@ -902,7 +902,7 @@ def get_pagination_context(page, pages_to_show=11,
         url += force_text(extra) + '&'
     if url:
         url = url.replace('?&', '?')
-    # Set CSS classes, see http://getbootstrap.com/components/#pagination
+    # Set CSS classes, see http://getpropeller.com/components/#pagination
     pagination_css_classes = ['pagination']
     if size == 'small':
         pagination_css_classes.append('pagination-sm')
@@ -910,7 +910,7 @@ def get_pagination_context(page, pages_to_show=11,
         pagination_css_classes.append('pagination-lg')
         # Build context object
     return {
-        'bootstrap_pagination_url': url,
+        'propeller_pagination_url': url,
         'num_pages': num_pages,
         'current_page': current_page,
         'first_page': first_page,

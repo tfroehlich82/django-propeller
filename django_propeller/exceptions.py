@@ -2,14 +2,14 @@
 from __future__ import unicode_literals
 
 
-class BootstrapException(Exception):
+class PropellerException(Exception):
     """
     Any exception from this package
     """
     pass
 
 
-class BootstrapError(BootstrapException):
+class PropellerError(PropellerException):
     """
     Any exception that is an error
     """

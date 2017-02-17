@@ -1,6 +1,6 @@
 {% extends 'bootstrap.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block propeller_content %}
     <div class="container">
@@ -18,7 +18,7 @@
             <a href="{% url 'misc' %}">miscellaneous</a>
         </p>
 
-        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+        {% autoescape off %}{% propeller_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
     </div>

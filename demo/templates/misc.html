@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load django_propeller %}
+{% load propeller %}
 
 {% block title %}
     Miscellaneous
@@ -8,10 +8,10 @@
 
 {% block content %}
 
-    {% bootstrap_button 'button' size='lg' %}
+    {% propeller_button 'button' size='lg' %}
 
-    {% bootstrap_button 'button' size='lg' icon='info-sign' %}
+    {% propeller_button 'button' size='lg' icon='info-sign' %}
 
-    {% bootstrap_alert "Something went wrong" alert_type='danger' %}
+    {% propeller_alert "Something went wrong" alert_type='danger' %}
 
 {% endblock %}
