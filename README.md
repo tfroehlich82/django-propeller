@@ -4,7 +4,7 @@ Propeller for Django
 Write Django as usual, and let ``django-propeller`` make template output into code based on Google's Material Design Standards & Bootstrap.
 
 
-![Travis CI](http://img.shields.io/travis/joyent/django-propeller.svg)
+[![Build Status](https://travis-ci.org/tfroehlich82/django-propeller.svg?branch=master)](https://travis-ci.org/tfroehlich82/django-propeller)
 ![PyPI version](http://img.shields.io/pypi/v/django-propeller.svg)
 ![PyPI downloads](http://img.shields.io/pypi/dm/django-propeller.svg)
 
