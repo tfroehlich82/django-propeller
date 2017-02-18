@@ -24,10 +24,11 @@ install:
   # coveralls tries to install the latest
   - if [[ $TRAVIS_PYTHON_VERSION == '3.2' ]]; then travis_retry pip install 'coverage<4.0'; fi
   - pip install coveralls
+  - pip install python-coveralls
 
 # Command to run tests, e.g. python setup.py test
 script:
-#  - coverage run --source=django_propeller manage.py test
+  - coverage run --source=django_propeller manage.py test
   - python manage.py check
 
 matrix:
