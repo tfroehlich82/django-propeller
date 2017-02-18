@@ -140,6 +140,5 @@ fabric.properties
 .idea/misc.xml
 .idea/modules.xml
 db.sqlite3
-docs/_static/
-docs/_templates/
+docs/_build/
 /MANIFEST

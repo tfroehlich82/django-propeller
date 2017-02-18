@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # django-propeller documentation build configuration file, created by
-# sphinx-quickstart on Fri Feb 17 12:36:15 2017.
+# sphinx-quickstart on Sat Feb 18 20:08:47 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -33,8 +33,7 @@
 # ones.
 extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.doctest',
-    'sphinx.ext.coverage',
-    'sphinx.ext.githubpages']
+    'sphinx.ext.coverage']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
