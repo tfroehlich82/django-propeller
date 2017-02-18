@@ -123,7 +123,7 @@ def render_template_with_bootstrap(text, context=None):
     """
     if not context:
         context = {}
-    return render_template("{% load bootstrap3 %}" + text, context)
+    return render_template("{% load propeller %}" + text, context)
 
 
 def render_template_with_form(text, context=None):
@@ -144,7 +144,7 @@ def render_formset(formset=None, context=None):
     if not context:
         context = {}
     context['formset'] = formset
-    return render_template_with_form('{% bootstrap_formset formset %}', context)
+    return render_template_with_form('{% propeller_formset formset %}', context)
 
 
 def render_form(form=None, context=None):
@@ -155,7 +155,7 @@ def render_form(form=None, context=None):
         context = {}
     if form:
         context['form'] = form
-    return render_template_with_form('{% bootstrap_form form %}', context)
+    return render_template_with_form('{% propeller_form form %}', context)
 
 
 def render_form_field(field, context=None):
@@ -163,7 +163,7 @@ def render_form_field(field, context=None):
     Create a template that renders a field
     """
     form_field = 'form.%s' % field
-    return render_template_with_form('{% bootstrap_field ' + form_field + ' %}', context)
+    return render_template_with_form('{% propeller_field ' + form_field + ' %}', context)
 
 
 def render_field(field, context=None):
@@ -173,7 +173,7 @@ def render_field(field, context=None):
     if not context:
         context = {}
     context['field'] = field
-    return render_template_with_form('{% bootstrap_field field %}', context)
+    return render_template_with_form('{% propeller_field field %}', context)
 
 
 def get_title_from_html(html):
@@ -198,15 +198,15 @@ class SettingsTest(TestCase):
         from .propeller import PROPELLER
         self.assertTrue(PROPELLER)
 
-    def test_bootstrap_javascript_tag(self):
-        res = render_template_with_form('{% bootstrap_javascript %}')
+    def test_propeller_javascript_tag(self):
+        res = render_template_with_form('{% propeller_javascript %}')
         self.assertEqual(
             res.strip(),
             '<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>'
         )
 
-    def test_bootstrap_css_tag(self):
-        res = render_template_with_form('{% bootstrap_css %}').strip()
+    def test_propeller_css_tag(self):
+        res = render_template_with_form('{% propeller_css %}').strip()
         self.assertIn(
             '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">',
             res
@@ -218,27 +218,27 @@ class SettingsTest(TestCase):
 
 
 def test_settings_filter(self):
-    res = render_template_with_form('{{ "required_css_class"|bootstrap_setting }}')
+    res = render_template_with_form('{{ "required_css_class"|propeller_setting }}')
     self.assertEqual(res.strip(), 'bootstrap3-req')
-    res = render_template_with_form('{% if "javascript_in_head"|bootstrap_setting %}head{% else %}body{% endif %}')
+    res = render_template_with_form('{% if "javascript_in_head"|propeller_setting %}head{% else %}body{% endif %}')
     self.assertEqual(res.strip(), 'head')
 
 
 def test_required_class(self):
     form = TestForm()
-    res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+    res = render_template_with_form('{% propeller_form form %}', {'form': form})
     self.assertIn('bootstrap3-req', res)
 
 
 def test_error_class(self):
     form = TestForm({})
-    res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+    res = render_template_with_form('{% propeller_form form %}', {'form': form})
     self.assertIn('bootstrap3-err', res)
 
 
 def test_bound_class(self):
     form = TestForm({'sender': 'sender'})
-    res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+    res = render_template_with_form('{% propeller_form form %}', {'form': form})
     self.assertIn('bootstrap3-bound', res)
 
 
@@ -251,7 +251,7 @@ class TemplateTest(TestCase):
         res = render_template_with_form('some text')
         self.assertEqual(res.strip(), 'some text')
 
-    def test_bootstrap_template(self):
+    def test_propeller_template(self):
         res = render_template(
             '{% extends "bootstrap3/bootstrap3.html" %}' +
             '{% block bootstrap3_content %}' +
@@ -261,12 +261,12 @@ class TemplateTest(TestCase):
         self.assertIn('test_bootstrap3_content', res)
 
     def test_javascript_without_jquery(self):
-        res = render_template_with_form('{% bootstrap_javascript jquery=0 %}')
+        res = render_template_with_form('{% propeller_javascript jquery=0 %}')
         self.assertIn('bootstrap', res)
         self.assertNotIn('jquery', res)
 
     def test_javascript_with_jquery(self):
-        res = render_template_with_form('{% bootstrap_javascript jquery=1 %}')
+        res = render_template_with_form('{% propeller_javascript jquery=1 %}')
         self.assertIn('bootstrap', res)
         self.assertIn('jquery', res)
 
@@ -302,17 +302,17 @@ class FormTest(TestCase):
     def test_exclude(self):
         form = TestForm()
         res = render_template_with_form(
-            '{% bootstrap_form form exclude="cc_myself" %}', {'form': form})
+            '{% propeller_form form exclude="cc_myself" %}', {'form': form})
         self.assertNotIn('cc_myself', res)
 
     def test_layout_horizontal(self):
         form = TestForm()
         res = render_template_with_form(
-            '{% bootstrap_form form layout="horizontal" %}', {'form': form})
+            '{% propeller_form form layout="horizontal" %}', {'form': form})
         self.assertIn('col-md-3', res)
         self.assertIn('col-md-9', res)
         res = render_template_with_form(
-            '{% bootstrap_form form layout="horizontal" ' +
+            '{% propeller_form form layout="horizontal" ' +
             'horizontal_label_class="hlabel" ' +
             'horizontal_field_class="hfield" %}',
             {'form': form}
@@ -329,48 +329,48 @@ class FormTest(TestCase):
 
     def test_error_class(self):
         form = TestForm({'sender': 'sender'})
-        res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+        res = render_template_with_form('{% propeller_form form %}', {'form': form})
         self.assertIn('bootstrap3-err', res)
 
         res = render_template_with_form(
-            '{% bootstrap_form form error_css_class="successful-test" %}',
+            '{% propeller_form form error_css_class="successful-test" %}',
             {'form': form}
         )
         self.assertIn('successful-test', res)
 
-        res = render_template_with_form('{% bootstrap_form form error_css_class="" %}',
+        res = render_template_with_form('{% propeller_form form error_css_class="" %}',
                                         {'form': form})
         self.assertNotIn('bootstrap3-err', res)
 
     def test_required_class(self):
         form = TestForm({'sender': 'sender'})
-        res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+        res = render_template_with_form('{% propeller_form form %}', {'form': form})
         self.assertIn('bootstrap3-req', res)
 
         res = render_template_with_form(
-            '{% bootstrap_form form required_css_class="successful-test" %}',
+            '{% propeller_form form required_css_class="successful-test" %}',
             {'form': form}
         )
         self.assertIn('successful-test', res)
 
-        res = render_template_with_form('{% bootstrap_form form required_css_class="" %}',
+        res = render_template_with_form('{% propeller_form form required_css_class="" %}',
                                         {'form': form})
         self.assertNotIn('bootstrap3-req', res)
 
     def test_bound_class(self):
         form = TestForm({'sender': 'sender'})
 
-        res = render_template_with_form('{% bootstrap_form form %}', {'form': form})
+        res = render_template_with_form('{% propeller_form form %}', {'form': form})
         self.assertIn('bootstrap3-bound', res)
 
         res = render_template_with_form(
-            '{% bootstrap_form form bound_css_class="successful-test" %}',
+            '{% propeller_form form bound_css_class="successful-test" %}',
             {'form': form}
         )
         self.assertIn('successful-test', res)
 
         res = render_template_with_form(
-            '{% bootstrap_form form bound_css_class="" %}',
+            '{% propeller_form form bound_css_class="" %}',
             {'form': form}
         )
         self.assertNotIn('bootstrap3-bound', res)
@@ -385,7 +385,7 @@ class FieldTest(TestCase):
         res = render_form_field('subject')
         self.assertIn('my_help_text', res)
         self.assertNotIn('<i>my_help_text</i>', res)
-        res = render_template_with_form('{% bootstrap_field form.subject show_help=0 %}')
+        res = render_template_with_form('{% propeller_field form.subject show_help=0 %}')
         self.assertNotIn('my_help_text', res)
 
     def test_help_with_quotes(self):
@@ -414,7 +414,7 @@ class FieldTest(TestCase):
             self.assertNotIn('required', not_required_field)
             # Required field with required=0
             form_field = 'form.subject'
-            rendered = render_template_with_form('{% bootstrap_field ' + form_field + ' set_required=0 %}')
+            rendered = render_template_with_form('{% propeller_field ' + form_field + ' set_required=0 %}')
             self.assertNotIn('required', rendered)
         else:
             required_css_class = 'bootstrap3-req'
@@ -425,7 +425,7 @@ class FieldTest(TestCase):
         # Required settings in field
         form_field = 'form.subject'
         rendered = render_template_with_form(
-            '{% bootstrap_field ' + form_field + ' required_css_class="test-required" %}'
+            '{% propeller_field ' + form_field + ' required_css_class="test-required" %}'
         )
         self.assertIn('test-required', rendered)
 
@@ -452,25 +452,27 @@ class FieldTest(TestCase):
             self.assertNotIn(required_css_class, res)
 
     def test_input_group(self):
-        res = render_template_with_form('{% bootstrap_field form.subject addon_before="$"  addon_after=".00" %}')
+        res = render_template_with_form('{% propeller_field form.subject addon_before="$"  addon_after=".00" %}')
         self.assertIn('class="input-group"', res)
         self.assertIn('class="input-group-addon">$', res)
         self.assertIn('class="input-group-addon">.00', res)
 
     def test_input_group_addon_button(self):
         res = render_template_with_form(
-            '{% bootstrap_field form.subject addon_before="$" addon_before_class="input-group-btn" addon_after=".00" addon_after_class="input-group-btn" %}')
+            '{% propeller_field form.subject addon_before="$" addon_before_class="input-group-btn" '
+            'addon_after=".00" addon_after_class="input-group-btn" %}'
+        )
         self.assertIn('class="input-group"', res)
         self.assertIn('class="input-group-btn">$', res)
         self.assertIn('class="input-group-btn">.00', res)
 
     def test_size(self):
         def _test_size(param, klass):
-            res = render_template_with_form('{% bootstrap_field form.subject size="' + param + '" %}')
+            res = render_template_with_form('{% propeller_field form.subject size="' + param + '" %}')
             self.assertIn(klass, res)
 
         def _test_size_medium(param):
-            res = render_template_with_form('{% bootstrap_field form.subject size="' + param + '" %}')
+            res = render_template_with_form('{% propeller_field form.subject size="' + param + '" %}')
             self.assertNotIn('input-lg', res)
             self.assertNotIn('input-sm', res)
             self.assertNotIn('input-md', res)
@@ -495,7 +497,7 @@ class FieldTest(TestCase):
         self.assertEqual(rendered_a, rendered_b)
 
     def test_label(self):
-        res = render_template_with_form('{% bootstrap_label "foobar" label_for="subject" %}')
+        res = render_template_with_form('{% propeller_label "foobar" label_for="subject" %}')
         self.assertEqual('<label for="subject">foobar</label>', res)
 
     def test_attributes_consistency(self):
@@ -508,17 +510,17 @@ class FieldTest(TestCase):
 
 class ComponentsTest(TestCase):
     def test_icon(self):
-        res = render_template_with_form('{% bootstrap_icon "star" %}')
+        res = render_template_with_form('{% propeller_icon "star" %}')
         self.assertEqual(
             res.strip(), '<span class="glyphicon glyphicon-star"></span>')
-        res = render_template_with_form('{% bootstrap_icon "star" title="alpha centauri" %}')
+        res = render_template_with_form('{% propeller_icon "star" title="alpha centauri" %}')
         self.assertIn(res.strip(), [
             '<span class="glyphicon glyphicon-star" title="alpha centauri"></span>',
             '<span title="alpha centauri" class="glyphicon glyphicon-star"></span>',
         ])
 
     def test_alert(self):
-        res = render_template_with_form('{% bootstrap_alert "content" alert_type="danger" %}')
+        res = render_template_with_form('{% propeller_alert "content" alert_type="danger" %}')
         self.assertEqual(
             res.strip(),
             '<div class="alert alert-danger alert-dismissable">' +
@@ -549,7 +551,7 @@ class MessagesTest(TestCase):
         pattern = re.compile(r'\s+')
         messages = [FakeMessage(DEFAULT_MESSAGE_LEVELS.WARNING, "hello")]
         res = render_template_with_form(
-            '{% bootstrap_messages messages %}', {'messages': messages})
+            '{% propeller_messages messages %}', {'messages': messages})
         expected = """
     <div class="alert alert-warning alert-dismissable">
         <button type="button" class="close" data-dismiss="alert"
@@ -564,7 +566,7 @@ class MessagesTest(TestCase):
 
         messages = [FakeMessage(DEFAULT_MESSAGE_LEVELS.ERROR, "hello")]
         res = render_template_with_form(
-            '{% bootstrap_messages messages %}', {'messages': messages})
+            '{% propeller_messages messages %}', {'messages': messages})
         expected = """
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert"
@@ -579,7 +581,7 @@ class MessagesTest(TestCase):
 
         messages = [FakeMessage(None, "hello")]
         res = render_template_with_form(
-            '{% bootstrap_messages messages %}', {'messages': messages})
+            '{% propeller_messages messages %}', {'messages': messages})
         expected = """
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert"
@@ -595,7 +597,7 @@ class MessagesTest(TestCase):
 
         messages = [FakeMessage(DEFAULT_MESSAGE_LEVELS.ERROR, "hello http://example.com")]
         res = render_template_with_form(
-            '{% bootstrap_messages messages %}', {'messages': messages})
+            '{% propeller_messages messages %}', {'messages': messages})
         expected = """
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
@@ -608,7 +610,7 @@ class MessagesTest(TestCase):
 
         messages = [FakeMessage(DEFAULT_MESSAGE_LEVELS.ERROR, "hello\nthere")]
         res = render_template_with_form(
-            '{% bootstrap_messages messages %}', {'messages': messages})
+            '{% propeller_messages messages %}', {'messages': messages})
         expected = """
     <div class="alert alert-danger alert-dismissable">
         <button type="button" class="close" data-dismiss="alert"
@@ -654,10 +656,10 @@ class UtilsTest(TestCase):
 
 class ButtonTest(TestCase):
     def test_button(self):
-        res = render_template_with_form("{% bootstrap_button 'button' size='lg' %}")
+        res = render_template_with_form("{% propeller_button 'button' size='lg' %}")
         self.assertEqual(
-            res.strip(), '<button class="btn btn-default btn-lg">button</button>')
-        res = render_template_with_form("{% bootstrap_button 'button' size='lg' href='#' %}")
+            res.strip(), '<button class="btn btn-default pmd-ripple-effect btn-lg">button</button>')
+        res = render_template_with_form("{% propeller_button 'button' size='lg' href='#' %}")
         self.assertIn(
             res.strip(),
             '<a class="btn btn-default btn-lg" href="#">button</a><a href="#" ' +
@@ -668,7 +670,7 @@ class ShowLabelTest(TestCase):
     def test_show_label(self):
         form = TestForm()
         res = render_template_with_form(
-            '{% bootstrap_form form show_label=False %}',
+            '{% propeller_form form show_label=False %}',
             {'form': form}
         )
         self.assertIn('sr-only', res)
@@ -677,28 +679,28 @@ class ShowLabelTest(TestCase):
         TestFormSet = formset_factory(TestForm, extra=1)
         test_formset = TestFormSet()
         res = render_template_with_form(
-            '{% bootstrap_formset formset show_label=False %}',
+            '{% propeller_formset formset show_label=False %}',
             {'formset': test_formset}
         )
         self.assertIn('sr-only', res)
 
     def test_button_with_icon(self):
         res = render_template_with_form(
-            "{% bootstrap_button 'test' icon='info-sign' %}"
+            "{% propeller_button 'test' icon='info-sign' %}"
         )
         self.assertEqual(
             res.strip(),
             '<button class="btn btn-default"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
         )
         res = render_template_with_form(
-            "{% bootstrap_button 'test' icon='info-sign' button_class='btn-primary' %}"
+            "{% propeller_button 'test' icon='info-sign' button_class='btn-primary' %}"
         )
         self.assertEqual(
             res.strip(),
             '<button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
         )
         res = render_template_with_form(
-            "{% bootstrap_button 'test' icon='info-sign' button_type='submit' %}"
+            "{% propeller_button 'test' icon='info-sign' button_type='submit' %}"
         )
         self.assertEqual(
             res.strip(),
