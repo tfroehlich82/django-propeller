@@ -5,6 +5,7 @@ Write Django as usual, and let ``django-propeller`` make template output into co
 
 
 [![Build Status](https://travis-ci.org/tfroehlich82/django-propeller.svg?branch=master)](https://travis-ci.org/tfroehlich82/django-propeller)
+[![Coverage Status](https://coveralls.io/repos/github/tfroehlich82/django-propeller/badge.svg?branch=master)](https://coveralls.io/github/tfroehlich82/django-propeller?branch=master)
 ![PyPI version](http://img.shields.io/pypi/v/django-propeller.svg)
 ![PyPI downloads](http://img.shields.io/pypi/dm/django-propeller.svg)
 
