@@ -18,7 +18,7 @@ from .exceptions import PropellerError
 from .text import text_concat, text_value
 from .utils import add_css_class, render_tag
 
-FORM_GROUP_CLASS = 'form-group'
+FORM_GROUP_CLASS = 'form-group pmd-textfield-floating-label'
 
 
 def render_formset(formset, **kwargs):
