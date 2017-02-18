@@ -211,10 +211,6 @@ class SettingsTest(TestCase):
             '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">',
             res
         )
-        self.assertIn(
-            '<link href="//example.com/theme.css" rel="stylesheet">',
-            res
-        )
 
 
 def test_settings_filter(self):
@@ -253,12 +249,12 @@ class TemplateTest(TestCase):
 
     def test_propeller_template(self):
         res = render_template(
-            '{% extends "bootstrap3/bootstrap3.html" %}' +
-            '{% block bootstrap3_content %}' +
-            'test_bootstrap3_content' +
+            '{% extends "propeller/propeller.html" %}' +
+            '{% block propeller_content %}' +
+            'test_propeller_content' +
             '{% endblock %}'
         )
-        self.assertIn('test_bootstrap3_content', res)
+        self.assertIn('test_propeller_content', res)
 
     def test_javascript_without_jquery(self):
         res = render_template_with_form('{% propeller_javascript jquery=0 %}')
