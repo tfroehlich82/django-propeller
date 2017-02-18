@@ -12,13 +12,14 @@ from django.utils.safestring import mark_safe
 from .propeller import (
     get_propeller_setting, get_form_renderer, get_field_renderer,
     get_formset_renderer,
-    PROPELLER_SET_REQUIRED_SET_DISABLED)
+    PROPELLER_SET_REQUIRED_SET_DISABLED
+)
 from .components import render_icon
 from .exceptions import PropellerError
 from .text import text_concat, text_value
 from .utils import add_css_class, render_tag
 
-FORM_GROUP_CLASS = 'form-group pmd-textfield-floating-label'
+FORM_GROUP_CLASS = 'form-group pmd-textfield'
 
 
 def render_formset(formset, **kwargs):
@@ -76,7 +77,7 @@ def render_label(content, label_for=None, label_class=None, label_title=''):
 
 
 def render_button(
-        content, button_type=None, icon=None, button_class='btn-default', size='',
+        content, button_type=None, icon=None, button_class='btn-default pmd-ripple-effect', size='',
         href='', name=None, value=None, title=None, extra_classes='', _id=''):
     """
     Render a button with content
