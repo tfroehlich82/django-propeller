@@ -13,8 +13,8 @@ Write Django as usual, and let ``django-propeller`` make template output into co
 Requirements
 ------------
 
-- Python 2.7, 3.2, 3.3, 3.4, or 3.5
-- Django >= 1.10
+- Python 2.7, 3.3, 3.4, 3.5, or 3.6
+- Django >= 1.9
 
 
 Installation
