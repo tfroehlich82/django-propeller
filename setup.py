@@ -27,7 +27,7 @@ if sys.argv[-1] == 'test':
     os.system('python manage.py test')
     sys.exit()
 
-with open('README.rst') as readme_file:
+with open('README.md') as readme_file:
     readme = readme_file.read()
 
 setup(
