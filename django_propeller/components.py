@@ -7,7 +7,23 @@ from django_propeller.utils import render_tag, add_css_class
 from .text import text_value
 
 
-def render_icon(icon, **kwargs):
+def render_icon(icon, size='sm', **kwargs):
+    """
+    Render a Google icon
+    """
+    attrs = {
+        'class': add_css_class(
+            'material-icons md-dark pmd-{size}'.format(size=size),
+            kwargs.get('extra_classes', ''),
+        )
+    }
+    title = kwargs.get('title')
+    if title:
+        attrs['title'] = title
+    return render_tag('i', attrs=attrs, content=icon)
+
+
+def render_bootstrap_icon(icon, **kwargs):
     """
     Render a Bootstrap glyphicon icon
     """

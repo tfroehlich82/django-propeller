@@ -13,7 +13,7 @@ from django.utils.safestring import mark_safe
 from ..propeller import (
     css_url, javascript_url, jquery_url, theme_url, get_propeller_setting
 )
-from ..components import render_icon, render_alert
+from ..components import render_icon, render_alert, render_bootstrap_icon
 from ..forms import (
     render_button, render_field, render_field_and_label, render_form,
     render_form_group, render_formset, render_fab,
@@ -695,20 +695,23 @@ def propeller_icon(icon, **kwargs):
     """
     Render an icon
 
-    **Tag name**::
+    **Tag name**:
 
         propeller_icon
 
     **Parameters**:
 
         icon
-            Icon name. See the `propeller docs <http://getpropeller.com/components/#glyphicons>`_ for all icons.
+            Icon name. See the `propeller docs http://propeller.in/style/icons.php`_ for all icons.
+
+        size
+            Size of the icon. Must be one of 'xs', 'sm', 'md', or 'lg'. Default: 'sm'
 
         extra_classes
-            Extra CSS classes to add to the icon HTML
+            Extra CSS classes to add to the icon HTML. Optional
 
         title
-            A title for the icon (HTML title attrivute)
+            A title for the icon (HTML title attrivute). Optional
 
     **Usage**::
 
@@ -720,6 +723,38 @@ def propeller_icon(icon, **kwargs):
 
     """
     return render_icon(icon, **kwargs)
+
+
+@register.simple_tag
+def propeller_bootstrap_icon(icon, **kwargs):
+    """
+    Render an icon
+
+    **Tag name**:
+
+        propeller_bootstrap_icon
+
+    **Parameters**:
+
+        icon
+            Icon name. See the `Bootstrap docs <http://getbootstrap.com/components/#glyphicons>`_ for all icons.
+
+        extra_classes
+            Extra CSS classes to add to the icon HTML. Optional
+
+        title
+            A title for the icon (HTML title attrivute). Optional
+
+    **Usage**::
+
+        {% propeller_bootstrap_icon icon %}
+
+    **Example**::
+
+        {% propeller_bootstrap_icon "star" %}
+
+    """
+    return render_bootstrap_icon(icon, **kwargs)
 
 
 @register.simple_tag
