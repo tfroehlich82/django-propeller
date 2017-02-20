@@ -9,6 +9,7 @@ from django.contrib.messages import constants as DEFAULT_MESSAGE_LEVELS
 from django.contrib.messages import constants as message_constants
 from django.template import Context
 from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape
 
 from ..propeller import (
     css_url, javascript_url, jquery_url, theme_url, get_propeller_setting
@@ -1044,3 +1045,83 @@ def get_pagination_context(page, pages_to_show=11,
         'pagination_css_classes': ' '.join(pagination_css_classes),
         'parameter_name': parameter_name,
     }
+
+
+@register.filter(needs_autoescape=True)
+def pmd_muted_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="text-muted">%s</span>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_display_text(text, size=1, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="pmd-display%d">%s</span>' % (int(size), esc(text))
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_lead_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="lead">%s</span>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_mark_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<mark>%s</mark>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_strike_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<s>%s</s>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_underline_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<u>%s</u>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_bold_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<strong>%s</strong>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_italic_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<em>%s</em>' % esc(text)
+    return mark_safe(result)

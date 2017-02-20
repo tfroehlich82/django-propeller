@@ -100,3 +100,26 @@ class ButtonsView(TemplateView):
 
 class FABsView(TemplateView):
     template_name = 'fabs.html'
+
+
+class TypoView(TemplateView):
+    template_name = 'typo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TypoView, self).get_context_data(**kwargs)
+        context['text1'] = "Propeller Heading"
+        context['text2'] = "with secondary heading"
+        context['text3'] = "Really large heading"
+        context['text4'] = "Larger heading"
+        context['text5'] = "Large heading"
+        context['text6'] = "Normal heading"
+        context['text7'] = "Heading"
+        context['text8'] = "Lead text..."
+        context['text9'] = "Normal text..."
+        context['text10'] = "With this filter you can "
+        context['text11'] = "highlight some text"
+        context['text12'] = "strikethrough some text"
+        context['text13'] = "underline some text"
+        context['text14'] = "show some bold text"
+        context['text15'] = "show some italic text"
+        return context

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load propeller %}
+
+{% block title %}
+    Propeller Typography
+{% endblock %}
+
+{% block content %}
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Heading with muted text Filter</h2>
+                <span class="pmd-card-subtitle-text">text_var|pmd_muted_text</span>
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            <h2>{{ text1|pmd_display_text }}<br>{{ text2|pmd_muted_text }}</h2>
+        </div>
+    </div>
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Display Heading Filter</h2>
+                <span class="pmd-card-subtitle-text">text_var|pmd_display_text:size</span>
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            {{ text3|pmd_display_text:4 }}<br>
+            {{ text4|pmd_display_text:3 }}<br>
+            {{ text5|pmd_display_text:2 }}<br>
+            {{ text6|pmd_display_text:1 }}
+        </div>
+    </div>
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Lead Text Filter</h2>
+                <span class="pmd-card-subtitle-text">text_var|pmd_lead_text</span>
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            {{ text7|pmd_display_text:2 }}<br>
+            {{ text8|pmd_lead_text }}<br>
+            {{ text9 }}
+        </div>
+    </div>
+
+        <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Inline Text Filter</h2>
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            {{ text10 }}{{ text11|pmd_mark_text }}<br>
+            {{ text10 }}{{ text12|pmd_strike_text }}<br>
+            {{ text10 }}{{ text13|pmd_underline_text }}<br>
+            {{ text10 }}{{ text14|pmd_bold_text }}<br>
+            {{ text10 }}{{ text15|pmd_italic_text }}
+        </div>
+    </div>
+
+{% endblock %}
