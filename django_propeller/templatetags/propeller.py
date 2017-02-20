@@ -9,14 +9,15 @@ from django.contrib.messages import constants as DEFAULT_MESSAGE_LEVELS
 from django.contrib.messages import constants as message_constants
 from django.template import Context
 from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape
 
 from ..propeller import (
     css_url, javascript_url, jquery_url, theme_url, get_propeller_setting
 )
-from ..components import render_icon, render_alert
+from ..components import render_icon, render_alert, render_bootstrap_icon
 from ..forms import (
     render_button, render_field, render_field_and_label, render_form,
-    render_form_group, render_formset,
+    render_form_group, render_formset, render_fab,
     render_label, render_form_errors, render_formset_errors
 )
 from ..text import force_text
@@ -559,6 +560,17 @@ def propeller_button(*args, **kwargs):
                 * ``'reset'``
                 * ``'button'``
                 * ``'link'``
+
+        style
+            Optional field defining which style button should have.
+
+            Accepts one of the following values:
+
+                * ``'default'``
+                * ``'raised'``
+                * ``'flat'``
+                * ``'outline'``
+
         icon
             Name of an icon to render in the button's visible content. See propeller_icon_ for acceptable values.
 
@@ -603,24 +615,104 @@ def propeller_button(*args, **kwargs):
 
 
 @register.simple_tag
+def propeller_fab(*args, **kwargs):
+    """
+    Render a floating action button
+
+    **Tag name**::
+
+        propeller_fab
+
+    **Parameters**:
+
+        content
+            The text to be displayed in the button
+
+        button_type
+            Optional field defining what type of button this is.
+
+            Accepts one of the following values:
+
+                * ``'submit'``
+                * ``'reset'``
+                * ``'button'``
+                * ``'link'``
+
+        style
+            Optional field defining which style button should have.
+
+            Accepts one of the following values:
+
+                * ``'default'``
+                * ``'raised'``
+                * ``'flat'``
+                * ``'outline'``
+
+        icon
+            Name of an icon to render in the button's visible content. See propeller_icon_ for acceptable values.
+
+        button_class
+            The class of button to use. If none is given, btn-default will be used.
+
+        extra_classes
+            Any extra CSS classes that should be added to the button.
+
+        size
+            Optional field to control the size of the button.
+
+            Accepts one of the following values:
+
+                * ``'xs'``
+                * ``'sm'``
+                * ``'small'``
+                * ``'md'``
+                * ``'medium'``
+                * ``'lg'``
+                * ``'large'``
+
+
+        href
+            Render the button as an ``<a>`` element. The ``href`` attribute is set with this value.
+
+        name
+            Value of the ``name`` attribute of the rendered element.
+
+        value
+            Value of the ``value`` attribute of the rendered element.
+
+    **Usage**::
+
+        {% propeller_fab content %}
+
+    **Example**::
+
+        {% propeller_fab "Save" button_type="submit" button_class="btn-primary" %}
+    """
+    return render_fab(*args, **kwargs)
+
+
+@register.simple_tag
 def propeller_icon(icon, **kwargs):
     """
     Render an icon
 
-    **Tag name**::
+    **Tag name**:
 
         propeller_icon
 
     **Parameters**:
 
         icon
-            Icon name. See the `propeller docs <http://getpropeller.com/components/#glyphicons>`_ for all icons.
+            Icon name. See the `propeller docs http://propeller.in/style/icons.php`_ for all icons.
+
+        size
+            Size of the icon. Must be one of 'xs', 'sm', 'md', or 'lg'. Default: 'sm'
 
         extra_classes
-            Extra CSS classes to add to the icon HTML
+            Extra CSS classes to add to the icon HTML. Optional
 
         title
-            A title for the icon (HTML title attrivute)
+            A title for the icon (HTML title attrivute). Optional
 
     **Usage**::
 
@@ -632,6 +724,38 @@ def propeller_icon(icon, **kwargs):
 
     """
     return render_icon(icon, **kwargs)
+
+
+@register.simple_tag
+def propeller_bootstrap_icon(icon, **kwargs):
+    """
+    Render an icon
+
+    **Tag name**:
+
+        propeller_bootstrap_icon
+
+    **Parameters**:
+
+        icon
+            Icon name. See the `Bootstrap docs <http://getbootstrap.com/components/#glyphicons>`_ for all icons.
+
+        extra_classes
+            Extra CSS classes to add to the icon HTML. Optional
+
+        title
+            A title for the icon (HTML title attrivute). Optional
+
+    **Usage**::
+
+        {% propeller_bootstrap_icon icon %}
+
+    **Example**::
+
+        {% propeller_bootstrap_icon "star" %}
+
+    """
+    return render_bootstrap_icon(icon, **kwargs)
 
 
 @register.simple_tag
@@ -921,3 +1045,83 @@ def get_pagination_context(page, pages_to_show=11,
         'pagination_css_classes': ' '.join(pagination_css_classes),
         'parameter_name': parameter_name,
     }
+
+
+@register.filter(needs_autoescape=True)
+def pmd_muted_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="text-muted">%s</span>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_display_text(text, size=1, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="pmd-display%d">%s</span>' % (int(size), esc(text))
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_lead_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<span class="lead">%s</span>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_mark_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<mark>%s</mark>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_strike_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<s>%s</s>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_underline_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<u>%s</u>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_bold_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<strong>%s</strong>' % esc(text)
+    return mark_safe(result)
+
+
+@register.filter(needs_autoescape=True)
+def pmd_italic_text(text, autoescape=True):
+    if autoescape:
+        esc = conditional_escape
+    else:
+        esc = lambda x: x
+    result = '<em>%s</em>' % esc(text)
+    return mark_safe(result)

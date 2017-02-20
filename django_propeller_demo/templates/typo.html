@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load propeller %}
+
+{% block title %}
+    Propeller Typography
+{% endblock %}
+
+{% block content %}
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Heading with muted text Filter</h2>
+                {% verbatim %}
+                <span class="pmd-card-subtitle-text">usage: {{ text_var|pmd_muted_text }}</span>
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            <h2>{{ text1|pmd_display_text }}<br>{{ text2|pmd_muted_text }}</h2>
+        </div>
+    </div>
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Display Heading Filter</h2>
+                {% verbatim %}
+                <span class="pmd-card-subtitle-text">usage: {{ text_var|pmd_display_text:size }}</span>
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            <table>
+                <tr>
+                    <td>size=4:</td><td>{{ text3|pmd_display_text:4 }}</td>
+                </tr>
+                <tr>
+                    <td>size=3:</td><td>{{ text4|pmd_display_text:3 }}</td>
+                </tr>
+                <tr>
+                    <td>size=2:</td><td>{{ text5|pmd_display_text:2 }}</td>
+                </tr>
+                <tr>
+                    <td>size=1:</td><td>{{ text6|pmd_display_text:1 }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Lead Text Filter</h2>
+                {% verbatim %}
+                <span class="pmd-card-subtitle-text">usage: {{ text_var|pmd_lead_text }}</span>
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            <table>
+                <tr>
+                    <td>pmd_display_text:</td><td>{{ text7|pmd_display_text:2 }}</td>
+                </tr>
+                <tr>
+                    <td>pmd_lead_text:</td><td>{{ text8|pmd_lead_text }}</td>
+                </tr>
+                <tr>
+                    <td></td><td>{{ text9 }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Inline Text Filter</h2>
+                {% verbatim %}
+                <span class="pmd-card-subtitle-text">usage: {{ text_var|filter }}</span>
+                {% endverbatim %}
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            <table>
+                <tr>
+                    <td>pmd_mark_text:</td><td>{{ text10 }}{{ text11|pmd_mark_text }}</td>
+                </tr>
+                <tr>
+                    <td>pmd_strike_text:</td><td>{{ text10 }}{{ text12|pmd_strike_text }}</td>
+                </tr>
+                <tr>
+                    <td>pmd_underline_text:&nbsp;</td><td>{{ text10 }}{{ text13|pmd_underline_text }}</td>
+                </tr>
+                <tr>
+                    <td>pmd_bold_text:</td><td>{{ text10 }}{{ text14|pmd_bold_text }}</td>
+                </tr>
+                <tr>
+                    <td>pmd_italic_text:</td><td>{{ text10 }}{{ text15|pmd_italic_text }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

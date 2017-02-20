@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load propeller %}
+
+{% block title %}
+    Propeller Floating Action Buttons (FAB)
+{% endblock %}
+
+{% block content %}
+
+    {#  Default buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Default Propeller FAB</h2>
+                <span class="pmd-card-subtitle-text">propeller_fab '' icon='star'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_fab '' icon='add' %}
+            {% propeller_fab '' icon='star' button_class='btn-primary' %}
+            {% propeller_fab '' icon='info' button_class='btn-success' %}
+            {% propeller_fab '' icon='check' button_class='btn-info' %}
+            {% propeller_fab '' icon='warning' button_class='btn-warning' %}
+            {% propeller_fab '' icon='error' button_class='btn-danger' %}
+            {% propeller_fab 'Link' button_class='btn-link' %}
+        </div>
+    </div>
+
+    {#  Raised buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Raised Propeller FAB</h2>
+                <span class="pmd-card-subtitle-text">propeller_fab '' icon='add' style='raised'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_fab '' icon='add' style='raised' %}
+            {% propeller_fab '' icon='star' style='raised' button_class='btn-primary' %}
+            {% propeller_fab '' icon='info' style='raised' button_class='btn-success' %}
+            {% propeller_fab '' icon='check' style='raised' button_class='btn-info' %}
+            {% propeller_fab '' icon='warning' style='raised' button_class='btn-warning' %}
+            {% propeller_fab '' icon='error' style='raised' button_class='btn-danger' %}
+            {% propeller_fab 'Link' style='raised' button_class='btn-link' %}
+        </div>
+    </div>
+
+    {#  Flat buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Flat Propeller FAB</h2>
+                <span class="pmd-card-subtitle-text">propeller_fab '' icon='add' style='flat'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_fab '' icon='add' style='flat' %}
+            {% propeller_fab '' icon='star' style='flat' %}
+            {% propeller_fab '' icon='info' style='flat' %}
+            {% propeller_fab '' icon='check' style='flat' %}
+            {% propeller_fab '' icon='warning' style='flat' %}
+            {% propeller_fab '' icon='error' style='flat' %}
+            {% propeller_fab 'Link' style='flat' %}
+        </div>
+    </div>
+
+    {#  Outline buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Outline Propeller FAB</h2>
+                <span class="pmd-card-subtitle-text">propeller_fab '' icon='add' style='outline'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_fab '' icon='add' style='outline' %}
+            {% propeller_fab '' icon='star' style='outline' button_class='btn-primary' %}
+            {% propeller_fab '' icon='info' style='outline' button_class='btn-success' %}
+            {% propeller_fab '' icon='check' style='outline' button_class='btn-info' %}
+            {% propeller_fab '' icon='warning' style='outline' button_class='btn-warning' %}
+            {% propeller_fab '' icon='error' style='outline' button_class='btn-danger' %}
+            {% propeller_fab 'Link' style='outline' button_class='btn-link' %}
+        </div>
+    </div>
+
+{#    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">#}
+{#        <div class="pmd-card-media">#}
+{#            <div class="media-body">#}
+{#                <h2 class="pmd-card-title-text">Outline Propeller FAB</h2>#}
+{#                <span class="pmd-card-subtitle-text">See lower right for demo</span>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <div class="menu pmd-floating-action" role="navigation">#}
+{#        <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Supervisor Account">#}
+{#            <span class="pmd-floating-hidden">Supervisor Account</span>#}
+{#            <i class="material-icons">supervisor_account</i>#}
+{#        </a>#}
+{#        <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Cloud Queue">#}
+{#            <span class="pmd-floating-hidden">Cloud Queue</span>#}
+{#            <i class="material-icons">cloud_queue</i>#}
+{#        </a>#}
+{#        <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Headset">#}
+{#            <span class="pmd-floating-hidden">Headset</span>#}
+{#            <i class="material-icons">headset</i>#}
+{#        </a>#}
+{#        <a href="javascript:void(0);" class="pmd-floating-action-btn btn btn-sm pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-default" data-title="Dialpad">#}
+{#            <span class="pmd-floating-hidden">Dialpad</span>#}
+{#            <i class="material-icons">dialpad</i>#}
+{#        </a>#}
+{#        <a href="javascript:void(0);" class="pmd-floating-action-btn btn pmd-btn-fab pmd-btn-raised pmd-ripple-effect btn-primary" data-title="Add">#}
+{#            <span class="pmd-floating-hidden">Primary</span>#}
+{#            <i class="material-icons pmd-sm">add</i>#}
+{#        </a>#}
+{#    </div>#}
+
+
+
+{% endblock %}
+
