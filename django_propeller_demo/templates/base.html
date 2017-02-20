@@ -13,13 +13,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">{% block title %}django-propeller{% endblock %}</a>
+                <a class="navbar-brand" href="#">django-propeller</a>
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a class="pmd-ripple-effect" href="{% url 'home' %}">Home</a></li>
-                    <li><a class="pmd-ripple-effect" href="{% url 'form_default' %}">Buttons</a></li>
+                    <li><a class="pmd-ripple-effect" href="{% url 'buttons' %}">Buttons</a></li>
                     <li class="dropdown pmd-dropdown">
                         <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Forms<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -39,6 +39,7 @@
     </nav>
 
     <div class="container">
+        <h2>{% block title %}django-propeller{% endblock %}</h2>
         {% autoescape off %}{% propeller_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
