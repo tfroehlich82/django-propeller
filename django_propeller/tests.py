@@ -654,11 +654,11 @@ class ButtonTest(TestCase):
     def test_button(self):
         res = render_template_with_form("{% propeller_button 'button' size='lg' %}")
         self.assertEqual(
-            res.strip(), '<button class="btn btn-default pmd-ripple-effect btn-lg">button</button>')
+            res.strip(), '<button class="btn btn-default btn-lg pmd-btn-default pmd-ripple-effect">button</button>')
         res = render_template_with_form("{% propeller_button 'button' size='lg' href='#' %}")
         self.assertIn(
             res.strip(),
-            '<a class="btn btn-default pmd-ripple-effect btn-lg" href="#">button</a>')
+            '<a class="btn btn-default btn-lg pmd-btn-default pmd-ripple-effect" href="#">button</a>')
 
 
 class ShowLabelTest(TestCase):
@@ -685,19 +685,19 @@ class ShowLabelTest(TestCase):
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
+            '<button class="btn btn-default pmd-btn-default pmd-ripple-effect"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_class='btn-primary' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
+            '<button class="btn btn-primary pmd-btn-default pmd-ripple-effect"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_type='submit' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect" type="submit"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
+            '<button class="btn btn-default pmd-btn-default pmd-ripple-effect" type="submit"><span class="glyphicon glyphicon-info-sign"></span> test</button>'
         )
