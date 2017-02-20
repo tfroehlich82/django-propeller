@@ -2,4 +2,4 @@ include CONTRIBUTING.rst
 include LICENSE
 include README.md
 recursive-include django_propeller *
-recursive-include demo *
+recursive-include django_propeller_demo *
