@@ -1,6 +1,6 @@
 Metadata-Version: 1.0
 Name: django-propeller
-Version: 1.0.1
+Version: 1.1.0
 Summary: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap. http://propeller.in/index.html
 Home-page: https://github.com/tfroehlich82/django-propeller
 Author: Thorsten Froehlich
