@@ -8,95 +8,81 @@
 
 {% block content %}
 
-    <h3>Default Propeller Button</h3>
-    <p>
-        {% propeller_button 'button' %}
-        {% propeller_button 'button' button_class='btn-primary' %}
-        {% propeller_button 'button' button_class='btn-success' %}
-        {% propeller_button 'button' button_class='btn-info' %}
-        {% propeller_button 'button' button_class='btn-warning' %}
-        {% propeller_button 'button' button_class='btn-danger' %}
-        {% propeller_button 'button' button_class='btn-link' %}
-    </p>
+    {#  Default buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Default Propeller Button</h2>
+                <span class="pmd-card-subtitle-text">propeller_button 'button'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_button 'button' %}
+            {% propeller_button 'button' button_class='btn-primary' %}
+            {% propeller_button 'button' button_class='btn-success' %}
+            {% propeller_button 'button' button_class='btn-info' %}
+            {% propeller_button 'button' button_class='btn-warning' %}
+            {% propeller_button 'button' button_class='btn-danger' %}
+            {% propeller_button 'button' button_class='btn-link' %}
+        </div>
+    </div>
 
-    <h3>Raised Button</h3>
-    <p>
+    {#  Raised buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Raised Button</h2>
+                <span class="pmd-card-subtitle-text">propeller_button 'button' style='raised'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_button 'button' style='raised' %}
+            {% propeller_button 'button' style='raised' button_class='btn-primary' %}
+            {% propeller_button 'button' style='raised' button_class='btn-success' %}
+            {% propeller_button 'button' style='raised' button_class='btn-info' %}
+            {% propeller_button 'button' style='raised' button_class='btn-warning' %}
+            {% propeller_button 'button' style='raised' button_class='btn-danger' %}
+            {% propeller_button 'button' style='raised' button_class='btn-link' %}
+        </div>
+    </div>
 
+    {#  Flat buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Flat Button</h2>
+                <span class="pmd-card-subtitle-text">propeller_button 'button' style='flat'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_button 'button' style='flat' %}
+            {% propeller_button 'button' style='flat' button_class='btn-primary' %}
+            {% propeller_button 'button' style='flat' button_class='btn-success' %}
+            {% propeller_button 'button' style='flat' button_class='btn-info' %}
+            {% propeller_button 'button' style='flat' button_class='btn-warning' %}
+            {% propeller_button 'button' style='flat' button_class='btn-danger' %}
+            {% propeller_button 'button' style='flat' button_class='btn-link' %}
+        </div>
+    </div>
 
-<!--Default raised button with ripple effect-->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-default">Default</button>
-
-<!--Primary raised button with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-primary">Primary</button>
-
-<!-- Success raised button with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-success">Success</button>
-
-<!-- Information raised button with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-info">Info</button>
-
-<!-- Warning raised button with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-warning">Warning</button>
-
-<!-- Danger raised button with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-danger">Danger</button>
-
-<!-- Link raised with ripple effect -->
-<button type="button" class="btn pmd-btn-raised pmd-ripple-effect btn-link">Link</button>
-
-</p>
-
-    <h3>Flat Button</h3>
-<p>
-
-    <!-- Default flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Default</button>
-
-<!-- Primary flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-primary">Primary</button>
-
-<!-- Success flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-success">Success</button>
-
-<!-- Information flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-info">Info</button>
-
-<!-- Warning flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-warning">Warning</button>
-
-<!-- Danger flat button with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-danger">Danger</button>
-
-<!-- Link flat with ripple effect -->
-<button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-link">Link</button>
-
-</p>
-
-    <h3>Outline Button</h3>
-<p>
-
-    <!-- Default outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-default">Default</button>
-
-<!-- Primary outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-primary">Primary</button>
-
-<!-- Success outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-success">Success</button>
-
-<!-- Information outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-info">Info</button>
-
-<!-- Warning outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-warning">Warning</button>
-
-<!-- Danger outline button with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-danger">Danger</button>
-
-<!-- Link outline with ripple effect -->
-<button type="button" class="btn pmd-btn-outline pmd-ripple-effect btn-link">Link</button>
-
-</p>
+    {#  Outline buttons example  #}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Outline Button</h2>
+                <span class="pmd-card-subtitle-text">propeller_button 'button' style='outline'</span>
+            </div>
+        </div>
+        <div class="pmd-card-actions">
+            {% propeller_button 'button' style='outline' %}
+            {% propeller_button 'button' style='outline' button_class='btn-primary' %}
+            {% propeller_button 'button' style='outline' button_class='btn-success' %}
+            {% propeller_button 'button' style='outline' button_class='btn-info' %}
+            {% propeller_button 'button' style='outline' button_class='btn-warning' %}
+            {% propeller_button 'button' style='outline' button_class='btn-danger' %}
+            {% propeller_button 'button' style='outline' button_class='btn-link' %}
+        </div>
+    </div>
 
 {% endblock %}
 
