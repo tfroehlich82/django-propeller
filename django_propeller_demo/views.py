@@ -96,3 +96,7 @@ class MiscView(TemplateView):
 
 class ButtonsView(TemplateView):
     template_name = 'buttons.html'
+
+
+class FABsView(TemplateView):
+    template_name = 'fabs.html'

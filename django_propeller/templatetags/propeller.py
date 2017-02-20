@@ -16,7 +16,7 @@ from ..propeller import (
 from ..components import render_icon, render_alert
 from ..forms import (
     render_button, render_field, render_field_and_label, render_form,
-    render_form_group, render_formset,
+    render_form_group, render_formset, render_fab,
     render_label, render_form_errors, render_formset_errors
 )
 from ..text import force_text
@@ -559,6 +559,17 @@ def propeller_button(*args, **kwargs):
                 * ``'reset'``
                 * ``'button'``
                 * ``'link'``
+
+        style
+            Optional field defining which style button should have.
+
+            Accepts one of the following values:
+
+                * ``'default'``
+                * ``'raised'``
+                * ``'flat'``
+                * ``'outline'``
+
         icon
             Name of an icon to render in the button's visible content. See propeller_icon_ for acceptable values.
 
@@ -600,6 +611,83 @@ def propeller_button(*args, **kwargs):
         {% propeller_button "Save" button_type="submit" button_class="btn-primary" %}
     """
     return render_button(*args, **kwargs)
+
+
+@register.simple_tag
+def propeller_fab(*args, **kwargs):
+    """
+    Render a floating action button
+
+    **Tag name**::
+
+        propeller_fab
+
+    **Parameters**:
+
+        content
+            The text to be displayed in the button
+
+        button_type
+            Optional field defining what type of button this is.
+
+            Accepts one of the following values:
+
+                * ``'submit'``
+                * ``'reset'``
+                * ``'button'``
+                * ``'link'``
+
+        style
+            Optional field defining which style button should have.
+
+            Accepts one of the following values:
+
+                * ``'default'``
+                * ``'raised'``
+                * ``'flat'``
+                * ``'outline'``
+
+        icon
+            Name of an icon to render in the button's visible content. See propeller_icon_ for acceptable values.
+
+        button_class
+            The class of button to use. If none is given, btn-default will be used.
+
+        extra_classes
+            Any extra CSS classes that should be added to the button.
+
+        size
+            Optional field to control the size of the button.
+
+            Accepts one of the following values:
+
+                * ``'xs'``
+                * ``'sm'``
+                * ``'small'``
+                * ``'md'``
+                * ``'medium'``
+                * ``'lg'``
+                * ``'large'``
+
+
+        href
+            Render the button as an ``<a>`` element. The ``href`` attribute is set with this value.
+
+        name
+            Value of the ``name`` attribute of the rendered element.
+
+        value
+            Value of the ``value`` attribute of the rendered element.
+
+    **Usage**::
+
+        {% propeller_fab content %}
+
+    **Example**::
+
+        {% propeller_fab "Save" button_type="submit" button_class="btn-primary" %}
+    """
+    return render_fab(*args, **kwargs)
 
 
 @register.simple_tag

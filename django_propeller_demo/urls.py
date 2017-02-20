@@ -4,11 +4,12 @@ from __future__ import unicode_literals
 from django.conf.urls import url
 
 from .views import HomePageView, FormHorizontalView, FormInlineView, PaginationView, FormWithFilesView, \
-    DefaultFormView, MiscView, DefaultFormsetView, DefaultFormByFieldView, ButtonsView
+    DefaultFormView, MiscView, DefaultFormsetView, DefaultFormByFieldView, ButtonsView, FABsView
 
 urlpatterns = [
     url(r'^$', HomePageView.as_view(), name='home'),
     url(r'^buttons$', ButtonsView.as_view(), name='buttons'),
+    url(r'^fabs$', FABsView.as_view(), name='fabs'),
     url(r'^formset$', DefaultFormsetView.as_view(), name='formset_default'),
     url(r'^form$', DefaultFormView.as_view(), name='form_default'),
     url(r'^form_by_field$', DefaultFormByFieldView.as_view(), name='form_by_field'),
