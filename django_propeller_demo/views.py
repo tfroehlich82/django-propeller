@@ -92,3 +92,7 @@ class PaginationView(TemplateView):
 
 class MiscView(TemplateView):
     template_name = 'misc.html'
+
+
+class ButtonsView(TemplateView):
+    template_name = 'buttons.html'

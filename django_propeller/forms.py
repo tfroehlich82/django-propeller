@@ -77,8 +77,8 @@ def render_label(content, label_for=None, label_class=None, label_title=''):
 
 
 def render_button(
-        content, button_type=None, icon=None, button_class='btn-default pmd-ripple-effect', size='',
-        href='', name=None, value=None, title=None, extra_classes='', _id=''):
+        content, button_type=None, icon=None, button_class='btn-default', size='',
+        href='', name=None, value=None, title=None, style='default', extra_classes='pmd-ripple-effect', _id=''):
     """
     Render a button with content
     """
@@ -103,6 +103,12 @@ def render_button(
                 'Parameter "button_type" should be "submit", "reset", ' +
                 '"button", "link" or empty  ("{}" given).'.format(button_type))
         attrs['type'] = button_type
+    if style not in ('default', 'raised', 'flat', 'outline'):
+        raise PropellerError(
+            'Parameter "style" should be "default", "raised", ' +
+            '"flat", "outline" or empty  ("{}" given).'.format(style))
+    else:
+        classes = add_css_class(classes, 'pmd-btn-%s' % style)
     classes = add_css_class(classes, extra_classes)
     attrs['class'] = classes
     icon_content = render_icon(icon) if icon else ''
