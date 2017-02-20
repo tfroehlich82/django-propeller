@@ -8,6 +8,7 @@ Write Django as usual, and let ``django-propeller`` make template output into co
 [![Coverage Status](https://coveralls.io/repos/github/tfroehlich82/django-propeller/badge.svg?branch=master)](https://coveralls.io/github/tfroehlich82/django-propeller?branch=master)
 ![PyPI version](http://img.shields.io/pypi/v/django-propeller.svg)
 ![PyPI downloads](http://img.shields.io/pypi/dm/django-propeller.svg)
+[![Python 3](https://pyup.io/repos/github/tfroehlich82/django-propeller/python-3-shield.svg)](https://pyup.io/repos/github/tfroehlich82/django-propeller/)
 
 
 Requirements
@@ -93,4 +94,4 @@ Author
 ------
 
 Developed and maintained by [Thorsten Fröhlich](https://github.com/tfroehlich82),
-based on the idea of django-bootstrap3 from [Dylan Verheul](https://github.com/dyve).
+based on the idea of [django-bootstrap3](https://github.com/dyve/django-bootstrap3) from [Dylan Verheul](https://github.com/dyve).
