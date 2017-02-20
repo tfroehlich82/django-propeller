@@ -30,5 +30,20 @@ Demo application
 
 The demo application provides a number of useful examples.
 
-https://github.com/dyve/django-bootstrap3/tree/develop/demo
+clone the repo::
+
+    $ git clone https://github.com/tfroehlich82/django-propeller.git
+
+cd into the cloned directory::
+
+    $ cd django-propeller
+
+run the testserver::
+
+    $ python manage.py runserver
+
+open your browser and browse to::
+
+    http://127.0.0.1:8000
+
 
