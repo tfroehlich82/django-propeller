@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.urls import reverse
+try:
+    from django.urls import reverse
+except ImportError:
+    from django.core.urlresolvers import reverse
 
 
 class NavBarItem(object):
