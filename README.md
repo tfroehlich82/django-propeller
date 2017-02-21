@@ -97,8 +97,10 @@ Further Information
 -------------------
 
 Propeller: http://propeller.in/
+
 Bootstrap: http://getbootstrap.com/
-Google Material Design: https://design.google.com/
+
+Google Material Design: https://material.io/
 
 
 Donation
