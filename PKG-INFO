@@ -11,6 +11,7 @@ Platform: POSIX
 Requires-Python: >=2.7
 Project-URL: Bug Tracker, https://github.com/tfroehlich82/django-propeller/issues
 Project-URL: Repository, https://github.com/tfroehlich82/django-propeller
+Project-URL: Documentation, http://django-propeller.readthedocs.io/en/latest/
 Keywords: Django Design Bootstrap Forms
 Classifier: Development Status :: 5 - Production/Stable
 Classifier: Operating System :: OS Independent
