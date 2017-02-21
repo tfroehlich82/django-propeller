@@ -9,6 +9,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
 from .forms import ContactForm, FilesForm, ContactFormSet
+from django_propeller.navbar import NavBar, NavBarItem
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -19,12 +20,20 @@ class FakeField(object):
 fieldfile = FieldFile(None, FakeField, 'dummy.txt')
 
 
+navbar = NavBar("This is a test", items=[
+    NavBarItem("Test1"),
+    NavBarItem("Test2"),
+    NavBarItem("Test3"),
+])
+
+
 class HomePageView(TemplateView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         messages.info(self.request, 'hello http://example.com')
+        context['mynavbar'] = navbar
         return context
 
 

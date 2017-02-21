@@ -1127,6 +1127,6 @@ def pmd_italic_text(text, autoescape=True):
     return mark_safe(result)
 
 
-@register.inclusion_tag('navbar.html')
+@register.inclusion_tag('propeller/navbar.html')
 def pmd_navbar(navbar):
     return {'navbar': navbar}
