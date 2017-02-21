@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.urls import reverse
 
 
 class NavBarItem(object):
@@ -10,8 +11,8 @@ class NavBarItem(object):
         self.url = url
 
     def get_url(self):
-        # if self.url:
-        #     return "{% url '{url}' %}".format(url=self.url)
+        if self.url:
+            return reverse(self.url)
         return "javascript:void(0);"
 
 

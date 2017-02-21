@@ -26,7 +26,24 @@ class MyNavBar(NavBar):
         NavBarItem("Home", "home"),
         NavBarItem("Typography", "typo"),
         NavBarItem("Buttons", "buttons"),
+        NavBarItem("Floating Action Buttons", "fabs"),
+        NavBarItem("Forms"),  # ToDo
+        NavBarItem("Pagination", "pagination"),
+        NavBarItem("Miscellaneous", "misc"),
     ]
+
+
+# <li class="dropdown pmd-dropdown">
+# <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Forms<span class="caret"></span></a>
+# <ul class="dropdown-menu">
+# <li><a class="pmd-ripple-effect" href="{% url 'form_default' %}">Form</a></li>
+# <li><a class="pmd-ripple-effect" href="{% url 'formset_default' %}">Formset</a></li>
+# <li><a class="pmd-ripple-effect" href="{% url 'form_by_field' %}">Form by field</a></li>
+# <li><a class="pmd-ripple-effect" href="{% url 'form_horizontal' %}">Form horizontal</a></li>
+# <li><a class="pmd-ripple-effect" href="{% url 'form_inline' %}">Form inline</a></li>
+# <li><a class="pmd-ripple-effect" href="{% url 'form_with_files' %}">Form with files</a></li>
+# </ul>
+# </li>
 
 
 class HomePageView(TemplateView):
