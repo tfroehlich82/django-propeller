@@ -774,3 +774,89 @@ class TypographyTest(TestCase):
             {'text': 'This is a test'}
         )
         self.assertInHTML('<span class="text-muted">This is a test</span>', res)
+
+
+class FABsTests(TestCase):
+    def test_default_fab(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="star" %}',
+        )
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
+                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+
+    def test_default_fab_with_btn_class(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="warning" button_class="btn-warning" %}',
+        )
+        self.assertInHTML('<button class="btn btn-warning pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
+                          '<i class="material-icons md-dark pmd-sm">warning</i></button>', res)
+
+    def test_default_fab_with_link(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "Link" button_class="btn-link" %}',
+        )
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-default">Link</button>',
+                          res)
+
+    def test_raised_fab(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="star" style="raised" %}',
+        )
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
+                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+
+    def test_raised_fab_with_btn_class(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="error" style="raised" button_class="btn-danger" %}',
+        )
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
+                          '<i class="material-icons md-dark pmd-sm">error</i></button>', res)
+
+    def test_raised_fab_with_link(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "Link" style="raised" button_class="btn-link" %}',
+        )
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-raised">Link</button>',
+                          res)
+
+    def test_flat_fab(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="star" style="flat" %}',
+        )
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
+                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+
+    def test_flat_fab_with_btn_class(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="info" style="flat" button_class="btn-danger" %}',
+        )
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
+                          '<i class="material-icons md-dark pmd-sm">info</i></button>', res)
+
+    def test_flat_fab_with_link(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "Link" style="flat" button_class="btn-link" %}',
+        )
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-flat">Link</button>',
+                          res)
+
+    def test_outline_fab(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="star" style="outline" %}',
+        )
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
+                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+
+    def test_outline_fab_with_btn_class(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "" icon="check" style="outline" button_class="btn-danger" %}',
+        )
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
+                          '<i class="material-icons md-dark pmd-sm">check</i></button>', res)
+
+    def test_outline_fab_with_link(self):
+        res = render_template_with_propeller(
+            '{% propeller_fab "Link" style="outline" button_class="btn-link" %}',
+        )
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-outline">Link</button>',
+                          res)
