@@ -9,7 +9,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
 from .forms import ContactForm, FilesForm, ContactFormSet
-from django_propeller.navbar import NavBar, NavBarItem
+from django_propeller.navbar import NavBar, NavBarItem, NavBarDropDownItem
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -27,7 +27,14 @@ class MyNavBar(NavBar):
         NavBarItem("Typography", "typo"),
         NavBarItem("Buttons", "buttons"),
         NavBarItem("Floating Action Buttons", "fabs"),
-        NavBarItem("Forms"),  # ToDo
+        NavBarDropDownItem("Forms", [
+            NavBarItem("Form", "form_default"),
+            NavBarItem("Formset", "formset_default"),
+            NavBarItem("Form by field", "form_by_field"),
+            NavBarItem("Form horizontal", "form_horizontal"),
+            NavBarItem("Form inline", "form_inline"),
+            NavBarItem("Form with files", "form_with_files"),
+        ]),
         NavBarItem("Pagination", "pagination"),
         NavBarItem("Miscellaneous", "misc"),
     ]
@@ -36,12 +43,6 @@ class MyNavBar(NavBar):
 # <li class="dropdown pmd-dropdown">
 # <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Forms<span class="caret"></span></a>
 # <ul class="dropdown-menu">
-# <li><a class="pmd-ripple-effect" href="{% url 'form_default' %}">Form</a></li>
-# <li><a class="pmd-ripple-effect" href="{% url 'formset_default' %}">Formset</a></li>
-# <li><a class="pmd-ripple-effect" href="{% url 'form_by_field' %}">Form by field</a></li>
-# <li><a class="pmd-ripple-effect" href="{% url 'form_horizontal' %}">Form horizontal</a></li>
-# <li><a class="pmd-ripple-effect" href="{% url 'form_inline' %}">Form inline</a></li>
-# <li><a class="pmd-ripple-effect" href="{% url 'form_with_files' %}">Form with files</a></li>
 # </ul>
 # </li>
 
