@@ -20,11 +20,13 @@ class FakeField(object):
 fieldfile = FieldFile(None, FakeField, 'dummy.txt')
 
 
-navbar = NavBar("This is a test", items=[
-    NavBarItem("Test1"),
-    NavBarItem("Test2"),
-    NavBarItem("Test3"),
-])
+class MyNavBar(NavBar):
+    brandname = "django-propeller"
+    items = [
+        NavBarItem("Home", "home"),
+        NavBarItem("Typography", "typo"),
+        NavBarItem("Buttons", "buttons"),
+    ]
 
 
 class HomePageView(TemplateView):
@@ -33,7 +35,7 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         messages.info(self.request, 'hello http://example.com')
-        context['mynavbar'] = navbar
+        context['mynavbar'] = MyNavBar()
         return context
 
 

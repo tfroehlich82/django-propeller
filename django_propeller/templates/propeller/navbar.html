@@ -15,7 +15,7 @@
 		<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
 		  <ul class="nav navbar-nav">
               {% for itm in navbar.items %}
-                  <li><a class="pmd-ripple-effect" href="{{ itm.url }}">{{ itm.name }}</a></li>
+                  <li><a class="pmd-ripple-effect" href="{{ itm.get_url }}">{{ itm.name }}</a></li>
               {% endfor %}
 		  </ul>
 		</div><!-- /.navbar-collapse -->
