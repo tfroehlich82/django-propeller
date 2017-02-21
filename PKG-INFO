@@ -1,10 +1,25 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.2
 Name: django-propeller
-Version: 1.2.0
-Summary: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap. http://propeller.in/index.html
+Version: 1.2.1
+Summary: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap.
 Home-page: https://github.com/tfroehlich82/django-propeller
 Author: Thorsten Froehlich
 Author-email: tfroehlich82@gmx.ch
 License: MIT
-Description: UNKNOWN
-Platform: UNKNOWN
+Description: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap. http://propeller.in/index.html
+Platform: POSIX
+Requires-Python: >=2.7
+Project-URL: Bug Tracker, https://github.com/tfroehlich82/django-propeller/issues
+Project-URL: Repository, https://github.com/tfroehlich82/django-propeller
+Keywords: Django Design Bootstrap Forms
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Web Environment
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 1.9
+Classifier: Framework :: Django :: 1.10
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Intended Audience :: Developers
