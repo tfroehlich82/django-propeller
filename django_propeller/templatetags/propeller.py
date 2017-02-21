@@ -1125,3 +1125,8 @@ def pmd_italic_text(text, autoescape=True):
         esc = lambda x: x
     result = '<em>%s</em>' % esc(text)
     return mark_safe(result)
+
+
+@register.inclusion_tag('navbar.html')
+def pmd_navbar(navbar):
+    return {'navbar': navbar}
