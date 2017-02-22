@@ -6,7 +6,7 @@ from django.core.files.storage import default_storage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 
 from .forms import ContactForm, FilesForm, ContactFormSet
 from django_propeller.navbar import NavBar, NavBarItem, NavBarDropDownItem
@@ -40,7 +40,11 @@ class MyNavBar(NavBar):
     ]
 
 
-class HomePageView(TemplateView):
+class NavBarView(View):
+    navbar = MyNavBar()
+
+
+class HomePageView(TemplateView, NavBarView):
     template_name = 'home.html'
 
     def get_context_data(self, **kwargs):
@@ -112,20 +116,24 @@ class PaginationView(TemplateView):
         return context
 
 
-class MiscView(TemplateView):
+class MiscView(TemplateView, NavBarView):
     template_name = 'misc.html'
+    navbar = MyNavBar()
 
 
-class ButtonsView(TemplateView):
+class ButtonsView(TemplateView, NavBarView):
     template_name = 'buttons.html'
+    navbar = MyNavBar()
 
 
-class FABsView(TemplateView):
+class FABsView(TemplateView, NavBarView):
     template_name = 'fabs.html'
+    navbar = MyNavBar()
 
 
 class TypoView(TemplateView):
     template_name = 'typo.html'
+    navbar = MyNavBar()
 
     def get_context_data(self, **kwargs):
         context = super(TypoView, self).get_context_data(**kwargs)
