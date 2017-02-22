@@ -3,11 +3,13 @@ try:
     from django.urls import reverse
 except ImportError:
     from django.core.urlresolvers import reverse
+try:
+    from enum import Enum
+except ImportError:
+    from enum34 import Enum
 
-import enum
 
-
-class NavbarItemTypes(enum.Enum):
+class NavbarItemTypes(Enum):
     link = 1
     dropdown = 2
 
@@ -41,3 +43,4 @@ class NavBarDropDownItem(NavBarItem):
 class NavBar(object):
     brandname = ""
     items = []
+    style_inverse = True
