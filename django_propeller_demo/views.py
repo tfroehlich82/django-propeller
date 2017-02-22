@@ -40,13 +40,6 @@ class MyNavBar(NavBar):
     ]
 
 
-# <li class="dropdown pmd-dropdown">
-# <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="javascript:void(0);">Forms<span class="caret"></span></a>
-# <ul class="dropdown-menu">
-# </ul>
-# </li>
-
-
 class HomePageView(TemplateView):
     template_name = 'home.html'
 

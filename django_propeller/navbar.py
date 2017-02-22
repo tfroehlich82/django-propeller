@@ -4,6 +4,13 @@ try:
 except ImportError:
     from django.core.urlresolvers import reverse
 
+import enum
+
+
+class NavbarItemTypes(enum.Enum):
+    link = 1
+    dropdown = 2
+
 
 class NavBarItem(object):
     name = None
@@ -13,6 +20,7 @@ class NavBarItem(object):
     def __init__(self, name="", url=None):
         self.name = name
         self.url = url
+        self.type = NavbarItemTypes.link
 
     def get_url(self):
         if self.url:
@@ -27,6 +35,7 @@ class NavBarDropDownItem(NavBarItem):
         super(NavBarDropDownItem, self).__init__(name, url)
         if items:
             self.items = items
+            self.type = NavbarItemTypes.dropdown
 
 
 class NavBar(object):
