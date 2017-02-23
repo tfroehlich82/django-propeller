@@ -6,10 +6,11 @@ from django.core.files.storage import default_storage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
-from django.views.generic.base import TemplateView, View, ContextMixin
+from django.views.generic.base import TemplateView
 
 from .forms import ContactForm, FilesForm, ContactFormSet
 from django_propeller.navbar import NavBar, NavBarItem, NavBarDropDownItem
+from django_propeller.views import NavBarMixin
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -20,7 +21,7 @@ class FakeField(object):
 fieldfile = FieldFile(None, FakeField, 'dummy.txt')
 
 
-class MyNavBar(NavBar):
+class MainNavBar(NavBar):
     brandname = "django-propeller"
     items = [
         NavBarItem("Home", "home"),
@@ -40,18 +41,9 @@ class MyNavBar(NavBar):
     ]
 
 
-class NavBarView(TemplateView):
-    navbar = None
-
-    def get_context_data(self, **kwargs):
-        context = super(NavBarView, self).get_context_data(**kwargs)
-        context['main_navbar'] = self.navbar
-        return context
-
-
-class HomePageView(NavBarView):
+class HomePageView(TemplateView, NavBarMixin):
     template_name = 'home.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
@@ -59,34 +51,40 @@ class HomePageView(NavBarView):
         return context
 
 
-class DefaultFormsetView(FormView):
+class DefaultFormsetView(FormView, NavBarMixin):
     template_name = 'formset.html'
     form_class = ContactFormSet
+    navbar_class = MainNavBar
 
 
-class DefaultFormView(FormView):
+class DefaultFormView(FormView, NavBarMixin):
     template_name = 'form.html'
     form_class = ContactForm
+    navbar_class = MainNavBar
 
 
-class DefaultFormByFieldView(FormView):
+class DefaultFormByFieldView(FormView, NavBarMixin):
     template_name = 'form_by_field.html'
     form_class = ContactForm
+    navbar_class = MainNavBar
 
 
-class FormHorizontalView(FormView):
+class FormHorizontalView(FormView, NavBarMixin):
     template_name = 'form_horizontal.html'
     form_class = ContactForm
+    navbar_class = MainNavBar
 
 
-class FormInlineView(FormView):
+class FormInlineView(FormView, NavBarMixin):
     template_name = 'form_inline.html'
     form_class = ContactForm
+    navbar_class = MainNavBar
 
 
-class FormWithFilesView(FormView):
+class FormWithFilesView(FormView, NavBarMixin):
     template_name = 'form_with_files.html'
     form_class = FilesForm
+    navbar_class = MainNavBar
 
     def get_context_data(self, **kwargs):
         context = super(FormWithFilesView, self).get_context_data(**kwargs)
@@ -99,9 +97,9 @@ class FormWithFilesView(FormView):
         }
 
 
-class PaginationView(NavBarView):
+class PaginationView(TemplateView, NavBarMixin):
     template_name = 'pagination.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
     def get_context_data(self, **kwargs):
         context = super(PaginationView, self).get_context_data(**kwargs)
@@ -122,24 +120,24 @@ class PaginationView(NavBarView):
         return context
 
 
-class MiscView(NavBarView):
+class MiscView(TemplateView, NavBarMixin):
     template_name = 'misc.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
 
-class ButtonsView(NavBarView):
+class ButtonsView(TemplateView, NavBarMixin):
     template_name = 'buttons.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
 
-class FABsView(NavBarView):
+class FABsView(TemplateView, NavBarMixin):
     template_name = 'fabs.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
 
-class TypoView(NavBarView):
+class TypoView(TemplateView, NavBarMixin):
     template_name = 'typo.html'
-    navbar = MyNavBar()
+    navbar_class = MainNavBar
 
     def get_context_data(self, **kwargs):
         context = super(TypoView, self).get_context_data(**kwargs)
