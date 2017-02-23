@@ -6,7 +6,7 @@ from django.core.files.storage import default_storage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import TemplateView, View, ContextMixin
 
 from .forms import ContactForm, FilesForm, ContactFormSet
 from django_propeller.navbar import NavBar, NavBarItem, NavBarDropDownItem
@@ -40,17 +40,22 @@ class MyNavBar(NavBar):
     ]
 
 
-class NavBarView(View):
-    navbar = MyNavBar()
+class NavBarView(TemplateView):
+    navbar = None
+
+    def get_context_data(self, **kwargs):
+        context = super(NavBarView, self).get_context_data(**kwargs)
+        context['main_navbar'] = self.navbar
+        return context
 
 
-class HomePageView(TemplateView, NavBarView):
+class HomePageView(NavBarView):
     template_name = 'home.html'
+    navbar = MyNavBar()
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
         messages.info(self.request, 'hello http://example.com')
-        context['mynavbar'] = MyNavBar()
         return context
 
 
@@ -94,8 +99,9 @@ class FormWithFilesView(FormView):
         }
 
 
-class PaginationView(TemplateView):
+class PaginationView(NavBarView):
     template_name = 'pagination.html'
+    navbar = MyNavBar()
 
     def get_context_data(self, **kwargs):
         context = super(PaginationView, self).get_context_data(**kwargs)
@@ -116,22 +122,22 @@ class PaginationView(TemplateView):
         return context
 
 
-class MiscView(TemplateView, NavBarView):
+class MiscView(NavBarView):
     template_name = 'misc.html'
     navbar = MyNavBar()
 
 
-class ButtonsView(TemplateView, NavBarView):
+class ButtonsView(NavBarView):
     template_name = 'buttons.html'
     navbar = MyNavBar()
 
 
-class FABsView(TemplateView, NavBarView):
+class FABsView(NavBarView):
     template_name = 'fabs.html'
     navbar = MyNavBar()
 
 
-class TypoView(TemplateView):
+class TypoView(NavBarView):
     template_name = 'typo.html'
     navbar = MyNavBar()
 
