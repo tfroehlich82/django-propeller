@@ -1,5 +1,5 @@
 <!-- Basic nav menu which will remain fixed at the top -->
-<nav class="navbar {% if navbar.style_inverse %}navbar-inverse {% endif %}navbar-static-top pmd-navbar pmd-z-depth">
+<nav class="navbar {% if navbar.style_inverse %}navbar-inverse {% endif %}navbar-{% if navbar.style_static %}static{% else %}fixed{% endif %}-top pmd-navbar pmd-z-depth">
 	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
@@ -9,7 +9,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a href="javascript:void(0);" class="navbar-brand navbar-brand-custome">{{ navbar.brandname }}</a>
+		  <a href="{{ navbar.get_brand_url }}" class="navbar-brand navbar-brand-custome">{{ navbar.brandname }}</a>
 		</div>
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">

@@ -9,7 +9,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
 from .forms import ContactForm, FilesForm, ContactFormSet
-from django_propeller.navbar import NavBar, NavBarItem, NavBarDropDownItem
+from django_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem
 from django_propeller.views import NavBarMixin
 
 
@@ -23,21 +23,22 @@ fieldfile = FieldFile(None, FakeField, 'dummy.txt')
 
 class MainNavBar(NavBar):
     brandname = "django-propeller"
+    brandurl = "https://github.com/tfroehlich82/django-propeller"
     items = [
-        NavBarItem("Home", "home"),
-        NavBarItem("Typography", "typo"),
-        NavBarItem("Buttons", "buttons"),
-        NavBarItem("Floating Action Buttons", "fabs"),
+        NavBarLinkItem("Home", "home"),
+        NavBarLinkItem("Typography", "typo"),
+        NavBarLinkItem("Buttons", "buttons"),
+        NavBarLinkItem("Floating Action Buttons", "fabs"),
         NavBarDropDownItem("Forms", [
-            NavBarItem("Form", "form_default"),
-            NavBarItem("Formset", "formset_default"),
-            NavBarItem("Form by field", "form_by_field"),
-            NavBarItem("Form horizontal", "form_horizontal"),
-            NavBarItem("Form inline", "form_inline"),
-            NavBarItem("Form with files", "form_with_files"),
+            NavBarLinkItem("Form", "form_default"),
+            NavBarLinkItem("Formset", "formset_default"),
+            NavBarLinkItem("Form by field", "form_by_field"),
+            NavBarLinkItem("Form horizontal", "form_horizontal"),
+            NavBarLinkItem("Form inline", "form_inline"),
+            NavBarLinkItem("Form with files", "form_with_files"),
         ]),
-        NavBarItem("Pagination", "pagination"),
-        NavBarItem("Miscellaneous", "misc"),
+        NavBarLinkItem("Pagination", "pagination"),
+        NavBarLinkItem("Miscellaneous", "misc"),
     ]
 
 
