@@ -8,9 +8,9 @@ from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
-from .forms import ContactForm, FilesForm, ContactFormSet
-from django_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem
 from django_propeller.views import NavBarMixin
+from django_propeller_demo.navbars import MainNavBar, DemoNavBar1
+from .forms import ContactForm, FilesForm, ContactFormSet
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -19,27 +19,6 @@ class FakeField(object):
 
 
 fieldfile = FieldFile(None, FakeField, 'dummy.txt')
-
-
-class MainNavBar(NavBar):
-    brandname = "django-propeller"
-    brandurl = "https://github.com/tfroehlich82/django-propeller"
-    items = [
-        NavBarLinkItem("Home", "home"),
-        NavBarLinkItem("Typography", "typo"),
-        NavBarLinkItem("Buttons", "buttons"),
-        NavBarLinkItem("Floating Action Buttons", "fabs"),
-        NavBarDropDownItem("Forms", [
-            NavBarLinkItem("Form", "form_default"),
-            NavBarLinkItem("Formset", "formset_default"),
-            NavBarLinkItem("Form by field", "form_by_field"),
-            NavBarLinkItem("Form horizontal", "form_horizontal"),
-            NavBarLinkItem("Form inline", "form_inline"),
-            NavBarLinkItem("Form with files", "form_with_files"),
-        ]),
-        NavBarLinkItem("Pagination", "pagination"),
-        NavBarLinkItem("Miscellaneous", "misc"),
-    ]
 
 
 class HomePageView(TemplateView, NavBarMixin):
@@ -157,4 +136,14 @@ class TypoView(TemplateView, NavBarMixin):
         context['text13'] = "underline some text"
         context['text14'] = "show some bold text"
         context['text15'] = "show some italic text"
+        return context
+
+
+class NavBarView(TemplateView, NavBarMixin):
+    template_name = 'navbar.html'
+    navbar_class = MainNavBar
+
+    def get_context_data(self, **kwargs):
+        context = super(NavBarView, self).get_context_data(**kwargs)
+        context['navbar1'] = DemoNavBar1
         return context

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load propeller %}
+
+{% block title %}
+    Propeller Navbar
+{% endblock %}
+
+{% block content %}
+    <div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth">
+        <div class="pmd-card-media">
+            <div class="media-body">
+                <h2 class="pmd-card-title-text">Default Navbar</h2>
+                <span class="pmd-card-subtitle-text">{% verbatim %}usage: {{ pmd_navbar navbar_var }}{% endverbatim %}</span>
+            </div>
+        </div>
+        <div class="pmd-card-body">
+            {% pmd_navbar navbar1 %}
+        </div>
+    </div>
+{% endblock %}
