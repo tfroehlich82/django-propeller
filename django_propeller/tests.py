@@ -14,6 +14,7 @@ from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
+from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem
 
 try:
     from html.parser import HTMLParser
@@ -860,3 +861,55 @@ class FABsTests(TestCase):
         )
         self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-outline">Link</button>',
                           res)
+
+
+class DjangoAppTests(TestCase):
+    def test_app_config(self):
+        from django_propeller.apps import DjangoPropellerConfig
+        self.assertEqual(DjangoPropellerConfig.name, 'django_propeller')
+
+
+class PropellerMixinTests(TestCase):
+    class TestNavbar(NavBar):
+        pass
+
+    def test_navbar_mixin(self):
+        from django_propeller.views import NavBarMixin, ContextMixin
+        test_mixin = NavBarMixin()
+        self.assertIsInstance(test_mixin, ContextMixin)
+        test_mixin.navbar_class = self.TestNavbar
+        self.assertIsInstance(test_mixin.get_context_data().get('navbar')(), self.TestNavbar)
+
+
+class TestNavbar(NavBar):
+    brandname = 'propeller-test'
+    brandurl = 'https://github.com/tfroehlich82/django-propeller'
+    items = [
+        NavBarLinkItem('Test1'),
+        NavBarDropDownItem('Test2', items=[
+            NavBarLinkItem('Test3')
+        ]),
+    ]
+
+
+class PropellerNavBarTests(TestCase):
+    def test_navbar_config(self):
+        self.assertEqual(TestNavbar().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
+        self.assertEqual(TestNavbar().brandname, 'propeller-test')
+
+    def test_rendered_template(self):
+        res = render_template_with_propeller(
+            '{% pmd_navbar testnav %}', {'testnav', TestNavbar()}
+        )
+        self.assertInHTML('<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth"><div class="container-fluid">'
+                          '<!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header">'
+                          '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" '
+                          'data-target="#bs-example-navbar-collapse-1" aria-expanded="false">'
+                          '<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>'
+                          '<span class="icon-bar"></span><span class="icon-bar"></span></button>'
+                          '<a href="" class="navbar-brand navbar-brand-custome"></a></div>'
+                          '<!-- Collect the nav links, forms, and other content for toggling -->'
+                          '<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">'
+                          '<ul class="nav navbar-nav"></ul></div><!-- /.navbar-collapse --></div>'
+                          '<!-- /.container-fluid --><div class="pmd-sidebar-overlay"></div></nav>', res)
+
