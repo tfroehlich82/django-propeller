@@ -14,6 +14,7 @@ from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
+from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem
 
 try:
     from html.parser import HTMLParser
@@ -860,3 +861,41 @@ class FABsTests(TestCase):
         )
         self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-outline">Link</button>',
                           res)
+
+
+class DjangoAppTests(TestCase):
+    def test_app_config(self):
+        from django_propeller.apps import DjangoPropellerConfig
+        self.assertEqual(DjangoPropellerConfig.name, 'django_propeller')
+
+
+class PropellerMixinTests(TestCase):
+    class TestNavbar(NavBar):
+        pass
+
+    def test_navbar_mixin(self):
+        from django_propeller.views import NavBarMixin, ContextMixin
+        test_mixin = NavBarMixin()
+        self.assertIsInstance(test_mixin, ContextMixin)
+        test_mixin.navbar_class = self.TestNavbar
+        self.assertIsInstance(test_mixin.get_context_data().get('navbar')(), self.TestNavbar)
+
+
+class TestNavbar(NavBar):
+    brandname = 'propeller-test'
+    brandurl = 'https://github.com/tfroehlich82/django-propeller'
+    items = [
+        NavBarLinkItem('Test1'),
+        NavBarDropDownItem('Test2', items=[
+            NavBarLinkItem('Test3')
+        ]),
+    ]
+
+
+class PropellerNavBarTests(TestCase):
+    def test_navbar_config(self):
+        self.assertEqual(TestNavbar().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
+        self.assertEqual(TestNavbar().brandname, 'propeller-test')
+
+    def test_rendered_template(self):
+        pass
