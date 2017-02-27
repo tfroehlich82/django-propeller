@@ -1,26 +1,121 @@
-Metadata-Version: 1.2
+Metadata-Version: 1.1
 Name: django-propeller
-Version: 1.2.1
-Summary: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap.
-Home-page: https://github.com/tfroehlich82/django-propeller
+Version: 1.3.2
+Summary: Propeller support for Django projects
+Home-page: https://github.com/dyve/django-propeller
 Author: Thorsten Froehlich
 Author-email: tfroehlich82@gmx.ch
-License: MIT
-Description: Propeller integration with Django. Propeller is a front-end responsive framework based on Google's Material Design Standards & Bootstrap. http://propeller.in/index.html
+License: MIT License
 Platform: POSIX
-Requires-Python: >=2.7
+Keywords: Django Design Bootstrap Forms
 Project-URL: Bug Tracker, https://github.com/tfroehlich82/django-propeller/issues
 Project-URL: Repository, https://github.com/tfroehlich82/django-propeller
 Project-URL: Documentation, http://django-propeller.readthedocs.io/en/latest/
-Keywords: Django Design Bootstrap Forms
 Classifier: Development Status :: 5 - Production/Stable
-Classifier: Operating System :: OS Independent
-Classifier: Environment :: Web Environment
-Classifier: Programming Language :: Python
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Environment :: Web Environment
 Classifier: Framework :: Django
 Classifier: Framework :: Django :: 1.9
 Classifier: Framework :: Django :: 1.10
-Classifier: Topic :: Internet :: WWW/HTTP
-Classifier: Topic :: Software Development :: Libraries :: Python Modules
-Classifier: Intended Audience :: Developers
+Description: Propeller for Django
+
+Write Django as usual, and let django-propeller make template output into code based on Google's Material Design Standards & Bootstrap.
+
+
+Requirements
+------------
+
+- Python 2.7, 3.3, 3.4, 3.5, or 3.6
+- Django >= 1.9
+
+
+Installation
+------------
+
+1. Install using pip:
+
+    pip install django-propeller
+
+
+2. Add to INSTALLED_APPS in your settings.py:
+
+   'django_propeller',
+
+
+3. In your templates, load the django_propeller library and use the propeller_* tags:
+
+
+
+Documentation
+-------------
+
+The full documentation is at http://django-propeller.readthedocs.io/en/latest/
+
+
+Demo application
+----------------
+
+The demo application provides a number of useful examples.
+
+clone the repo:
+
+    $ git clone https://github.com/tfroehlich82/django-propeller.git
+
+cd into the cloned directory:
+
+    $ cd django-propeller
+
+run the testserver:
+
+    $ python manage.py runserver
+
+open your browser and browse to:
+
+    http://127.0.0.1:8000
+
+
+Bugs and suggestions
+--------------------
+
+If you have found a bug or if you have a request for additional functionality, please use the issue tracker on GitHub.
+
+https://github.com/tfroehlich82/django-propeller/issues
+
+
+
+Further Information
+-------------------
+
+Propeller: http://propeller.in/
+
+Bootstrap: http://getbootstrap.com/
+
+Google Material Design: https://material.io/
+
+
+
+License
+-------
+
+You can use this under MIT License. See [LICENSE](LICENSE) file for details.
+
+
+
+Author
+------
+
+Developed and maintained by [Thorsten Fröhlich](https://github.com/tfroehlich82),
+based on the idea of [django-bootstrap3](https://github.com/dyve/django-bootstrap3) from [Dylan Verheul](https://github.com/dyve).
+
+
+
+
