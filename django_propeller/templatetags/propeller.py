@@ -699,7 +699,7 @@ def propeller_icon(icon, **kwargs):
     **Parameters**:
 
         icon
-            Icon name. See the `propeller docs http://propeller.in/style/icons.php`_ for all icons.
+            Icon name. See the `Propeller docs <http://propeller.in/style/icons.php>`_ for all icons.
 
         size
             Size of the icon. Must be one of 'xs', 'sm', 'md', or 'lg'. Default: 'sm'
