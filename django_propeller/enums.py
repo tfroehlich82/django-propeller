@@ -8,3 +8,4 @@ except ImportError:
 class NavbarItemTypes(Enum):
     link = 1
     dropdown = 2
+    divider = 3

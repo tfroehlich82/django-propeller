@@ -90,6 +90,12 @@ propeller_pagination
 .. autofunction:: django_propeller.templatetags.propeller.propeller_pagination
 
 
+propeller_navbar
+~~~~~~~~~~~~~~~~
+
+.. autofunction:: django_propeller.templatetags.propeller.propeller_navbar
+
+
 propeller_textfilters
 ~~~~~~~~~~~~~~~~~~~~~
 

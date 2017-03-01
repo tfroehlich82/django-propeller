@@ -899,7 +899,7 @@ class PropellerNavBarTests(TestCase):
 
     def test_rendered_template(self):
         res = render_template_with_propeller(
-            '{% pmd_navbar testnav %}', {'testnav', TestNavbar()}
+            '{% propeller_navbar testnav %}', {'testnav', TestNavbar()}
         )
         self.assertInHTML('<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth"><div class="container-fluid">'
                           '<!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header">'

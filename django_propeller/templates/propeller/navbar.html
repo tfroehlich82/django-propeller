@@ -22,7 +22,11 @@
               <a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" href="{{ itm.url }}">{{ itm.name }}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                   {% for dropdownitem in itm.items %}
+                      {% if dropdownitem.type.name == 'divider' %}
+                      <li role="separator" class="divider"></li>
+                      {% else %}
                       <li><a class="pmd-ripple-effect" href="{{ dropdownitem.get_url }}">{{ dropdownitem.name }}</a></li>
+                      {% endif %}
                   {% endfor %}
                   </ul>
               </li>
