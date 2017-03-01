@@ -14,7 +14,7 @@ from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
-from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem
+from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 try:
     from html.parser import HTMLParser
@@ -881,25 +881,38 @@ class PropellerMixinTests(TestCase):
         self.assertIsInstance(test_mixin.get_context_data().get('navbar')(), self.TestNavbar)
 
 
-class TestNavbar(NavBar):
+class TestNavbar1(NavBar):
     brandname = 'propeller-test'
     brandurl = 'https://github.com/tfroehlich82/django-propeller'
     items = [
         NavBarLinkItem('Test1'),
         NavBarDropDownItem('Test2', items=[
-            NavBarLinkItem('Test3')
+            NavBarLinkItem('Test3'),
+            NavBarLinkItem('Test4'),
+            NavBarDropDownDivider(),
+            NavBarLinkItem('Test5'),
         ]),
     ]
 
 
+class TestNavbar2(TestNavbar1):
+    style_inverse = True
+    style_static = False
+
+
+class TestNavbar3(TestNavbar1):
+    style_inverse = False
+    style_static = False
+
+
 class PropellerNavBarTests(TestCase):
     def test_navbar_config(self):
-        self.assertEqual(TestNavbar().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
-        self.assertEqual(TestNavbar().brandname, 'propeller-test')
+        self.assertEqual(TestNavbar1().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
+        self.assertEqual(TestNavbar1().brandname, 'propeller-test')
 
-    def test_rendered_template(self):
+    def test_rendered_template(self):  # ToDo: does not work...
         res = render_template_with_propeller(
-            '{% propeller_navbar testnav %}', {'testnav', TestNavbar()}
+            '{% propeller_navbar testnav %}', {'testnav', TestNavbar1()}
         )
         self.assertInHTML('<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth"><div class="container-fluid">'
                           '<!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header">'
@@ -912,4 +925,47 @@ class PropellerNavBarTests(TestCase):
                           '<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">'
                           '<ul class="nav navbar-nav"></ul></div><!-- /.navbar-collapse --></div>'
                           '<!-- /.container-fluid --><div class="pmd-sidebar-overlay"></div></nav>', res)
+        res = render_template_with_propeller(
+            '{% propeller_navbar testnav %}', {'testnav', TestNavbar2()}
+        )
+        self.assertInHTML('<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth"><div class="container-fluid">'
+                          '<!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header">'
+                          '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" '
+                          'data-target="#bs-example-navbar-collapse-1" aria-expanded="false">'
+                          '<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>'
+                          '<span class="icon-bar"></span><span class="icon-bar"></span></button>'
+                          '<a href="" class="navbar-brand navbar-brand-custome"></a></div>'
+                          '<!-- Collect the nav links, forms, and other content for toggling -->'
+                          '<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">'
+                          '<ul class="nav navbar-nav"></ul></div><!-- /.navbar-collapse --></div>'
+                          '<!-- /.container-fluid --><div class="pmd-sidebar-overlay"></div></nav>', res)
+        res = render_template_with_propeller(
+            '{% propeller_navbar testnav %}', {'testnav', TestNavbar3()}
+        )
+        self.assertInHTML('<nav class="navbar navbar-fixed-top pmd-navbar pmd-z-depth"><div class="container-fluid">'
+                          '<!-- Brand and toggle get grouped for better mobile display --><div class="navbar-header">'
+                          '<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" '
+                          'data-target="#bs-example-navbar-collapse-1" aria-expanded="false">'
+                          '<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span>'
+                          '<span class="icon-bar"></span><span class="icon-bar"></span></button>'
+                          '<a href="" class="navbar-brand navbar-brand-custome"></a></div>'
+                          '<!-- Collect the nav links, forms, and other content for toggling -->'
+                          '<div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">'
+                          '<ul class="nav navbar-nav"></ul></div><!-- /.navbar-collapse --></div>'
+                          '<!-- /.container-fluid --><div class="pmd-sidebar-overlay"></div></nav>', res)
+
+    def test_navbar_items(self):
+        for itm in TestNavbar1().items:
+            if itm.name in ('Test1', ):
+                self.assertIsInstance(itm, NavBarLinkItem)
+            elif itm.name in ('Test2', ):
+                self.assertIsInstance(itm, NavBarDropDownItem)
+                for dd_itm in itm.items:
+                    if hasattr(dd_itm, 'name') and dd_itm.name in ('Test3', 'Test4', 'Test5'):
+                        self.assertIsInstance(dd_itm, NavBarLinkItem)
+                    else:
+                        self.assertIsInstance(dd_itm, NavBarDropDownDivider)
+
+
+
 
