@@ -73,15 +73,15 @@ def propeller_message_classes(message):
 @register.simple_tag
 def propeller_jquery_url():
     """
-    **Tag name**::
-
-        propeller_jquery_url
-
     Return the full url to jQuery file to use
 
     Default value: ``//code.jquery.com/jquery.min.js``
 
     This value is configurable, see Settings section
+
+    **Tag name**::
+
+        propeller_jquery_url
 
     **Usage**::
 
@@ -246,7 +246,6 @@ def propeller_javascript(jquery=None):
 def propeller_formset(*args, **kwargs):
     """
     Render a formset
-
 
     **Tag name**::
 
@@ -1049,6 +1048,18 @@ def get_pagination_context(page, pages_to_show=11,
 
 @register.filter(needs_autoescape=True)
 def pmd_muted_text(text, autoescape=True):
+    """
+    Render a muted text (secondary heading).
+
+    **Tag name**::
+
+        pmd_muted_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_muted_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1059,6 +1070,31 @@ def pmd_muted_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_display_text(text, size=1, autoescape=True):
+    """
+    Render text as a Propeller display text (heading).
+
+    **Tag name**::
+
+        pmd_display_text
+
+    **Parameters**::
+
+        size
+            Controls the size of the heading.
+
+            An integer from 1 (normal) to 4 (very large)
+
+            :default: ``1``
+
+    **Usage**::
+
+        {{ text_variable|pmd_display_text:size }}
+
+    **Example**::
+
+        {{ my_text|pmd_display_text:3 }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1069,6 +1105,18 @@ def pmd_display_text(text, size=1, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_lead_text(text, autoescape=True):
+    """
+    Render text as a Propeller lead text (intro).
+
+    **Tag name**::
+
+        pmd_lead_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_lead_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1079,6 +1127,18 @@ def pmd_lead_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_mark_text(text, autoescape=True):
+    """
+    Render highligthed text.
+
+    **Tag name**::
+
+        pmd_mark_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_mark_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1089,6 +1149,18 @@ def pmd_mark_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_strike_text(text, autoescape=True):
+    """
+    Render striked text.
+
+    **Tag name**::
+
+        pmd_strike_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_strike_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1099,6 +1171,18 @@ def pmd_strike_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_underline_text(text, autoescape=True):
+    """
+    Render underlined text.
+
+    **Tag name**::
+
+        pmd_underline_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_underline_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1109,6 +1193,18 @@ def pmd_underline_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_bold_text(text, autoescape=True):
+    """
+    Render bold text.
+
+    **Tag name**::
+
+        pmd_bold_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_bold_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
@@ -1119,6 +1215,18 @@ def pmd_bold_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_italic_text(text, autoescape=True):
+    """
+    Render italic text.
+
+    **Tag name**::
+
+        pmd_italic_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_italic_text }}
+    """
+
     if autoescape:
         esc = conditional_escape
     else:
