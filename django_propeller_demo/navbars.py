@@ -7,6 +7,7 @@ class MainNavBar(NavBar):
     items = [
         NavBarLinkItem("Home", "home"),
         NavBarLinkItem("Typography", "typo"),
+        NavBarLinkItem("Cards", "cards"),
         NavBarLinkItem("Buttons", "buttons"),
         NavBarLinkItem("Floating Action Buttons", "fabs"),
         NavBarLinkItem("Navbar", "navbar"),
