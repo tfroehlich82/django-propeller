@@ -16,3 +16,5 @@ class CardItemTypes(Enum):
     media = 2
     media_actions = 3
     actions = 4
+    title = 5
+    subtitle = 6

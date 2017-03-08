@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 from django_propeller.enums import CardItemTypes
 
-try:
-    from django.urls import reverse
-except ImportError:
-    from django.core.urlresolvers import reverse
-
 
 class CardTitle(object):
-    pass
+    type = CardItemTypes.title
+    text = ""
+    size = 3
 
 
 class CardSubtitle(object):
-    pass
+    type = CardItemTypes.subtitle
+    text = ""
 
 
 class CardHeader(object):
@@ -40,7 +38,7 @@ class Card(object):
     """Card is a class that generates a Propeller Card"""
     primary_title = None
     secondary_title = None
-    title_icon = None
+    header = None
     body = None
     style_inverse = True
     width = 4

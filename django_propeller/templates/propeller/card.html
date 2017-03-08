@@ -10,7 +10,7 @@
         </div>
         <div class="media-body media-middle">
             <h3 class="pmd-card-title-text">Two-line item</h3>
-            <span class="pmd-card-subtitle-text">Secondary text</span>
+            <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
         </div>
     </div>
 
@@ -21,8 +21,8 @@
 
     <!-- Card body -->
     <div class="pmd-card-title">
-        <h2 class="pmd-card-title-text">{{ card.primary_title }}</h2>
-        <span class="pmd-card-subtitle-text">{{ card.secondary_title }}</span>
+        <h{{ card.primary_title.size }} class="pmd-card-title-text">{{ card.primary_title.text }}</h{{ card.primary_title.size }}>
+        <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
     </div>
 
     <div class="pmd-card-body">
