@@ -7,44 +7,40 @@ except ImportError:
     from django.core.urlresolvers import reverse
 
 
-class CardPrimaryTitle(object):
-    text = ""
+class CardTitle(object):
+    pass
 
 
-class CardSecondaryTitle(object):
-    text = ""
-
-
-class CardTitleIcon(object):
-    url = None
+class CardSubtitle(object):
+    pass
 
 
 class CardHeader(object):
-    type = CardItemTypes.header
-    content = []
+    type = CardItemTypes.header.name
+    content_left = []
+    content_middle = []
 
 
 class CardMedia(object):
-    type = CardItemTypes.media
+    type = CardItemTypes.media.name
     content = []
 
 
 class CardMediaActions(object):
-    type = CardItemTypes.media_actions
+    type = CardItemTypes.media_actions.name
     items = []
 
 
 class CardActions(object):
-    type = CardItemTypes.actions
+    type = CardItemTypes.actions.name
     items = []
-
-
-class CardBody(object):
-    type = CardItemTypes.body
-    content = ""
 
 
 class Card(object):
     """Card is a class that generates a Propeller Card"""
-    items = []
+    primary_title = None
+    secondary_title = None
+    title_icon = None
+    body = None
     style_inverse = True
+    width = 4

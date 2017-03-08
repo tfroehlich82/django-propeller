@@ -57,3 +57,29 @@ def render_alert(content, alert_type=None, dismissable=True):
         attrs={'class': ' '.join(css_classes)},
         content=button_placeholder + text_value(content),
     ).replace(button_placeholder, button))
+
+
+class Image(object):
+    source = ""
+    link = None
+    width = None
+    height = None
+    responsive = False
+    avatar = False
+
+    def render(self):
+        img_str = ''
+        if self.link:
+            img_str += '<a'
+            if self.avatar:
+                img_str += ' class="avatar-list-img"'
+            img_str += '>'
+        img_str += '<img src="%s"' % self.source
+        if self.width:
+            img_str += ' width="%d"' % int(self.width)
+        if self.height:
+            img_str += ' height="%d"' % int(self.height)
+        img_str += '>'
+        if self.link:
+            img_str += '</a>'
+        return img_str

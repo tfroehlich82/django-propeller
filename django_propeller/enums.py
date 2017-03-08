@@ -12,8 +12,7 @@ class NavbarItemTypes(Enum):
 
 
 class CardItemTypes(Enum):
-    body = 1
-    header = 2
-    media = 3
-    media_actions = 4
-    actions = 5
+    header = 1
+    media = 2
+    media_actions = 3
+    actions = 4

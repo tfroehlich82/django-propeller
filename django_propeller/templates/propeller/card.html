@@ -1,5 +1,5 @@
 <!-- Default card starts -->
-<div class="pmd-card pmd-card-default pmd-z-depth">
+<div class="pmd-card pmd-card-default pmd-z-depth col-md-{{ card.width }}">
 
 	<!-- Card header -->
     <div class="pmd-card-title">
@@ -21,12 +21,12 @@
 
     <!-- Card body -->
     <div class="pmd-card-title">
-        <h2 class="pmd-card-title-text">Title goes here</h2>
-        <span class="pmd-card-subtitle-text">Secondary text</span>
+        <h2 class="pmd-card-title-text">{{ card.primary_title }}</h2>
+        <span class="pmd-card-subtitle-text">{{ card.secondary_title }}</span>
     </div>
 
     <div class="pmd-card-body">
-        Cards provide context and an entry point to more robust information and views. Don't overload cards with extraneous information or actions.
+        {{ card.body }}
     </div>
 
     <!-- Card media actions -->
