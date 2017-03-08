@@ -39,6 +39,7 @@ class Card(object):
     primary_title = None
     secondary_title = None
     header = None
+    media = None
     body = None
     style_inverse = True
     width = 4

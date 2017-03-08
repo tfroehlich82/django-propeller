@@ -67,7 +67,15 @@ class Image(object):
     responsive = False
     avatar = False
 
-    def render(self):
+    def __init__(self, source="", link=None, width=None, height=None, responsive=False, avatar=False):
+        self.source = source
+        self.link = link
+        self.width = width
+        self.height = height
+        self.responsive = responsive
+        self.avatar = avatar
+
+    def as_html(self):
         img_str = ''
         if self.link:
             img_str += '<a'
