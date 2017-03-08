@@ -1239,3 +1239,24 @@ def propeller_navbar(navbar):
         {% propeller_navbar navbar_instance %}
     """
     return {'navbar': navbar}
+
+
+@register.inclusion_tag('propeller/card.html')
+def propeller_card(card):
+    """
+    Render a propeller card.
+
+    **Tag name**::
+
+        propeller_card
+
+    **Parameters**:
+
+        card
+            The previously defined card instance
+
+    **Usage**::
+
+        {% propeller_card card_instance %}
+    """
+    return {'card': card}
