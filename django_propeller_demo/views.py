@@ -11,7 +11,7 @@ from django.views.generic.base import TemplateView
 from django_propeller.views import NavBarMixin
 from .navbars import MainNavBar, DemoNavBar1
 from .forms import ContactForm, FilesForm, ContactFormSet
-from .cards import DemoCard1, DemoCard2, DemoCard3
+from .cards import DemoCard1, DemoCard2, DemoCard3, DemoCard4
 
 
 # http://yuji.wordpress.com/2013/01/30/django-form-field-in-initial-data-requires-a-fieldfile-instance/
@@ -159,4 +159,5 @@ class CardView(TemplateView, NavBarMixin):
         context['card1'] = DemoCard1
         context['card2'] = DemoCard2
         context['card3'] = DemoCard3
+        context['card4'] = DemoCard4
         return context

@@ -1,4 +1,4 @@
-from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle
+from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, CardMedia
 from django_propeller.components import Image, Button, FAB
 
 
@@ -31,6 +31,10 @@ class DemoMediaActions1(CardMediaActions):
     ]
 
 
+class DemoMedia1(CardMedia):
+    pass
+
+
 class DemoCard1(Card):
     primary_title = DemoTitle1
     secondary_title = DemoSubtitle1
@@ -51,3 +55,10 @@ class DemoCard2(DemoCard1):
 class DemoCard3(DemoCard1):
     style_inverse = True
 
+
+class DemoCard4(DemoCard1):
+    style_inline = True
+    body = None
+    header = None
+    media_actions = None
+    media = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80).as_html()

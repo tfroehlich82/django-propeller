@@ -1,5 +1,5 @@
 <!-- Default card starts -->
-<div class="pmd-card {% if card.style_inverse %}pmd-card-inverse{% else %}pmd-card-default{% endif %} pmd-z-depth col-md-{{ card.width }}">
+<div class="pmd-card{% if card.style_inline %} pmd-card-media-inline{% endif %}{% if card.style_inverse %} pmd-card-inverse{% else %} pmd-card-default{% endif %} pmd-z-depth col-md-{{ card.width }}">
 
     {% if card.header %}
 	<!-- Card header -->

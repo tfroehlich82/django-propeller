@@ -29,6 +29,12 @@ class CardActions(object):
     items = []
 
 
+class CardMedia(object):
+    type = CardItemTypes.media.name
+    orientation = 'default'
+    content = None
+
+
 class Card(object):
     """Card is a class that generates a Propeller Card"""
     primary_title = None
@@ -39,4 +45,5 @@ class Card(object):
     actions = None
     media_actions = None
     style_inverse = False
+    style_inline = False
     width = 4
