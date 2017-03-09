@@ -1,5 +1,5 @@
 from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle
-from django_propeller.components import Image, Button
+from django_propeller.components import Image, Button, FAB
 
 
 class DemoTitle1(CardTitle):
@@ -17,7 +17,7 @@ class DemoHeader1(CardHeader):
 
 class DemoActions1(CardActions):
     items = [
-        Button('primary'),
+        Button('primary', button_class='btn-primary'),
         Button('Action'),
         Button('third')
     ]
@@ -25,7 +25,9 @@ class DemoActions1(CardActions):
 
 class DemoMediaActions1(CardMediaActions):
     items = [
-        Button('bla')
+        FAB('', button_class='btn-primary', icon='share', style='flat'),
+        FAB('', button_class='btn-primary', icon='thumb_up', style='flat'),
+        FAB('', button_class='btn-primary', icon='drafts', style='flat')
     ]
 
 
