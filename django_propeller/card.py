@@ -19,11 +19,6 @@ class CardHeader(object):
     content_middle = []
 
 
-class CardMedia(object):
-    type = CardItemTypes.media.name
-    content = []
-
-
 class CardMediaActions(object):
     type = CardItemTypes.media_actions.name
     items = []
@@ -41,5 +36,7 @@ class Card(object):
     header = None
     media = None
     body = None
+    actions = None
+    media_actions = None
     style_inverse = True
     width = 4

@@ -30,16 +30,26 @@
     </div>
 
     <!-- Card media actions -->
+    {% if card.media_actions %}
     <div class="pmd-card-actions">
-        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>
-        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>
-        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>
+{#        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>#}
+{#        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>#}
+{#        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">drafts</i></button>#}
+        {% for btn in card.media_actions.items %}
+            {{ btn.as_html }}
+        {% endfor %}
     </div>
+    {% endif %}
 
     <!-- Card actions -->
+    {% if card.actions %}
     <div class="pmd-card-actions">
-        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>
-        <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>
+{#        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>#}
+{#        <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>#}
+        {% for btn in card.actions.items %}
+            {{ btn.as_html }}
+        {% endfor %}
     </div>
+    {% endif %}
 </div>
 <!--Default card ends -->
