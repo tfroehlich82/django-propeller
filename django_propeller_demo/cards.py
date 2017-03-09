@@ -40,3 +40,14 @@ class DemoCard1(Card):
     media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
     body = "Cards provide context and an entry point to more robust information and views. " \
            "Don't overload cards with extraneous information or actions."
+
+
+class DemoCard2(DemoCard1):
+    body = None
+    header = None
+    actions = None
+
+
+class DemoCard3(DemoCard1):
+    style_inverse = True
+

@@ -38,5 +38,5 @@ class Card(object):
     body = None
     actions = None
     media_actions = None
-    style_inverse = True
+    style_inverse = False
     width = 4

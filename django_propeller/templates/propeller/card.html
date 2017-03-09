@@ -1,6 +1,7 @@
 <!-- Default card starts -->
-<div class="pmd-card pmd-card-default pmd-z-depth col-md-{{ card.width }}">
+<div class="pmd-card {% if card.style_inverse %}pmd-card-inverse{% else %}pmd-card-default{% endif %} pmd-z-depth col-md-{{ card.width }}">
 
+    {% if card.header %}
 	<!-- Card header -->
     <div class="pmd-card-title">
         <div class="media-left">
@@ -10,27 +11,40 @@
         </div>
         <div class="media-body media-middle">
             <h3 class="pmd-card-title-text">Two-line item</h3>
+            {% if card.secondary_title %}
             <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
+            {% endif %}
         </div>
     </div>
+    {% endif %}
 
+    {% if card.media %}
     <!-- Card media -->
     <div class="pmd-card-media">
         {{ card.media|safe }}
     </div>
+    {% endif %}
 
+    {% if card.primary_title or card.secondary_title %}
     <!-- Card body -->
     <div class="pmd-card-title">
+        {% if card.primary_title %}
         <h{{ card.primary_title.size }} class="pmd-card-title-text">{{ card.primary_title.text }}</h{{ card.primary_title.size }}>
+        {% endif %}
+        {% if card.secondary_title %}
         <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
+        {% endif %}
     </div>
+    {% endif %}
 
+    {% if card.body %}
     <div class="pmd-card-body">
         {{ card.body }}
     </div>
+    {% endif %}
 
-    <!-- Card media actions -->
     {% if card.media_actions %}
+    <!-- Card media actions -->
     <div class="pmd-card-actions">
 {#        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i></button>#}
 {#        <button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">thumb_up</i></button>#}
@@ -41,8 +55,8 @@
     </div>
     {% endif %}
 
-    <!-- Card actions -->
     {% if card.actions %}
+    <!-- Card actions -->
     <div class="pmd-card-actions">
 {#        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>#}
 {#        <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>#}
