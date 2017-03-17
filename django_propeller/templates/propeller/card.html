@@ -1,7 +1,7 @@
 <!-- Default card starts -->
 <div class="pmd-card{% if card.style_inline %} pmd-card-media-inline{% endif %}{% if card.style_inverse %} pmd-card-inverse{% else %} pmd-card-default{% endif %} pmd-z-depth col-md-{{ card.width }}">
 
-    {% if card.header %}
+    {% if card.header and not card.style_inline %}
 	<!-- Card header -->
     <div class="pmd-card-title">
         <div class="media-left">
@@ -21,10 +21,28 @@
     {% if card.media %}
     <!-- Card media -->
     <div class="pmd-card-media">
+        {% if card.style_inline %}
+        <div class="media-body">
+            {% if card.primary_title %}
+            <h{{ card.primary_title.size }} class="pmd-card-title-text">{{ card.primary_title.text }}</h{{ card.primary_title.size }}>
+            {% endif %}
+            {% if card.secondary_title %}
+            <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
+            {% endif %}
+        </div>
+
+        <!-- Card media image -->
+        <div class="media-right media-middle">
+            {{ card.media|safe }}
+        </div>
+        {% else %}
         {{ card.media|safe }}
+        {% endif %}
+
     </div>
     {% endif %}
 
+    {% if not card.style_inline %}
     {% if card.primary_title or card.secondary_title %}
     <!-- Card body -->
     <div class="pmd-card-title">
@@ -41,6 +59,7 @@
     <div class="pmd-card-body">
         {{ card.body }}
     </div>
+    {% endif %}
     {% endif %}
 
     {% if card.media_actions %}
