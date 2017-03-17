@@ -5,7 +5,6 @@ import re
 from math import floor
 
 from django import template
-from django.contrib.messages import constants as DEFAULT_MESSAGE_LEVELS
 from django.contrib.messages import constants as message_constants
 from django.template import Context
 from django.utils.safestring import mark_safe
@@ -25,11 +24,11 @@ from ..utils import handle_var, parse_token_contents, url_replace_param
 from ..utils import render_link_tag, render_tag, render_template_file
 
 MESSAGE_LEVEL_CLASSES = {
-    DEFAULT_MESSAGE_LEVELS.DEBUG: "alert alert-warning",
-    DEFAULT_MESSAGE_LEVELS.INFO: "alert alert-info",
-    DEFAULT_MESSAGE_LEVELS.SUCCESS: "alert alert-success",
-    DEFAULT_MESSAGE_LEVELS.WARNING: "alert alert-warning",
-    DEFAULT_MESSAGE_LEVELS.ERROR: "alert alert-danger",
+    message_constants.DEBUG: "alert alert-warning",
+    message_constants.INFO: "alert alert-info",
+    message_constants.SUCCESS: "alert alert-success",
+    message_constants.WARNING: "alert alert-warning",
+    message_constants.ERROR: "alert alert-danger",
 }
 
 register = template.Library()
@@ -39,6 +38,7 @@ register = template.Library()
 def propeller_setting(value):
     """
     A simple way to read Propeller settings in a template.
+
     Please consider this filter private for now, do not use it in your own
     templates.
     """
@@ -47,9 +47,7 @@ def propeller_setting(value):
 
 @register.filter
 def propeller_message_classes(message):
-    """
-    Return the message classes for a message
-    """
+    """Return the message classes for a message"""
     extra_tags = None
     try:
         extra_tags = message.extra_tags
@@ -73,15 +71,15 @@ def propeller_message_classes(message):
 @register.simple_tag
 def propeller_jquery_url():
     """
-    **Tag name**::
-
-        propeller_jquery_url
-
     Return the full url to jQuery file to use
 
     Default value: ``//code.jquery.com/jquery.min.js``
 
     This value is configurable, see Settings section
+
+    **Tag name**::
+
+        propeller_jquery_url
 
     **Usage**::
 
@@ -170,9 +168,9 @@ def propeller_theme_url():
 def propeller_css():
     """
     Return HTML for Propeller CSS.
+
     Adjust url in settings. If no url is returned, we don't want this statement
-    to return any HTML.
-    This is intended behavior.
+    to return any HTML. This is intended behavior.
 
     Default value: ``None``
 
@@ -225,7 +223,6 @@ def propeller_javascript(jquery=None):
 
         {% propeller_javascript jquery=1 %}
     """
-
     javascript = ''
     # See if we have to include jQuery
     if jquery is None:
@@ -246,7 +243,6 @@ def propeller_javascript(jquery=None):
 def propeller_formset(*args, **kwargs):
     """
     Render a formset
-
 
     **Tag name**::
 
@@ -703,7 +699,7 @@ def propeller_icon(icon, **kwargs):
     **Parameters**:
 
         icon
-            Icon name. See the `propeller docs http://propeller.in/style/icons.php`_ for all icons.
+            Icon name. See the `Propeller docs <http://propeller.in/style/icons.php>`_ for all icons.
 
         size
             Size of the icon. Must be one of 'xs', 'sm', 'md', or 'lg'. Default: 'sm'
@@ -889,7 +885,6 @@ def propeller_messages(context, *args, **kwargs):
         {% propeller_messages %}
 
     """
-
     # Force Django 1.8+ style, so dicts and not Context
     # TODO: This may be due to a bug in Django 1.8/1.9+
     if Context and isinstance(context, Context):
@@ -951,7 +946,6 @@ def propeller_pagination(page, **kwargs):
         {% propeller_pagination lines url="/pagination?page=1" size="large" %}
 
     """
-
     pagination_kwargs = kwargs.copy()
     pagination_kwargs['page'] = page
     return get_pagination_context(**pagination_kwargs)
@@ -965,9 +959,7 @@ def propeller_url_replace_param(url, name, value):
 def get_pagination_context(page, pages_to_show=11,
                            url=None, size=None, extra=None,
                            parameter_name='page'):
-    """
-    Generate propeller pagination context from a page object
-    """
+    """Generate propeller pagination context from a page object"""
     pages_to_show = int(pages_to_show)
     if pages_to_show < 1:
         raise ValueError(
@@ -1049,6 +1041,17 @@ def get_pagination_context(page, pages_to_show=11,
 
 @register.filter(needs_autoescape=True)
 def pmd_muted_text(text, autoescape=True):
+    """
+    Render a muted text (secondary heading).
+
+    **Tag name**::
+
+        pmd_muted_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_muted_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1059,6 +1062,30 @@ def pmd_muted_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_display_text(text, size=1, autoescape=True):
+    """
+    Render text as a Propeller display text (heading).
+
+    **Tag name**::
+
+        pmd_display_text
+
+    **Parameters**::
+
+        size
+            Controls the size of the heading.
+
+            An integer from 1 (normal) to 4 (very large)
+
+            :default: ``1``
+
+    **Usage**::
+
+        {{ text_variable|pmd_display_text:size }}
+
+    **Example**::
+
+        {{ my_text|pmd_display_text:3 }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1069,6 +1096,17 @@ def pmd_display_text(text, size=1, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_lead_text(text, autoescape=True):
+    """
+    Render text as a Propeller lead text (intro).
+
+    **Tag name**::
+
+        pmd_lead_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_lead_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1079,6 +1117,17 @@ def pmd_lead_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_mark_text(text, autoescape=True):
+    """
+    Render highligthed text.
+
+    **Tag name**::
+
+        pmd_mark_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_mark_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1089,6 +1138,17 @@ def pmd_mark_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_strike_text(text, autoescape=True):
+    """
+    Render striked text.
+
+    **Tag name**::
+
+        pmd_strike_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_strike_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1099,6 +1159,17 @@ def pmd_strike_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_underline_text(text, autoescape=True):
+    """
+    Render underlined text.
+
+    **Tag name**::
+
+        pmd_underline_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_underline_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1109,6 +1180,17 @@ def pmd_underline_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_bold_text(text, autoescape=True):
+    """
+    Render bold text.
+
+    **Tag name**::
+
+        pmd_bold_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_bold_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1119,6 +1201,17 @@ def pmd_bold_text(text, autoescape=True):
 
 @register.filter(needs_autoescape=True)
 def pmd_italic_text(text, autoescape=True):
+    """
+    Render italic text.
+
+    **Tag name**::
+
+        pmd_italic_text
+
+    **Usage**::
+
+        {{ text_variable|pmd_italic_text }}
+    """
     if autoescape:
         esc = conditional_escape
     else:
@@ -1128,5 +1221,21 @@ def pmd_italic_text(text, autoescape=True):
 
 
 @register.inclusion_tag('propeller/navbar.html')
-def pmd_navbar(navbar):
+def propeller_navbar(navbar):
+    """
+    Render a navbar.
+
+    **Tag name**::
+
+        propeller_navbar
+
+    **Parameters**:
+
+        navbar
+            The previously defined navbar instance
+
+    **Usage**::
+
+        {% propeller_navbar navbar_instance %}
+    """
     return {'navbar': navbar}

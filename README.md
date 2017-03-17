@@ -61,7 +61,7 @@ Example template
 Documentation
 -------------
 
-The full documentation is at http://django-propeller.readthedocs.io/en/latest/
+The full documentation is at http://django-propeller.readthedocs.io/en/stable/
 
 
 Demo application
