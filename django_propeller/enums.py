@@ -9,3 +9,12 @@ class NavbarItemTypes(Enum):
     link = 1
     dropdown = 2
     divider = 3
+
+
+class CardItemTypes(Enum):
+    header = 1
+    media = 2
+    media_actions = 3
+    actions = 4
+    title = 5
+    subtitle = 6
