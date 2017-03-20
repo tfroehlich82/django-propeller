@@ -13,11 +13,11 @@ class DemoHeaderTitle1(CardTitle):
 
 
 class DemoSubtitle1(CardSubtitle):
-    text = "Secondary text"  # ToDo
+    text = "Secondary text"
 
 
 class DemoHeader1(CardHeader):
-    content_middle = [DemoHeaderTitle1, DemoSubtitle1]
+    content_middle = [DemoHeaderTitle1(), DemoSubtitle1()]
     content_left = [Image("http://propeller.in/assets/images/avatar-icon-40x40.png", width=40, height=40, avatar=True)]
 
 
@@ -40,9 +40,9 @@ class DemoMediaActions1(CardMediaActions):
 class DemoCard1(Card):
     primary_title = DemoTitle1
     secondary_title = DemoSubtitle1
-    header = DemoHeader1
+    header = DemoHeader1()
     actions = DemoActions1
-    media_actions = DemoMediaActions1
+    media_actions = DemoMediaActions1()
     media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
     body = "Cards provide context and an entry point to more robust information and views. " \
            "Don't overload cards with extraneous information or actions."

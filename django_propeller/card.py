@@ -1,36 +1,63 @@
 # -*- coding: utf-8 -*-
-from django_propeller.enums import CardItemTypes
+from .components import Button, FAB
 
 
 class CardTitle(object):
-    type = CardItemTypes.title.name
     text = ""
     size = 3
 
+    def as_html(self):
+        return '<h%d class ="pmd-card-title-text">%s</h%d>' % (self.size, self.text, self.size)
+
 
 class CardSubtitle(object):
-    type = CardItemTypes.subtitle.name
     text = ""
+
+    def as_html(self):
+        return '<span class="pmd-card-subtitle-text">%s</span>' % self.text
 
 
 class CardHeader(object):
-    type = CardItemTypes.header.name
     content_left = []
     content_middle = []
 
+    def as_html(self):
+        tag = '<div class="pmd-card-title">'
+        tag += '<div class ="media-left">'
+        for itm in self.content_left:
+            tag += itm.as_html()
+        tag += '</div><div class ="media-body media-middle">'
+        for itm in self.content_middle:
+            tag += itm.as_html()
+        tag += '</div></div>'
+        return tag
+
 
 class CardMediaActions(object):
-    type = CardItemTypes.media_actions.name
     items = []
+
+    def as_html(self):
+        tag = '<div class="pmd-card-actions">'
+        for btn in self.items:
+            if isinstance(btn, FAB):
+                tag += btn.as_html()
+        tag += '</div>'
+        return tag
 
 
 class CardActions(object):
-    type = CardItemTypes.actions.name
     items = []
+
+    def as_html(self):
+        tag = '<div class="pmd-card-actions">'
+        for btn in self.items:
+            if isinstance(btn, Button):
+                tag += btn.as_html()
+        tag += '</div>'
+        return tag
 
 
 class CardMedia(object):
-    type = CardItemTypes.media.name
     orientation = 'default'
     content = None
 

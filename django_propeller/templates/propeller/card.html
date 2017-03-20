@@ -3,22 +3,7 @@
 
     {% if card.header and not card.style_inline %}
 	<!-- Card header -->
-    <div class="pmd-card-title">
-        <div class="media-left">
-            {% for itm in card.header.content_left %}
-                {{ itm.as_html|safe }}
-            {% endfor %}
-        </div>
-        <div class="media-body media-middle">
-            {% for itm in card.header.content_middle %}
-                {% if itm.type == 'title' %}
-                <h{{ itm.size }} class="pmd-card-title-text">{{ itm.text }}</h{{ itm.size }}>
-                {% elif itm.type == 'subtitle' %}
-                <span class="pmd-card-subtitle-text">{{ itm.text }}</span>
-                {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+        {{ card.header.as_html|safe }}
     {% endif %}
 
     {% if card.media %}
@@ -67,20 +52,12 @@
 
     {% if card.media_actions %}
     <!-- Card media actions -->
-    <div class="pmd-card-actions">
-        {% for btn in card.media_actions.items %}
-            {{ btn.as_html }}
-        {% endfor %}
-    </div>
+    {{ card.media_actions.as_html|safe }}
     {% endif %}
 
     {% if card.actions %}
     <!-- Card actions -->
-    <div class="pmd-card-actions">
-        {% for btn in card.actions.items %}
-            {{ btn.as_html }}
-        {% endfor %}
-    </div>
+    {{ card.actions.as_html|safe }}
     {% endif %}
 </div>
 <!--Default card ends -->
