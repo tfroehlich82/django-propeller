@@ -17,6 +17,13 @@ class CardSubtitle(object):
         return '<span class="pmd-card-subtitle-text">%s</span>' % self.text
 
 
+class CardBody(object):
+    text = ""
+
+    def as_html(self):
+        return '<div class="pmd-card-body">%s</div>' % self.text
+
+
 class CardHeader(object):
     content_left = []
     content_middle = []

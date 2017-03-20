@@ -3,7 +3,7 @@
 
     {% if card.header and not card.style_inline %}
 	<!-- Card header -->
-        {{ card.header.as_html|safe }}
+    {{ card.header.as_html|safe }}
     {% endif %}
 
     {% if card.media %}
@@ -44,9 +44,7 @@
     {% endif %}
 
     {% if card.body %}
-    <div class="pmd-card-body">
-        {{ card.body }}
-    </div>
+    {{ card.body.as_html|safe }}
     {% endif %}
     {% endif %}
 

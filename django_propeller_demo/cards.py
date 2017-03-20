@@ -1,4 +1,5 @@
-from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, CardMedia
+from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
+    CardMedia, CardBody
 from django_propeller.components import Image, Button, FAB
 
 
@@ -8,12 +9,17 @@ class DemoTitle1(CardTitle):
 
 
 class DemoHeaderTitle1(CardTitle):
-    text = "Two line item"
+    text = "Two-line item"
     size = 3
 
 
 class DemoSubtitle1(CardSubtitle):
     text = "Secondary text"
+
+
+class DemoBody1(CardBody):
+    text = "Cards provide context and an entry point to more robust information and views. " \
+           "Don't overload cards with extraneous information or actions."
 
 
 class DemoHeader1(CardHeader):
@@ -44,8 +50,7 @@ class DemoCard1(Card):
     actions = DemoActions1()
     media_actions = DemoMediaActions1()
     media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
-    body = "Cards provide context and an entry point to more robust information and views. " \
-           "Don't overload cards with extraneous information or actions."
+    body = DemoBody1()
 
 
 class DemoCard2(DemoCard1):
