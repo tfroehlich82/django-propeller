@@ -28,9 +28,6 @@ class CardActions(object):
     type = CardItemTypes.actions.name
     items = []
 
-    def __call__(self, *args, **kwargs):
-        return self.items
-
 
 class CardMedia(object):
     type = CardItemTypes.media.name
