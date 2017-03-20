@@ -10,9 +10,7 @@ from .text import text_value, text_concat
 
 
 def render_icon(icon, size='sm', **kwargs):
-    """
-    Render a Google icon
-    """
+    """Render a Google icon"""
     attrs = {
         'class': add_css_class(
             'material-icons pmd-{size}'.format(size=size),
@@ -26,9 +24,7 @@ def render_icon(icon, size='sm', **kwargs):
 
 
 def render_bootstrap_icon(icon, **kwargs):
-    """
-    Render a Bootstrap glyphicon icon
-    """
+    """Render a Bootstrap glyphicon icon"""
     attrs = {
         'class': add_css_class(
             'glyphicon glyphicon-{icon}'.format(icon=icon),
@@ -42,9 +38,7 @@ def render_bootstrap_icon(icon, **kwargs):
 
 
 def render_alert(content, alert_type=None, dismissable=True):
-    """
-    Render a Bootstrap alert
-    """
+    """Render a Bootstrap alert"""
     button = ''
     if not alert_type:
         alert_type = 'info'
@@ -62,6 +56,7 @@ def render_alert(content, alert_type=None, dismissable=True):
 
 
 class Image(object):
+    """Render an image object"""
     source = ""
     link = None
     width = None
@@ -98,15 +93,13 @@ class Image(object):
 
 
 class Button(object):
+    """Render a button with content"""
     attrs = {}
     content = ""
     classes = []
 
     def __init__(self, content, button_type='button', icon=None, button_class=None, size=None,
                  href=None, name=None, value=None, title=None, style='default', extra_classes='', _id=''):
-        """
-        Render a button with content
-        """
         pmd_class = 'pmd-ripple-effect'
         if not button_class:
             button_class = 'btn-default'
@@ -161,15 +154,13 @@ class Button(object):
 
 
 class FAB(object):
+    """Render a floating action button"""
     attrs = {}
     content = ""
     classes = []
 
     def __init__(self, content, button_type='button', icon=None, button_class=None, size=None,
                  href=None, name=None, value=None, title=None, style='default', extra_classes='', _id=''):
-        """
-        Render a button with content
-        """
         pmd_class = 'pmd-ripple-effect'
         if not button_class:
             button_class = 'btn-default'
