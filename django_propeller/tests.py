@@ -686,21 +686,21 @@ class ShowLabelTest(TestCase):
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_class='btn-primary' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_type='submit' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" type="submit"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="submit"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
         )
 
 
