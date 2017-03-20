@@ -38,10 +38,10 @@ class DemoMediaActions1(CardMediaActions):
 
 
 class DemoCard1(Card):
-    primary_title = DemoTitle1
-    secondary_title = DemoSubtitle1
+    primary_title = DemoTitle1()
+    secondary_title = DemoSubtitle1()
     header = DemoHeader1()
-    actions = DemoActions1
+    actions = DemoActions1()
     media_actions = DemoMediaActions1()
     media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
     body = "Cards provide context and an entry point to more robust information and views. " \

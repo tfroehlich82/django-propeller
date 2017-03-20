@@ -12,10 +12,10 @@
         {% if card.style_inline %}
         <div class="media-body">
             {% if card.primary_title %}
-            <h{{ card.primary_title.size }} class="pmd-card-title-text">{{ card.primary_title.text }}</h{{ card.primary_title.size }}>
+            {{ card.primary_title.as_html|safe }}
             {% endif %}
             {% if card.secondary_title %}
-            <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
+            {{ card.secondary_title.as_html|safe }}
             {% endif %}
         </div>
 
@@ -35,10 +35,10 @@
     <!-- Card body -->
     <div class="pmd-card-title">
         {% if card.primary_title %}
-        <h{{ card.primary_title.size }} class="pmd-card-title-text">{{ card.primary_title.text }}</h{{ card.primary_title.size }}>
+        {{ card.primary_title.as_html|safe }}
         {% endif %}
         {% if card.secondary_title %}
-        <span class="pmd-card-subtitle-text">{{ card.secondary_title.text }}</span>
+        {{ card.secondary_title.as_html|safe }}
         {% endif %}
     </div>
     {% endif %}
