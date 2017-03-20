@@ -17,6 +17,14 @@ class DemoSubtitle1(CardSubtitle):
     text = "Secondary text"
 
 
+class DemoMedia1(CardMedia):
+    content = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
+
+
+class DemoMedia2(CardMedia):
+    content = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+
+
 class DemoBody1(CardBody):
     text = "Cards provide context and an entry point to more robust information and views. " \
            "Don't overload cards with extraneous information or actions."
@@ -49,7 +57,7 @@ class DemoCard1(Card):
     header = DemoHeader1()
     actions = DemoActions1()
     media_actions = DemoMediaActions1()
-    media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
+    media = DemoMedia1()
     body = DemoBody1()
 
 
@@ -68,4 +76,4 @@ class DemoCard4(DemoCard1):
     body = None
     header = None
     media_actions = None
-    media = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80).as_html()
+    media = DemoMedia2()

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from .components import Button, FAB
+from .components import Button, FAB, Image
 
 
 class CardTitle(object):
@@ -67,6 +67,10 @@ class CardActions(object):
 class CardMedia(object):
     orientation = 'default'
     content = None
+
+    def as_html(self):
+        if isinstance(self.content, Image):
+            return self.content.as_html()
 
 
 class Card(object):

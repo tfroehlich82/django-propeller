@@ -21,10 +21,10 @@
 
         <!-- Card media image -->
         <div class="media-right media-middle">
-            {{ card.media|safe }}
+            {{ card.media.as_html|safe }}
         </div>
         {% else %}
-        {{ card.media|safe }}
+        {{ card.media.as_html|safe }}
         {% endif %}
 
     </div>
