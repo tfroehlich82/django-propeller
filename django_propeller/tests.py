@@ -509,10 +509,10 @@ class ComponentsTest(TestCase):
     def test_icon(self):
         res = render_template_with_form('{% propeller_icon "star" %}')
         self.assertEqual(
-            res.strip(), '<i class="material-icons md-dark pmd-sm">star</i>')
+            res.strip(), '<i class="material-icons pmd-sm">star</i>')
         res = render_template_with_form('{% propeller_icon "star" title="alpha centauri" %}')
         self.assertIn(res.strip(), [
-            '<i class="material-icons md-dark pmd-sm" title="alpha centauri">star</i>',
+            '<i class="material-icons pmd-sm" title="alpha centauri">star</i>',
             '<span title="alpha centauri" class="glyphicon glyphicon-star"></span>',
         ])
 
@@ -686,21 +686,21 @@ class ShowLabelTest(TestCase):
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons pmd-sm">info-sign</i> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_class='btn-primary' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons pmd-sm">info-sign</i> test</button>'
         )
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_type='submit' %}"
         )
         self.assertEqual(
             res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="submit"><i class="material-icons md-dark pmd-sm">info-sign</i> test</button>'
+            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="submit"><i class="material-icons pmd-sm">info-sign</i> test</button>'
         )
 
 
@@ -783,14 +783,14 @@ class FABsTests(TestCase):
             '{% propeller_fab "" icon="star" %}',
         )
         self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
-                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+                          '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_default_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="warning" button_class="btn-warning" %}',
         )
         self.assertInHTML('<button class="btn btn-warning pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
-                          '<i class="material-icons md-dark pmd-sm">warning</i></button>', res)
+                          '<i class="material-icons pmd-sm">warning</i></button>', res)
 
     def test_default_fab_with_link(self):
         res = render_template_with_propeller(
@@ -804,14 +804,14 @@ class FABsTests(TestCase):
             '{% propeller_fab "" icon="star" style="raised" %}',
         )
         self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
-                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+                          '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_raised_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="error" style="raised" button_class="btn-danger" %}',
         )
         self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
-                          '<i class="material-icons md-dark pmd-sm">error</i></button>', res)
+                          '<i class="material-icons pmd-sm">error</i></button>', res)
 
     def test_raised_fab_with_link(self):
         res = render_template_with_propeller(
@@ -825,14 +825,14 @@ class FABsTests(TestCase):
             '{% propeller_fab "" icon="star" style="flat" %}',
         )
         self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
-                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+                          '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_flat_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="info" style="flat" button_class="btn-danger" %}',
         )
         self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
-                          '<i class="material-icons md-dark pmd-sm">info</i></button>', res)
+                          '<i class="material-icons pmd-sm">info</i></button>', res)
 
     def test_flat_fab_with_link(self):
         res = render_template_with_propeller(
@@ -846,14 +846,14 @@ class FABsTests(TestCase):
             '{% propeller_fab "" icon="star" style="outline" %}',
         )
         self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
-                          '<i class="material-icons md-dark pmd-sm">star</i></button>', res)
+                          '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_outline_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="check" style="outline" button_class="btn-danger" %}',
         )
         self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
-                          '<i class="material-icons md-dark pmd-sm">check</i></button>', res)
+                          '<i class="material-icons pmd-sm">check</i></button>', res)
 
     def test_outline_fab_with_link(self):
         res = render_template_with_propeller(

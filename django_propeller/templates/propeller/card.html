@@ -79,7 +79,7 @@
     <div class="pmd-card-actions">
 {#        <button class="btn pmd-btn-flat pmd-ripple-effect btn-primary" type="button">Primary</button>#}
 {#        <button type="button" class="btn pmd-btn-flat pmd-ripple-effect btn-default">Action</button>#}
-        {% for btn in card.actions.items %}
+        {% for btn in card.actions %}
             {{ btn.as_html }}
         {% endfor %}
     </div>

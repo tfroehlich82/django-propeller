@@ -17,7 +17,7 @@ class DemoHeader1(CardHeader):
 
 class DemoActions1(CardActions):
     items = [
-        Button('primary', button_class='btn-primary'),
+        Button(content='primary', button_class='btn-primary'),
         Button('Action'),
         Button('third')
     ]
@@ -25,9 +25,9 @@ class DemoActions1(CardActions):
 
 class DemoMediaActions1(CardMediaActions):
     items = [
-        FAB('', button_class='btn-primary', icon='share', style='flat'),
-        FAB('', button_class='btn-primary', icon='thumb_up', style='flat'),
-        FAB('', button_class='btn-primary', icon='drafts', style='flat')
+        FAB('', button_class='btn-primary', icon='share', style='flat', size='sm'),
+        FAB('', button_class='btn-primary', icon='thumb_up', style='flat', size='sm'),
+        FAB('', button_class='btn-primary', icon='drafts', style='flat', size='sm')
     ]
 
 
@@ -39,7 +39,7 @@ class DemoCard1(Card):
     primary_title = DemoTitle1
     secondary_title = DemoSubtitle1
     header = DemoHeader1
-    actions = DemoActions1
+    actions = DemoActions1()
     media_actions = DemoMediaActions1
     media = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True).as_html()
     body = "Cards provide context and an entry point to more robust information and views. " \
