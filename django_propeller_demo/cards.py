@@ -7,12 +7,18 @@ class DemoTitle1(CardTitle):
     size = 2
 
 
+class DemoHeaderTitle1(CardTitle):
+    text = "Two line item"
+    size = 3
+
+
 class DemoSubtitle1(CardSubtitle):
-    text = "Secondary text"
+    text = "Secondary text"  # ToDo
 
 
 class DemoHeader1(CardHeader):
-    content_middle = []
+    content_middle = [DemoHeaderTitle1, DemoSubtitle1]
+    content_left = [Image("http://propeller.in/assets/images/avatar-icon-40x40.png", width=40, height=40, avatar=True)]
 
 
 class DemoActions1(CardActions):

@@ -3,13 +3,13 @@ from django_propeller.enums import CardItemTypes
 
 
 class CardTitle(object):
-    type = CardItemTypes.title
+    type = CardItemTypes.title.name
     text = ""
     size = 3
 
 
 class CardSubtitle(object):
-    type = CardItemTypes.subtitle
+    type = CardItemTypes.subtitle.name
     text = ""
 
 
