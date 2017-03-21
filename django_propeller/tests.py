@@ -924,12 +924,13 @@ class PropellerNavBarTests(TestCase):
 
 class PropellerCardTests(TestCase):
     def test_rendered_template(self):
-        rendered = self.render_template(
-            '{% load propeller %}{% propeller_card card1 %}', {'card1', DemoCard1()}
-        )
-        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', rendered)
-        res = self.render_template_with_propeller(
-            '{% propeller_card card3 %}', {'card3', DemoCard3()}
-        )
-        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', res)
+        res = DemoCard1().as_html()
+        print(res)
+        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-4"><div class="pmd-card-title">'
+                          '<div class="media-left"><img src="http://propeller.in/assets/images/avatar-icon-40x40.png" '
+                          'width="40" height="40"></div><div class="media-body media-middle">'
+                          '<h3 class="pmd-card-title-text">Two-line item</h3><span class="pmd-card-subtitle-text">'
+                          'Secondary text</span></div></div>'
+                          '<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive"></div>',
+                          res)
 

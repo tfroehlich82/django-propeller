@@ -1241,7 +1241,7 @@ def propeller_navbar(navbar):
     return {'navbar': navbar}
 
 
-@register.inclusion_tag('propeller/card.html')
+@register.simple_tag
 def propeller_card(card):
     """
     Render a propeller card.
@@ -1259,4 +1259,4 @@ def propeller_card(card):
 
         {% propeller_card card_instance %}
     """
-    return {'card': card}
+    return card.as_html()
