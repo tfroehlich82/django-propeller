@@ -1,5 +1,5 @@
 from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
-    CardMedia, CardBody
+    CardMediaImage, CardBody, CardMedia
 from django_propeller.components import Image, Button, FAB
 
 
@@ -17,12 +17,20 @@ class DemoSubtitle1(CardSubtitle):
     text = "Secondary text"
 
 
+class DemoMediaImage1(CardMediaImage):
+    image = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
+
+
+class DemoMediaImage2(CardMediaImage):
+    image = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+
+
 class DemoMedia1(CardMedia):
-    content = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
+    content = [DemoMediaImage1(), ]
 
 
 class DemoMedia2(CardMedia):
-    content = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+    content = [DemoTitle1(), DemoSubtitle1(), DemoMediaImage2(), ]
 
 
 class DemoBody1(CardBody):

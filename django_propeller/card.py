@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.utils.safestring import mark_safe
 
-from .utils import render_tag
+from .utils import render_tag, add_css_class
 from .components import Button, FAB, Image
 from .text import text_concat
 
@@ -108,16 +108,55 @@ class CardActions(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
+class CardMediaImage(object):
+
+    """Renders a Card Media Image"""
+
+    image = None
+
+    def as_html(self):
+        if isinstance(self.image, Image):
+            return self.image.as_html()
+        return
+
+
 class CardMedia(object):
 
     """Renders Card Media"""
 
-    orientation = 'default'
     content = None
+    style_inline = False
 
     def as_html(self):
-        if isinstance(self.content, Image):
-            return self.content.as_html()
+        tag = 'div'
+        attrs = {'class': 'pmd-card-media'}
+        content = ''
+        if self.style_inline:
+            content = text_concat(content, mark_safe('<div class="media-body">'))
+            if isinstance(self.content, list):
+                for itm in self.content:
+                    if isinstance(itm, (CardTitle, CardSubtitle)):
+                        content = text_concat(content, mark_safe(itm.as_html()))
+            else:
+                raise Exception("content must be a list")
+            content = text_concat(content, mark_safe('</div>'))
+            content = text_concat(content, mark_safe('<div class="media-right media-middle">'))
+            if isinstance(self.content, list):
+                for itm in self.content:
+                    if isinstance(itm, CardMediaImage):
+                        content = text_concat(content, mark_safe(itm.as_html()))
+            else:
+                raise Exception("content must be a list")
+            content = text_concat(content, mark_safe('</div>'))
+        else:
+            if isinstance(self.content, list):
+                for itm in self.content:
+                    if isinstance(itm, CardMediaImage):
+                        content = text_concat(content, mark_safe(itm.as_html()))
+            else:
+                raise Exception("content must be a list")
+
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class Card(object):
@@ -134,3 +173,36 @@ class Card(object):
     style_inverse = False
     style_inline = False
     width = 4
+
+    def as_html(self):
+        tag = 'div'
+        classes = 'pmd-card'
+        if self.style_inline:
+            classes = add_css_class(classes, 'pmd-card-media-inline')
+        if self.style_inverse:
+            classes = add_css_class(classes, 'pmd-card-inverse')
+        else:
+            classes = add_css_class(classes, 'pmd-card-default')
+        classes = add_css_class(classes, 'pmd-z-depth')
+        classes = add_css_class(classes, 'col-md-%d' % self.width)
+        attrs = {'class': classes}
+        content = ''
+        if self.header and not self.style_inline:
+            content = text_concat(content, self.header.as_html())
+        if self.media:
+            content = text_concat(content, self.media.as_html())
+        if not self.style_inline:
+            if self.primary_title or self.secondary_title:
+                content = text_concat(content, '<div class="pmd-card-title">')
+                if self.primary_title:
+                    content = text_concat(content, self.primary_title.as_html())
+                if self.secondary_title:
+                    content = text_concat(content, self.secondary_title.as_html())
+                content = text_concat(content, '</div>')
+            if self.body:
+                content = text_concat(content, self.body.as_html())
+        if self.media_actions:
+            content = text_concat(content, self.media_actions.as_html())
+        if self.actions:
+            content = text_concat(content, self.actions.as_html())
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )

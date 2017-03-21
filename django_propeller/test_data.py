@@ -3,7 +3,7 @@
 """Provides test data for unit tests"""
 
 
-from .card import Card, CardActions, CardBody, CardHeader, CardMedia, CardMediaActions, CardSubtitle, CardTitle, \
+from .card import Card, CardActions, CardBody, CardHeader, CardMediaImage, CardMediaActions, CardSubtitle, CardTitle, \
     Button, FAB, Image
 from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
@@ -22,12 +22,12 @@ class DemoSubtitle1(CardSubtitle):
     text = "Secondary text"
 
 
-class DemoMedia1(CardMedia):
-    content = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
+class DemoMediaImage1(CardMediaImage):
+    image = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
 
 
-class DemoMedia2(CardMedia):
-    content = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+class DemoMediaImage2(CardMediaImage):
+    image = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
 
 
 class DemoBody1(CardBody):
@@ -62,7 +62,7 @@ class DemoCard1(Card):
     header = DemoHeader1()
     actions = DemoActions1()
     media_actions = DemoMediaActions1()
-    media = DemoMedia1()
+    media = DemoMediaImage1()
     body = DemoBody1()
 
 
@@ -81,7 +81,7 @@ class DemoCard4(DemoCard1):
     body = None
     header = None
     media_actions = None
-    media = DemoMedia2()
+    media = DemoMediaImage2()
 
 
 class TestNavbar1(NavBar):

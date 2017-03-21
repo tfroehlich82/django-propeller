@@ -14,8 +14,8 @@ from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
-from .test_data import DemoCard1, DemoCard3, TestNavbar1, TestNavbar2, TestNavbar3, NavBarLinkItem, \
-    NavBarDropDownDivider, NavBarDropDownItem, NavBar
+from .test_data import DemoCard1, DemoCard2, DemoCard3, DemoCard4, TestNavbar1, TestNavbar2, TestNavbar3, \
+    NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar
 
 try:
     from html.parser import HTMLParser
@@ -924,12 +924,76 @@ class PropellerNavBarTests(TestCase):
 
 class PropellerCardTests(TestCase):
     def test_rendered_template(self):
-        rendered = self.render_template(
-            '{% load propeller %}{% propeller_card card1 %}', {'card1', DemoCard1()}
-        )
-        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', rendered)
         res = self.render_template_with_propeller(
-            '{% propeller_card card3 %}', {'card3', DemoCard3()}
+            '{% propeller_card card1 %}', {'card1': DemoCard1()}
         )
-        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', res)
-
+        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-4"><div class="pmd-card-title">'
+                          '<div class="media-left"><img src="http://propeller.in/assets/images/avatar-icon-40x40.png" '
+                          'width="40" height="40"></div><div class="media-body media-middle">'
+                          '<h3 class="pmd-card-title-text">Two-line item</h3>'
+                          '<span class="pmd-card-subtitle-text">Secondary text</span></div></div>'
+                          '<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive">'
+                          '<div class="pmd-card-title"><h2 class="pmd-card-title-text">Title goes here</h2>'
+                          '<span class="pmd-card-subtitle-text">Secondary text</span></div><div class="pmd-card-body">'
+                          'Cards provide context and an entry point to more robust information and views. '
+                          'Don\'t overload cards with extraneous information or actions.</div>'
+                          '<div class="pmd-card-actions"><button class="btn btn-sm pmd-btn-fab pmd-btn-flat '
+                          'pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i>'
+                          '</button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" '
+                          'type="button"><i class="material-icons pmd-sm">thumb_up</i></button><button '
+                          'class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i '
+                          'class="material-icons pmd-sm">drafts</i></button></div><div class="pmd-card-actions">'
+                          '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#" type="button">'
+                          'primary</button><button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" '
+                          'type="button">Action</button><button class="btn btn-default pmd-ripple-effect '
+                          'pmd-btn-default" href="#" type="button">third</button></div></div>',
+                          res)
+        res = self.render_template_with_propeller(
+            '{% propeller_card card2 %}', {'card2': DemoCard2()}
+        )
+        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-4">'
+                          '<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive">'
+                          '<div class="pmd-card-title"><h2 class="pmd-card-title-text">Title goes here</h2>'
+                          '<span class="pmd-card-subtitle-text">Secondary text</span></div>'
+                          '<div class="pmd-card-actions"><button class="btn btn-sm pmd-btn-fab pmd-btn-flat '
+                          'pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i>'
+                          '</button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" '
+                          'type="button"><i class="material-icons pmd-sm">thumb_up</i></button><button '
+                          'class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button">'
+                          '<i class="material-icons pmd-sm">drafts</i></button></div></div>',
+                          res)
+        res = self.render_template_with_propeller(
+            '{% propeller_card card3 %}', {'card3': DemoCard3()}
+        )
+        self.assertInHTML('<div class="pmd-card pmd-card-inverse pmd-z-depth col-md-4"><div class="pmd-card-title">'
+                          '<div class="media-left"><img src="http://propeller.in/assets/images/avatar-icon-40x40.png" '
+                          'width="40" height="40"></div><div class="media-body media-middle"><h3 '
+                          'class="pmd-card-title-text">Two-line item</h3><span class="pmd-card-subtitle-text">'
+                          'Secondary text</span></div></div>'
+                          '<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive">'
+                          '<div class="pmd-card-title"><h2 class="pmd-card-title-text">Title goes here</h2>'
+                          '<span class="pmd-card-subtitle-text">Secondary text</span></div><div class="pmd-card-body">'
+                          'Cards provide context and an entry point to more robust information and views. '
+                          'Don\'t overload cards with extraneous information or actions.</div><div '
+                          'class="pmd-card-actions"><button class="btn btn-sm pmd-btn-fab pmd-btn-flat '
+                          'pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">share</i>'
+                          '</button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" '
+                          'type="button"><i class="material-icons pmd-sm">thumb_up</i></button><button '
+                          'class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button">'
+                          '<i class="material-icons pmd-sm">drafts</i></button></div><div class="pmd-card-actions">'
+                          '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#" type="button">'
+                          'primary</button><button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" '
+                          'type="button">Action</button><button class="btn btn-default pmd-ripple-effect '
+                          'pmd-btn-default" href="#" type="button">third</button></div></div>',
+                          res)
+        res = self.render_template_with_propeller(
+            '{% propeller_card card4 %}', {'card4': DemoCard4()}
+        )
+        self.assertInHTML('<div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth col-md-4">'
+                          '<img src="http://propeller.in/assets/images/profile-pic.png" width="80" height="80">'
+                          '<div class="pmd-card-actions"><button class="btn btn-primary pmd-ripple-effect '
+                          'pmd-btn-default" href="#" type="button">primary</button><button class="btn btn-default '
+                          'pmd-ripple-effect pmd-btn-default" href="#" type="button">Action</button><button '
+                          'class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="button">third'
+                          '</button></div></div>',
+                          res)
