@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.utils.safestring import mark_safe
+
+from .utils import render_tag, add_css_class
 from .components import Button, FAB, Image
+from .text import text_value, text_concat
 
 
 class CardTitle(object):
@@ -28,16 +32,27 @@ class CardHeader(object):
     content_left = []
     content_middle = []
 
-    def as_html(self):
-        tag = '<div class="pmd-card-title">'
-        tag += '<div class ="media-left">'
+    def get_left_content(self):
+        tag = 'div'
+        attrs = {'class': 'media-left'}
+        content = ''
         for itm in self.content_left:
-            tag += itm.as_html()
-        tag += '</div><div class ="media-body media-middle">'
+            content = text_concat(content, mark_safe(itm.as_html()))
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
+    def get_middle_content(self):
+        tag = 'div'
+        attrs = {'class': 'media-body media-middle'}
+        content = ''
         for itm in self.content_middle:
-            tag += itm.as_html()
-        tag += '</div></div>'
-        return tag
+            content = text_concat(content, mark_safe(itm.as_html()))
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
+    def as_html(self):
+        tag = 'div'
+        attrs = {'class': 'pmd-card-title'}
+        content = text_concat(self.get_left_content(), self.get_middle_content())
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardMediaActions(object):
