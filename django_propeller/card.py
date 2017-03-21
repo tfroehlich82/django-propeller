@@ -11,21 +11,30 @@ class CardTitle(object):
     size = 3
 
     def as_html(self):
-        return '<h%d class ="pmd-card-title-text">%s</h%d>' % (self.size, self.text, self.size)
+        tag = 'h%d' % self.size
+        attrs = {'class': 'pmd-card-title-text'}
+        content = self.text
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardSubtitle(object):
     text = ""
 
     def as_html(self):
-        return '<span class="pmd-card-subtitle-text">%s</span>' % self.text
+        tag = 'span'
+        attrs = {'class': 'pmd-card-subtitle-text'}
+        content = self.text
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardBody(object):
     text = ""
 
     def as_html(self):
-        return '<div class="pmd-card-body">%s</div>' % self.text
+        tag = 'div'
+        attrs = {'class': 'pmd-card-body'}
+        content = self.text
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardHeader(object):
