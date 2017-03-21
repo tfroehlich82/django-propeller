@@ -56,7 +56,9 @@ def render_alert(content, alert_type=None, dismissable=True):
 
 
 class Image(object):
+
     """Render an image object"""
+
     source = ""
     link = None
     width = None
@@ -93,7 +95,9 @@ class Image(object):
 
 
 class Button(object):
+
     """Render a button with content"""
+
     attrs = {}
     content = ""
     classes = []
@@ -154,7 +158,9 @@ class Button(object):
 
 
 class FAB(object):
+
     """Render a floating action button"""
+
     attrs = {}
     content = ""
     classes = []
