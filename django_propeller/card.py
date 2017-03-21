@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from django.utils.safestring import mark_safe
 
-from .utils import render_tag, add_css_class
+from .utils import render_tag
 from .components import Button, FAB, Image
-from .text import text_value, text_concat
+from .text import text_concat
 
 
 class CardTitle(object):
@@ -68,24 +68,26 @@ class CardMediaActions(object):
     items = []
 
     def as_html(self):
-        tag = '<div class="pmd-card-actions">'
+        tag = 'div'
+        attrs = {'class': 'pmd-card-actions'}
+        content = ''
         for btn in self.items:
             if isinstance(btn, FAB):
-                tag += btn.as_html()
-        tag += '</div>'
-        return tag
+                content = text_concat(content, mark_safe(btn.as_html()))
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardActions(object):
     items = []
 
     def as_html(self):
-        tag = '<div class="pmd-card-actions">'
+        tag = 'div'
+        attrs = {'class': 'pmd-card-actions'}
+        content = ''
         for btn in self.items:
             if isinstance(btn, Button):
-                tag += btn.as_html()
-        tag += '</div>'
-        return tag
+                content = text_concat(content, mark_safe(btn.as_html()))
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
 class CardMedia(object):
