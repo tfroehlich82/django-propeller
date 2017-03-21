@@ -1,6 +1,11 @@
-from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
-    CardMedia, CardBody
-from django_propeller.components import Image, Button, FAB
+# -*- coding: utf-8 -*-
+
+"""Provides test data for unit tests"""
+
+
+from .card import Card, CardActions, CardBody, CardHeader, CardMedia, CardMediaActions, CardSubtitle, CardTitle, \
+    Button, FAB, Image
+from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 
 class DemoTitle1(CardTitle):
@@ -77,3 +82,27 @@ class DemoCard4(DemoCard1):
     header = None
     media_actions = None
     media = DemoMedia2()
+
+
+class TestNavbar1(NavBar):
+    brandname = 'propeller-test'
+    brandurl = 'https://github.com/tfroehlich82/django-propeller'
+    items = [
+        NavBarLinkItem('Test1'),
+        NavBarDropDownItem('Test2', items=[
+            NavBarLinkItem('Test3'),
+            NavBarLinkItem('Test4'),
+            NavBarDropDownDivider(),
+            NavBarLinkItem('Test5'),
+        ]),
+    ]
+
+
+class TestNavbar2(TestNavbar1):
+    style_inverse = True
+    style_static = False
+
+
+class TestNavbar3(TestNavbar1):
+    style_inverse = False
+    style_static = False

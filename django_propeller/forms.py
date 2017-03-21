@@ -14,9 +14,7 @@ from .propeller import (
     get_formset_renderer,
     PROPELLER_SET_REQUIRED_SET_DISABLED
 )
-from .components import render_icon
-from .exceptions import PropellerError
-from .text import text_concat, text_value
+from .components import Button, FAB
 from .utils import add_css_class, render_tag
 
 FORM_GROUP_CLASS = 'form-group pmd-textfield'
@@ -39,33 +37,25 @@ def render_formset_errors(formset, **kwargs):
 
 
 def render_form(form, **kwargs):
-    """
-    Render a form to a Bootstrap layout
-    """
+    """Render a form to a Bootstrap layout"""
     renderer_cls = get_form_renderer(**kwargs)
     return renderer_cls(form, **kwargs).render()
 
 
 def render_form_errors(form, _type='all', **kwargs):
-    """
-    Render form errors to a Bootstrap layout
-    """
+    """Render form errors to a Bootstrap layout"""
     renderer_cls = get_form_renderer(**kwargs)
     return renderer_cls(form, **kwargs).render_errors(_type)
 
 
 def render_field(field, **kwargs):
-    """
-    Render a field to a Bootstrap layout
-    """
+    """Render a field to a Bootstrap layout"""
     renderer_cls = get_field_renderer(**kwargs)
     return renderer_cls(field, **kwargs).render()
 
 
 def render_label(content, label_for=None, label_class=None, label_title=''):
-    """
-    Render a label with content
-    """
+    """Render a label with content"""
     attrs = {}
     if label_for:
         attrs['for'] = label_for
@@ -76,129 +66,24 @@ def render_label(content, label_for=None, label_class=None, label_title=''):
     return render_tag('label', attrs=attrs, content=content)
 
 
-def render_button(
-        content, button_type=None, icon=None, button_class='btn-default', size='',
-        href='', name=None, value=None, title=None, style='default', extra_classes='', _id=''):
-    """
-    Render a button with content
-    """
-    pmd_class = 'pmd-ripple-effect'
-    attrs = {}
-    classes = add_css_class('btn', button_class)
-    classes = add_css_class(classes, pmd_class)
-    size = text_value(size).lower().strip()
-    if size == 'xs':
-        classes = add_css_class(classes, 'btn-xs')
-    elif size == 'sm' or size == 'small':
-        classes = add_css_class(classes, 'btn-sm')
-    elif size == 'lg' or size == 'large':
-        classes = add_css_class(classes, 'btn-lg')
-    elif size == 'md' or size == 'medium':
-        pass
-    elif size:
-        raise PropellerError(
-            'Parameter "size" should be "xs", "sm", "lg" or ' +
-            'empty ("{}" given).'.format(size))
-    if button_type:
-        if button_type not in ('submit', 'reset', 'button', 'link'):
-            raise PropellerError(
-                'Parameter "button_type" should be "submit", "reset", ' +
-                '"button", "link" or empty  ("{}" given).'.format(button_type))
-        attrs['type'] = button_type
-    if style not in ('default', 'raised', 'flat', 'outline'):
-        raise PropellerError(
-            'Parameter "style" should be "default", "raised", ' +
-            '"flat", "outline" or empty  ("{}" given).'.format(style))
-    else:
-        classes = add_css_class(classes, 'pmd-btn-%s' % style)
-    classes = add_css_class(classes, extra_classes)
-    attrs['class'] = classes
-    icon_content = render_icon(icon) if icon else ''
-    if href:
-        attrs['href'] = href
-        tag = 'a'
-    else:
-        tag = 'button'
-    if _id:
-        attrs['id'] = _id
-    if name:
-        attrs['name'] = name
-    if value:
-        attrs['value'] = value
-    if title:
-        attrs['title'] = title
-    return render_tag(
-        tag,
-        attrs=attrs,
-        content=mark_safe(text_concat(icon_content, content, separator=' ')),
-    )
+def render_button(content, button_type=None, icon=None, button_class='btn-default', size='',
+                  href='', name=None, value=None, title=None, style='default', extra_classes='', _id=''):
+    """Render a button with content"""
+    return Button(content, button_type, icon, button_class, size, href, name, value, title,
+                  style, extra_classes, _id).as_html()
 
 
-def render_fab(
-        content, button_type=None, icon=None, button_class='btn-default', size='',
-        href='', name=None, value=None, title=None, style='default', extra_classes='',
-        _id=''):
-    """
-    Render a button with content
-    """
-    pmd_class = 'pmd-btn-fab pmd-ripple-effect'
-    attrs = {}
-    classes = add_css_class('btn', button_class)
-    classes = add_css_class(classes, pmd_class)
-    size = text_value(size).lower().strip()
-    if size == 'xs':
-        classes = add_css_class(classes, 'btn-xs')
-    elif size == 'sm' or size == 'small':
-        classes = add_css_class(classes, 'btn-sm')
-    elif size == 'lg' or size == 'large':
-        classes = add_css_class(classes, 'btn-lg')
-    elif size == 'md' or size == 'medium':
-        pass
-    elif size:
-        raise PropellerError(
-            'Parameter "size" should be "xs", "sm", "lg" or ' +
-            'empty ("{}" given).'.format(size))
-    if button_type:
-        if button_type not in ('submit', 'reset', 'button', 'link'):
-            raise PropellerError(
-                'Parameter "button_type" should be "submit", "reset", ' +
-                '"button", "link" or empty  ("{}" given).'.format(button_type))
-        attrs['type'] = button_type
-    if style not in ('default', 'raised', 'flat', 'outline'):
-        raise PropellerError(
-            'Parameter "style" should be "default", "raised", ' +
-            '"flat", "outline" or empty  ("{}" given).'.format(style))
-    else:
-        classes = add_css_class(classes, 'pmd-btn-%s' % style)
-    classes = add_css_class(classes, extra_classes)
-    attrs['class'] = classes
-    icon_content = render_icon(icon) if icon else ''
-    if href:
-        attrs['href'] = href
-        tag = 'a'
-    else:
-        tag = 'button'
-    if _id:
-        attrs['id'] = _id
-    if name:
-        attrs['name'] = name
-    if value:
-        attrs['value'] = value
-    if title:
-        attrs['title'] = title
-    return render_tag(
-        tag,
-        attrs=attrs,
-        content=mark_safe(text_concat(icon_content, content, separator=' ')),
-    )
+def render_fab(content, button_type=None, icon=None, button_class='btn-default', size='', href='',
+               name=None, value=None, title=None, style='default', extra_classes='', _id=''):
+    """Render a button with content"""
+    return FAB(content, button_type, icon, button_class, size, href, name, value, title,
+               style, extra_classes, _id).as_html()
 
 
 def render_field_and_label(
         field, label, field_class='', label_for=None, label_class='',
         layout='', **kwargs):
-    """
-    Render a field with its label
-    """
+    """Render a field with its label"""
     if layout == 'horizontal':
         if not label_class:
             label_class = get_propeller_setting('horizontal_label_class')
@@ -218,9 +103,7 @@ def render_field_and_label(
 
 
 def render_form_group(content, css_class=FORM_GROUP_CLASS):
-    """
-    Render a Bootstrap form group
-    """
+    """Render a Bootstrap form group"""
     return '<div class="{klass}">{content}</div>'.format(
         klass=css_class,
         content=content,
@@ -228,9 +111,7 @@ def render_form_group(content, css_class=FORM_GROUP_CLASS):
 
 
 def is_widget_required_attribute(widget):
-    """
-    Is this widget required?
-    """
+    """Is this widget required?"""
     if PROPELLER_SET_REQUIRED_SET_DISABLED and not get_propeller_setting('set_required'):
         return False
     if not widget.is_required:

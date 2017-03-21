@@ -10,12 +10,10 @@ from .text import text_value, text_concat
 
 
 def render_icon(icon, size='sm', **kwargs):
-    """
-    Render a Google icon
-    """
+    """Render a Google icon"""
     attrs = {
         'class': add_css_class(
-            'material-icons md-dark pmd-{size}'.format(size=size),
+            'material-icons pmd-{size}'.format(size=size),
             kwargs.get('extra_classes', ''),
         )
     }
@@ -26,9 +24,7 @@ def render_icon(icon, size='sm', **kwargs):
 
 
 def render_bootstrap_icon(icon, **kwargs):
-    """
-    Render a Bootstrap glyphicon icon
-    """
+    """Render a Bootstrap glyphicon icon"""
     attrs = {
         'class': add_css_class(
             'glyphicon glyphicon-{icon}'.format(icon=icon),
@@ -42,9 +38,7 @@ def render_bootstrap_icon(icon, **kwargs):
 
 
 def render_alert(content, alert_type=None, dismissable=True):
-    """
-    Render a Bootstrap alert
-    """
+    """Render a Bootstrap alert"""
     button = ''
     if not alert_type:
         alert_type = 'info'
@@ -62,6 +56,9 @@ def render_alert(content, alert_type=None, dismissable=True):
 
 
 class Image(object):
+
+    """Render an image object"""
+
     source = ""
     link = None
     width = None
@@ -97,26 +94,29 @@ class Image(object):
         return img_str
 
 
-class Button(object):  # ToDo
+class Button(object):
+
+    """Render a button with content"""
+
     attrs = {}
     content = ""
+    classes = []
 
-    def __init__(self, content, button_type=None, icon=None, button_class='btn-default', size='',
-                 href='', name=None, value=None, title=None, style='default', extra_classes='', _id=''):
-        """
-        Render a button with content
-        """
+    def __init__(self, content, button_type='button', icon=None, button_class=None, size=None,
+                 href=None, name=None, value=None, title=None, style='default', extra_classes='', _id=''):
         pmd_class = 'pmd-ripple-effect'
-        classes = add_css_class('btn', button_class)
-        classes = add_css_class(classes, pmd_class)
+        if not button_class:
+            button_class = 'btn-default'
+        self.classes = add_css_class('btn', button_class)
+        self.classes = add_css_class(self.classes, pmd_class)
         size = text_value(size).lower().strip()
         self.content = content
         if size == 'xs':
-            classes = add_css_class(classes, 'btn-xs')
+            self.classes = add_css_class(self.classes, 'btn-xs')
         elif size == 'sm' or size == 'small':
-            classes = add_css_class(classes, 'btn-sm')
+            self.classes = add_css_class(self.classes, 'btn-sm')
         elif size == 'lg' or size == 'large':
-            classes = add_css_class(classes, 'btn-lg')
+            self.classes = add_css_class(self.classes, 'btn-lg')
         elif size == 'md' or size == 'medium':
             pass
         elif size:
@@ -134,9 +134,8 @@ class Button(object):  # ToDo
                 'Parameter "style" should be "default", "raised", ' +
                 '"flat", "outline" or empty  ("{}" given).'.format(style))
         else:
-            classes = add_css_class(classes, 'pmd-btn-%s' % style)
-        classes = add_css_class(classes, extra_classes)
-        self.attrs['class'] = classes
+            self.classes = add_css_class(self.classes, 'pmd-btn-%s' % style)
+            self.classes = add_css_class(self.classes, extra_classes)
         self.icon_content = render_icon(icon) if icon else ''
         if href:
             self.attrs['href'] = href
@@ -153,36 +152,40 @@ class Button(object):  # ToDo
             self.attrs['title'] = title
 
     def as_html(self):
+        self.attrs['class'] = self.classes
         return render_tag(self.tag, attrs=self.attrs,
                           content=mark_safe(text_concat(self.icon_content, self.content, separator=' ')), )
 
 
-class FAB(object):  # ToDo
+class FAB(object):
+
+    """Render a floating action button"""
+
     attrs = {}
     content = ""
+    classes = []
 
-    def __init__(self, content, button_type=None, icon=None, button_class='btn-default', size='', href='',
-                 name=None, value=None, title=None, style='default', extra_classes='', _id=''):
-        """
-        Render a button with content
-        """
-        pmd_class = 'pmd-btn-fab pmd-ripple-effect'
-        classes = add_css_class('btn', button_class)
-        classes = add_css_class(classes, pmd_class)
+    def __init__(self, content, button_type='button', icon=None, button_class=None, size=None,
+                 href=None, name=None, value=None, title=None, style='default', extra_classes='', _id=''):
+        pmd_class = 'pmd-ripple-effect'
+        if not button_class:
+            button_class = 'btn-default'
+        self.classes = add_css_class('', 'btn')
         size = text_value(size).lower().strip()
         self.content = content
         if size == 'xs':
-            classes = add_css_class(classes, 'btn-xs')
+            self.classes = add_css_class(self.classes, 'btn-xs')
         elif size == 'sm' or size == 'small':
-            classes = add_css_class(classes, 'btn-sm')
+            self.classes = add_css_class(self.classes, 'btn-sm')
         elif size == 'lg' or size == 'large':
-            classes = add_css_class(classes, 'btn-lg')
+            self.classes = add_css_class(self.classes, 'btn-lg')
         elif size == 'md' or size == 'medium':
             pass
         elif size:
             raise PropellerError(
                 'Parameter "size" should be "xs", "sm", "lg" or ' +
                 'empty ("{}" given).'.format(size))
+        self.classes = add_css_class(self.classes, 'pmd-btn-fab')
         if button_type:
             if button_type not in ('submit', 'reset', 'button', 'link'):
                 raise PropellerError(
@@ -194,9 +197,9 @@ class FAB(object):  # ToDo
                 'Parameter "style" should be "default", "raised", ' +
                 '"flat", "outline" or empty  ("{}" given).'.format(style))
         else:
-            classes = add_css_class(classes, 'pmd-btn-%s' % style)
-        classes = add_css_class(classes, extra_classes)
-        self.attrs['class'] = classes
+            self.classes = add_css_class(self.classes, 'pmd-btn-%s' % style)
+        self.classes = add_css_class(self.classes, pmd_class)
+        self.classes = add_css_class(self.classes, extra_classes)
         self.icon_content = render_icon(icon) if icon else ''
         if href:
             self.attrs['href'] = href
@@ -211,7 +214,9 @@ class FAB(object):  # ToDo
             self.attrs['value'] = value
         if title:
             self.attrs['title'] = title
+        self.classes = add_css_class(self.classes, button_class)
 
     def as_html(self):
+        self.attrs['class'] = self.classes
         return render_tag(self.tag, attrs=self.attrs,
                           content=mark_safe(text_concat(self.icon_content, self.content, separator=' ')), )
