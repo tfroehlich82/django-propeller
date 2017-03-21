@@ -7,6 +7,7 @@ from .text import text_concat
 
 
 class CardTitle(object):
+    """Renders a Card Title"""
     text = ""
     size = 3
 
@@ -18,6 +19,7 @@ class CardTitle(object):
 
 
 class CardSubtitle(object):
+    """Renders a Card Subtitle"""
     text = ""
 
     def as_html(self):
@@ -28,6 +30,7 @@ class CardSubtitle(object):
 
 
 class CardBody(object):
+    """Renders a Card Body"""
     text = ""
 
     def as_html(self):
@@ -38,6 +41,7 @@ class CardBody(object):
 
 
 class CardHeader(object):
+    """Renders a Card Header"""
     content_left = []
     content_middle = []
 
@@ -65,6 +69,7 @@ class CardHeader(object):
 
 
 class CardMediaActions(object):
+    """Renders Card Media Actions"""
     items = []
 
     def as_html(self):
@@ -78,6 +83,7 @@ class CardMediaActions(object):
 
 
 class CardActions(object):
+    """Renders Card Actions"""
     items = []
 
     def as_html(self):
@@ -91,6 +97,7 @@ class CardActions(object):
 
 
 class CardMedia(object):
+    """Renders Card Media"""
     orientation = 'default'
     content = None
 
