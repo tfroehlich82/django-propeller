@@ -15,6 +15,8 @@ from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
 from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
+from .card import Card, CardActions, CardBody, CardHeader, CardMedia, CardMediaActions, CardSubtitle, CardTitle, \
+    Button, FAB, Image
 
 try:
     from html.parser import HTMLParser
@@ -654,12 +656,11 @@ class UtilsTest(TestCase):
 class ButtonTest(TestCase):
     def test_button(self):
         res = render_template_with_form("{% propeller_button 'button' size='lg' %}")
-        self.assertEqual(
-            res.strip(), '<button class="btn btn-default pmd-ripple-effect btn-lg pmd-btn-default">button</button>')
+        self.assertEqual('<button class="btn btn-default pmd-ripple-effect btn-lg pmd-btn-default" type="button">'
+                         'button</button>', res.strip())
         res = render_template_with_form("{% propeller_button 'button' size='lg' href='#' %}")
-        self.assertIn(
-            res.strip(),
-            '<a class="btn btn-default pmd-ripple-effect btn-lg pmd-btn-default" href="#">button</a>')
+        self.assertIn('<a class="btn btn-default pmd-ripple-effect btn-lg pmd-btn-default" href="#" type="button">'
+                      'button</a>', res.strip())
 
 
 class ShowLabelTest(TestCase):
@@ -684,24 +685,18 @@ class ShowLabelTest(TestCase):
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' %}"
         )
-        self.assertEqual(
-            res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons pmd-sm">info-sign</i> test</button>'
-        )
+        self.assertEqual('<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="button">'
+                         '<i class="material-icons pmd-sm">info-sign</i> test</button>', res.strip())
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_class='btn-primary' %}"
         )
-        self.assertEqual(
-            res.strip(),
-            '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#"><i class="material-icons pmd-sm">info-sign</i> test</button>'
-        )
+        self.assertEqual('<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#" type="button">'
+                         '<i class="material-icons pmd-sm">info-sign</i> test</button>', res.strip())
         res = render_template_with_form(
             "{% propeller_button 'test' icon='info-sign' button_type='submit' %}"
         )
-        self.assertEqual(
-            res.strip(),
-            '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="submit"><i class="material-icons pmd-sm">info-sign</i> test</button>'
-        )
+        self.assertEqual('<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="submit">'
+                         '<i class="material-icons pmd-sm">info-sign</i> test</button>', res.strip())
 
 
 class TypographyTest(TestCase):
@@ -782,85 +777,85 @@ class FABsTests(TestCase):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="star" %}',
         )
-        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
+        self.assertInHTML('<button class="btn pmd-btn-fab pmd-btn-default pmd-ripple-effect btn-default" type="button">'
                           '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_default_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="warning" button_class="btn-warning" %}',
         )
-        self.assertInHTML('<button class="btn btn-warning pmd-btn-fab pmd-ripple-effect pmd-btn-default">'
+        self.assertInHTML('<button class="btn btn-warning pmd-btn-fab pmd-ripple-effect pmd-btn-default" type="button">'
                           '<i class="material-icons pmd-sm">warning</i></button>', res)
 
     def test_default_fab_with_link(self):
         res = render_template_with_propeller(
             '{% propeller_fab "Link" button_class="btn-link" %}',
         )
-        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-default">Link</button>',
-                          res)
+        self.assertInHTML('<button class="btn pmd-btn-fab pmd-btn-default pmd-ripple-effect btn-link" type="button">'
+                          'Link</button>', res)
 
     def test_raised_fab(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="star" style="raised" %}',
         )
-        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-raised" type="button">'
                           '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_raised_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="error" style="raised" button_class="btn-danger" %}',
         )
-        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-raised">'
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-raised" type="button">'
                           '<i class="material-icons pmd-sm">error</i></button>', res)
 
     def test_raised_fab_with_link(self):
         res = render_template_with_propeller(
             '{% propeller_fab "Link" style="raised" button_class="btn-link" %}',
         )
-        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-raised">Link</button>',
-                          res)
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-raised" type="button">'
+                          'Link</button>', res)
 
     def test_flat_fab(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="star" style="flat" %}',
         )
-        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-flat" type="button">'
                           '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_flat_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="info" style="flat" button_class="btn-danger" %}',
         )
-        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-flat">'
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-flat" type="button">'
                           '<i class="material-icons pmd-sm">info</i></button>', res)
 
     def test_flat_fab_with_link(self):
         res = render_template_with_propeller(
             '{% propeller_fab "Link" style="flat" button_class="btn-link" %}',
         )
-        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-flat">Link</button>',
-                          res)
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-flat" type="button">'
+                          'Link</button>', res)
 
     def test_outline_fab(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="star" style="outline" %}',
         )
-        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
+        self.assertInHTML('<button class="btn btn-default pmd-btn-fab pmd-ripple-effect pmd-btn-outline" type="button">'
                           '<i class="material-icons pmd-sm">star</i></button>', res)
 
     def test_outline_fab_with_btn_class(self):
         res = render_template_with_propeller(
             '{% propeller_fab "" icon="check" style="outline" button_class="btn-danger" %}',
         )
-        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-outline">'
+        self.assertInHTML('<button class="btn btn-danger pmd-btn-fab pmd-ripple-effect pmd-btn-outline" type="button">'
                           '<i class="material-icons pmd-sm">check</i></button>', res)
 
     def test_outline_fab_with_link(self):
         res = render_template_with_propeller(
             '{% propeller_fab "Link" style="outline" button_class="btn-link" %}',
         )
-        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-outline">Link</button>',
-                          res)
+        self.assertInHTML('<button class="btn btn-link pmd-btn-fab pmd-ripple-effect pmd-btn-outline" type="button">'
+                          'Link</button>', res)
 
 
 class DjangoAppTests(TestCase):
@@ -967,5 +962,91 @@ class PropellerNavBarTests(TestCase):
                         self.assertIsInstance(dd_itm, NavBarDropDownDivider)
 
 
+class DemoTitle1(CardTitle):
+    text = "Title goes here"
+    size = 2
 
+
+class DemoHeaderTitle1(CardTitle):
+    text = "Two-line item"
+    size = 3
+
+
+class DemoSubtitle1(CardSubtitle):
+    text = "Secondary text"
+
+
+class DemoMedia1(CardMedia):
+    content = Image(source="http://propeller.in/assets/images/profile-pic.png", responsive=True)
+
+
+class DemoMedia2(CardMedia):
+    content = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+
+
+class DemoBody1(CardBody):
+    text = "Cards provide context and an entry point to more robust information and views. " \
+           "Don't overload cards with extraneous information or actions."
+
+
+class DemoHeader1(CardHeader):
+    content_middle = [DemoHeaderTitle1(), DemoSubtitle1()]
+    content_left = [Image("http://propeller.in/assets/images/avatar-icon-40x40.png", width=40, height=40, avatar=True)]
+
+
+class DemoActions1(CardActions):
+    items = [
+        Button(content='primary', button_class='btn-primary'),
+        Button('Action'),
+        Button('third')
+    ]
+
+
+class DemoMediaActions1(CardMediaActions):
+    items = [
+        FAB('', button_class='btn-primary', icon='share', style='flat', size='sm'),
+        FAB('', button_class='btn-primary', icon='thumb_up', style='flat', size='sm'),
+        FAB('', button_class='btn-primary', icon='drafts', style='flat', size='sm')
+    ]
+
+
+class DemoCard1(Card):
+    primary_title = DemoTitle1()
+    secondary_title = DemoSubtitle1()
+    header = DemoHeader1()
+    actions = DemoActions1()
+    media_actions = DemoMediaActions1()
+    media = DemoMedia1()
+    body = DemoBody1()
+
+
+class DemoCard2(DemoCard1):
+    body = None
+    header = None
+    actions = None
+
+
+class DemoCard3(DemoCard1):
+    style_inverse = True
+
+
+class DemoCard4(DemoCard1):
+    style_inline = True
+    body = None
+    header = None
+    media_actions = None
+    media = DemoMedia2()
+
+
+class PropellerCardTests(TestCase):
+
+    def test_rendered_template(self):
+        res = render_template_with_propeller(
+            '{% propeller_card card1 %}', {'card1', DemoCard1()}
+        )
+        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', res)
+        res = render_template_with_propeller(
+            '{% propeller_card card3 %}', {'card3', DemoCard3()}
+        )
+        self.assertInHTML('<div class="pmd-card pmd-card-default pmd-z-depth col-md-"></div>', res)
 
