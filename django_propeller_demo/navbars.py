@@ -40,3 +40,7 @@ class DemoNavBar1(NavBar):
         ])
 
     ]
+
+
+class DemoNavBar2(DemoNavBar1):
+    style_inverse = False

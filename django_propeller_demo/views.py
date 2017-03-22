@@ -9,7 +9,7 @@ from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
 from django_propeller.views import NavBarMixin
-from .navbars import MainNavBar, DemoNavBar1
+from .navbars import MainNavBar, DemoNavBar1, DemoNavBar2
 from .forms import ContactForm, FilesForm, ContactFormSet
 from .cards import DemoCard1, DemoCard2, DemoCard3, DemoCard4
 
@@ -147,6 +147,7 @@ class NavBarView(TemplateView, NavBarMixin):
     def get_context_data(self, **kwargs):
         context = super(NavBarView, self).get_context_data(**kwargs)
         context['navbar1'] = DemoNavBar1
+        context['navbar2'] = DemoNavBar2
         return context
 
 
