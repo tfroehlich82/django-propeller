@@ -1,7 +1,9 @@
-[report]
-exclude_lines =
-    pragma: no cover
+[run]
 omit =
     docs/*
     django_propeller_demo/*
     manage.py
+
+[report]
+exclude_lines =
+    pragma: no cover
