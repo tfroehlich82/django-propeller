@@ -1,0 +1,13 @@
+doc-warnings: yes
+test-warnings: no
+strictness: high
+max-line-length: 120
+uses:
+  - django
+autodetect: yes
+ignore-paths:
+  - docs
+  - django_propeller_demo
+python-targets:
+  - 2
+  - 3
