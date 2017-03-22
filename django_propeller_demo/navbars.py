@@ -30,10 +30,13 @@ class DemoNavBar1(NavBar):
         NavBarLinkItem("Link"),
         NavBarLinkItem("Link"),
         NavBarDropDownItem("DropDown", [
-            NavBarLinkItem("Link"),
-            NavBarLinkItem("Link"),
+            NavBarLinkItem("Action"),
+            NavBarLinkItem("Another action"),
+            NavBarLinkItem("Something else here"),
             NavBarDropDownDivider(),
-            NavBarLinkItem("Link"),
+            NavBarLinkItem("Separated link"),
+            NavBarDropDownDivider(),
+            NavBarLinkItem("One more separated link"),
         ])
 
     ]
