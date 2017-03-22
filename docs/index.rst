@@ -13,6 +13,8 @@ Welcome to django-propeller's documentation!
    installation
    quickstart
    templatetags
+   navbar
+   card
    settings
    templates
 

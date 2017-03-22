@@ -93,11 +93,19 @@ propeller_pagination
 propeller_navbar
 ~~~~~~~~~~~~~~~~
 
+.. hint::
+
+ See also :doc:`navbar` for how to create navbar instances
+
 .. autofunction:: django_propeller.templatetags.propeller.propeller_navbar
 
 
 propeller_card
 ~~~~~~~~~~~~~~
+
+.. hint::
+
+ See also :doc:`card` for how to create card instances
 
 .. autofunction:: django_propeller.templatetags.propeller.propeller_card
 
