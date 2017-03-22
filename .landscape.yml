@@ -8,6 +8,9 @@ autodetect: yes
 ignore-paths:
   - docs
   - django_propeller_demo
+ignore-patterns:
+  - ^manage.py$
+  - (^|/)docs(/|$)
 python-targets:
   - 2
   - 3
