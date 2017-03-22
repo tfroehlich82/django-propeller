@@ -11,7 +11,9 @@ except ImportError:
 
 
 class NavBarLinkItem(object):
+
     """Generates a Link navbar item or a Link DropDown item"""
+
     name = None
     url = None
     icon = None
@@ -50,6 +52,7 @@ class NavBarLinkItem(object):
 
 
 class NavBarDropDownDivider(object):
+
     """Generates a DropDown Divider item"""
 
     @staticmethod
@@ -60,7 +63,9 @@ class NavBarDropDownDivider(object):
 
 
 class NavBarDropDownItem(NavBarLinkItem):
+
     """Generates a DropDown navbar item"""
+
     items = []
 
     def __init__(self, name="", items=None, url=None):
@@ -82,7 +87,9 @@ class NavBarDropDownItem(NavBarLinkItem):
 
 
 class NavBar(object):
+
     """NavBar is a class that generates a NavBar"""
+
     brandname = ""
     brandurl = None
     items = []

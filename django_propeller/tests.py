@@ -867,17 +867,19 @@ class PropellerNavBarTests(TestCase):
         self.assertEqual(TestNavbar1().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
         self.assertEqual(TestNavbar1().brandname, 'propeller-test')
 
-    def test_rendered_template(self):  # ToDo: does not work...
+    def test_rendered_template(self):
         res = self.render_template_with_propeller(
-            '{% propeller_navbar testnav %}', {'testnav', TestNavbar1()}
+            '{% propeller_navbar testnav1 %}',
+            context={'testnav1': TestNavbar1()}
         )
         self.assertInHTML(RESULT_NAVBAR1, res)
         res = self.render_template_with_propeller(
-            '{% propeller_navbar testnav %}', {'testnav', TestNavbar2()}
+            '{% propeller_navbar testnav2 %}',
+            context={'testnav2': TestNavbar2()}
         )
         self.assertInHTML(RESULT_NAVBAR2, res)
         res = self.render_template_with_propeller(
-            '{% propeller_navbar testnav %}', {'testnav', TestNavbar3()}
+            '{% propeller_navbar testnav3 %}', {'testnav3': TestNavbar3()}
         )
         self.assertInHTML(RESULT_NAVBAR3, res)
 
