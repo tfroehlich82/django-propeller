@@ -96,6 +96,12 @@ propeller_navbar
 .. autofunction:: django_propeller.templatetags.propeller.propeller_navbar
 
 
+propeller_card
+~~~~~~~~~~~~~~
+
+.. autofunction:: django_propeller.templatetags.propeller.propeller_card
+
+
 propeller_textfilters
 ~~~~~~~~~~~~~~~~~~~~~
 

@@ -7,6 +7,7 @@ class MainNavBar(NavBar):
     items = [
         NavBarLinkItem("Home", "home"),
         NavBarLinkItem("Typography", "typo"),
+        NavBarLinkItem("Cards", "cards"),
         NavBarLinkItem("Buttons", "buttons"),
         NavBarLinkItem("Floating Action Buttons", "fabs"),
         NavBarLinkItem("Navbar", "navbar"),
@@ -29,10 +30,17 @@ class DemoNavBar1(NavBar):
         NavBarLinkItem("Link"),
         NavBarLinkItem("Link"),
         NavBarDropDownItem("DropDown", [
-            NavBarLinkItem("Link"),
-            NavBarLinkItem("Link"),
+            NavBarLinkItem("Action"),
+            NavBarLinkItem("Another action"),
+            NavBarLinkItem("Something else here"),
             NavBarDropDownDivider(),
-            NavBarLinkItem("Link"),
+            NavBarLinkItem("Separated link"),
+            NavBarDropDownDivider(),
+            NavBarLinkItem("One more separated link"),
         ])
 
     ]
+
+
+class DemoNavBar2(DemoNavBar1):
+    style_inverse = False
