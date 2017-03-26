@@ -9,13 +9,14 @@ from django.contrib.messages import constants as DEFAULT_MESSAGE_LEVELS
 from django.forms.formsets import formset_factory
 from django.template import Context, Template
 from django.test import TestCase
+from django.urls.exceptions import NoReverseMatch
 
 from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
 from .test_data import DemoCard1, DemoCard2, DemoCard3, DemoCard4, TestNavbar1, TestNavbar2, TestNavbar3, \
-    NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar
+    NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar, TestNavbar4
 from .test_results import RESULT_CARD1, RESULT_CARD2, RESULT_CARD3, RESULT_CARD4, RESULT_NAVBAR1, RESULT_NAVBAR2, \
     RESULT_NAVBAR3
 
@@ -866,6 +867,9 @@ class PropellerNavBarTests(TestCase):
     def test_navbar_config(self):
         self.assertEqual(TestNavbar1().get_brand_url(), 'https://github.com/tfroehlich82/django-propeller')
         self.assertEqual(TestNavbar1().brandname, 'propeller-test')
+        self.assertEqual(TestNavbar2().get_brand_url(), 'javascript:void(0);')
+        with self.assertRaises(NoReverseMatch):
+            TestNavbar4().get_brand_url()
 
     def test_rendered_template(self):
         res = self.render_template_with_propeller(
@@ -884,13 +888,19 @@ class PropellerNavBarTests(TestCase):
         self.assertInHTML(RESULT_NAVBAR3, res)
 
     def test_navbar_items(self):
-        for itm in TestNavbar1().items:
+        for itm in TestNavbar4().items:
             if itm.name in ('Test1', ):
                 self.assertIsInstance(itm, NavBarLinkItem)
+                self.assertEqual(itm.get_url(), 'http://example.org')
             elif itm.name in ('Test2', ):
                 self.assertIsInstance(itm, NavBarDropDownItem)
                 for dd_itm in itm.items:
                     if hasattr(dd_itm, 'name') and dd_itm.name in ('Test3', 'Test4', 'Test5'):
+                        if dd_itm.name == 'Test3':
+                            with self.assertRaises(NoReverseMatch):
+                                dd_itm.get_url()
+                        elif dd_itm.name == 'Test4':
+                            self.assertEqual(dd_itm.get_url(), 'javascript:void(0);')
                         self.assertIsInstance(dd_itm, NavBarLinkItem)
                     else:
                         self.assertIsInstance(dd_itm, NavBarDropDownDivider)

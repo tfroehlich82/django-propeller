@@ -6,7 +6,7 @@ from .text import text_concat
 
 try:
     from django.urls import reverse
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.core.urlresolvers import reverse
 
 
@@ -18,9 +18,14 @@ class NavBarLinkItem(object):
     url = None
     icon = None
 
-    def __init__(self, name="", url=None):
+    def __init__(self, name="", url=None, icon=None):
+        """
+
+         
+        """
         self.name = name
         self.url = url
+        self.icon = icon
 
     def get_url(self):
         """

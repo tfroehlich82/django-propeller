@@ -101,8 +101,23 @@ class TestNavbar1(NavBar):
 class TestNavbar2(TestNavbar1):
     style_inverse = True
     style_static = False
+    brandurl = None
 
 
 class TestNavbar3(TestNavbar1):
     style_inverse = False
     style_static = False
+
+
+class TestNavbar4(TestNavbar1):
+    brandurl = 'test'
+    items = [
+        NavBarLinkItem('Test1', url='http://example.org'),
+        NavBarDropDownItem('Test2', items=[
+            NavBarLinkItem('Test3', url='test'),
+            NavBarLinkItem('Test4'),
+            NavBarDropDownDivider(),
+            NavBarLinkItem('Test5'),
+        ]),
+    ]
+

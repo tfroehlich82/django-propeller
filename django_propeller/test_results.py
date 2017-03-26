@@ -154,8 +154,7 @@ RESULT_NAVBAR2 = '<nav class="navbar navbar-inverse navbar-top pmd-navbar pmd-z-
                  '<span class="icon-bar"></span>' \
                  '<span class="icon-bar"></span>' \
                  '</button>' \
-                 '<a href="https://github.com/tfroehlich82/django-propeller" ' \
-                 'class="navbar-brand navbar-brand-custome">propeller-test</a>' \
+                 '<a href="javascript:void(0);" class="navbar-brand navbar-brand-custome">propeller-test</a>' \
                  '</div>' \
                  '<div class="collapse navbar-collapse">' \
                  '<ul class="nav navbar-nav">' \

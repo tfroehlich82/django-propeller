@@ -11,6 +11,7 @@ ignore-paths:
 ignore-patterns:
   - ^manage.py$
   - (^|/)docs(/|$)
+  - ^tests.py$
 python-targets:
   - 2
   - 3
