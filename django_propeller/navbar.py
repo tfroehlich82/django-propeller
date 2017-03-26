@@ -4,9 +4,9 @@ from django.utils.safestring import mark_safe
 from .utils import render_tag, add_css_class
 from .text import text_concat
 
-try:
+try:  # pragma: no cover
     from django.urls import reverse
-except ImportError:  # pragma: no cover
+except ImportError:
     from django.core.urlresolvers import reverse
 
 
