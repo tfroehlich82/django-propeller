@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+"""This module contains classes for constructing propeller cards"""
+
 from django.utils.safestring import mark_safe
 
 from .utils import render_tag, add_css_class
@@ -14,6 +17,7 @@ class CardTitle(object):
     size = 3
 
     def as_html(self):
+        """Returns card title as html"""
         tag = 'h%d' % self.size
         attrs = {'class': 'pmd-card-title-text'}
         content = self.text
@@ -27,6 +31,7 @@ class CardSubtitle(object):
     text = ""
 
     def as_html(self):
+        """Returns card subtitle as html"""
         tag = 'span'
         attrs = {'class': 'pmd-card-subtitle-text'}
         content = self.text
@@ -40,6 +45,7 @@ class CardBody(object):
     text = ""
 
     def as_html(self):
+        """Returns card body as html"""
         tag = 'div'
         attrs = {'class': 'pmd-card-body'}
         content = self.text
@@ -54,6 +60,7 @@ class CardHeader(object):
     content_middle = []
 
     def get_left_content(self):
+        """Returns left content of card header as html"""
         tag = 'div'
         attrs = {'class': 'media-left'}
         content = ''
@@ -62,6 +69,7 @@ class CardHeader(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def get_middle_content(self):
+        """Returns middle content of card header as html"""
         tag = 'div'
         attrs = {'class': 'media-body media-middle'}
         content = ''
@@ -70,6 +78,7 @@ class CardHeader(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def as_html(self):
+        """Returns card header as html"""
         tag = 'div'
         attrs = {'class': 'pmd-card-title'}
         content = text_concat(self.get_left_content(), self.get_middle_content())
@@ -83,6 +92,7 @@ class CardMediaActions(object):
     items = []
 
     def as_html(self):
+        """Returns card media actions as html"""
         tag = 'div'
         attrs = {'class': 'pmd-card-actions'}
         content = ''
@@ -99,6 +109,7 @@ class CardActions(object):
     items = []
 
     def as_html(self):
+        """Returns card actions as html"""
         tag = 'div'
         attrs = {'class': 'pmd-card-actions'}
         content = ''
@@ -115,6 +126,7 @@ class CardMediaImage(object):
     image = None
 
     def as_html(self):
+        """Returns card media image as html"""
         if isinstance(self.image, Image):
             return self.image.as_html()
         return
@@ -128,6 +140,7 @@ class CardMedia(object):
     style_inline = False
 
     def as_html(self):
+        """Returns card media as html"""
         tag = 'div'
         attrs = {'class': 'pmd-card-media'}
         content = ''
@@ -175,6 +188,7 @@ class Card(object):
     width = 4
 
     def as_html(self):
+        """Returns card as html"""
         tag = 'div'
         classes = 'pmd-card'
         if self.style_inline:
