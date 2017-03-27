@@ -7,6 +7,7 @@ from django.utils.safestring import mark_safe
 from .utils import render_tag, add_css_class
 from .components import Button, FAB, Image
 from .text import text_concat
+from .exceptions import PropellerException
 
 
 class CardTitle(object):
@@ -139,13 +140,12 @@ class CardMedia(object):
     content = None
     style_inline = False
 
-    def as_html(self):
-        """Returns card media as html"""
+    def get_media_body_inline(self):
+        """Returns media body inline as html"""
         tag = 'div'
-        attrs = {'class': 'pmd-card-media'}
+        attrs = {'class': 'media-body'}
         content = ''
         if self.style_inline:
-            content = text_concat(content, mark_safe('<div class="media-body">'))
             if isinstance(self.content, list):
                 for itm in self.content:
                     if isinstance(itm, (CardTitle, CardSubtitle)):
@@ -159,16 +159,32 @@ class CardMedia(object):
                     if isinstance(itm, CardMediaImage):
                         content = text_concat(content, mark_safe(itm.as_html()))
             else:
-                raise Exception("content must be a list")
+                raise PropellerException("Propeller Card: content must be a list")
             content = text_concat(content, mark_safe('</div>'))
-        else:
-            if isinstance(self.content, list):
-                for itm in self.content:
-                    if isinstance(itm, CardMediaImage):
-                        content = text_concat(content, mark_safe(itm.as_html()))
-            else:
-                raise Exception("content must be a list")
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
+    def get_media_body(self):
+        """Returns media body as html"""
+        if self.style_inline:
+            return self.get_media_body_inline()
+
+        tag = 'div'
+        attrs = {'class': 'media-body'}
+        content = ''
+        if isinstance(self.content, list):
+            for itm in self.content:
+                if isinstance(itm, CardMediaImage):
+                    content = text_concat(content, mark_safe(itm.as_html()))
+        else:
+            raise PropellerException("Propeller Card: content must be a list")
+
+        return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
+    def as_html(self):
+        """Returns card media as html"""
+        tag = 'div'
+        attrs = {'class': 'pmd-card-media'}
+        content = self.get_media_body()
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
 
