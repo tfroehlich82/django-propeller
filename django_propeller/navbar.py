@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+"""This module contains classes for constructing propeller navbars"""
+
 from django.utils.safestring import mark_safe
 
 from .utils import render_tag, add_css_class
@@ -6,7 +9,7 @@ from .text import text_concat
 
 try:  # pragma: no cover
     from django.urls import reverse
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.core.urlresolvers import reverse
 
 
@@ -50,6 +53,7 @@ class NavBarLinkItem(object):
         return "javascript:void(0);"
 
     def as_html(self):
+        """Returns navbar link item as html"""
         tag = 'a'
         attrs = {'class': 'pmd-ripple-effect', 'href': self.get_url()}
         content = self.name
@@ -62,6 +66,7 @@ class NavBarDropDownDivider(object):
 
     @staticmethod
     def as_html():
+        """Returns navbar dropdown divider as html"""
         tag = 'li'
         attrs = {'role': 'separator', 'class': 'divider'}
         return render_tag(tag, attrs=attrs, )
@@ -79,6 +84,7 @@ class NavBarDropDownItem(NavBarLinkItem):
             self.items = items
 
     def as_html(self):
+        """Returns navbar dropdown item as html"""
         tag = 'li'
         attrs = {'class': 'dropdown pmd-dropdown'}
         content = '<a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" ' \
@@ -125,6 +131,7 @@ class NavBar(object):
 
     @staticmethod
     def render_toggle():
+        """Returns navbar toggle as html (for responsive)"""
         tag = 'button'
         attrs = {
             'class': 'navbar-toggle collapsed',
@@ -139,6 +146,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_header(self):
+        """Returns navbar header as html"""
         tag = 'div'
         attrs = {'class': 'navbar-header'}
         content = self.render_toggle()
@@ -147,6 +155,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_items(self):
+        """Returns navbar items as html (for item container)"""
         tag = 'ul'
         attrs = {'class': 'nav navbar-nav'}
         content = ''
@@ -155,12 +164,14 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_item_container(self):
+        """Returns navbar items as html"""
         tag = 'div'
         attrs = {'class': 'collapse navbar-collapse'}
         content = self.render_items()
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_content(self):
+        """Returns navbar content as html"""
         tag = 'div'
         attrs = {'class': 'container-fluid'}
         content = self.render_header()
@@ -168,6 +179,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def as_html(self):
+        """Returns navbar as html"""
         tag = 'nav'
         classes = 'navbar'
         if self.style_inverse:
