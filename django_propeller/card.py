@@ -130,7 +130,7 @@ class CardMediaImage(object):
         """Returns card media image as html"""
         if isinstance(self.image, Image):
             return self.image.as_html()
-        return
+        return None
 
 
 class CardMedia(object):
@@ -160,7 +160,7 @@ class CardMedia(object):
                         content = text_concat(content, mark_safe(itm.as_html()))
             else:
                 raise PropellerException("Propeller Card: content must be a list")
-            content = text_concat(content, mark_safe('</div>'))
+            # content = text_concat(content, mark_safe('</div>'))
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def get_media_body(self):

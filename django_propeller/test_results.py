@@ -113,6 +113,23 @@ RESULT_CARD4 = '<div class="pmd-card pmd-card-media-inline pmd-card-default pmd-
                '</div>' \
                '</div>'
 
+RESULT_CARD5 = '<div class="pmd-card pmd-card-media-inline pmd-card-default pmd-z-depth col-md-4">' \
+               '<div class="pmd-card-media">' \
+               '<div class="media-body"></div>' \
+               '<div class="media-right media-middle">' \
+               '<img src="http://propeller.in/assets/images/profile-pic.png" width="80" height="80">' \
+               '</div>' \
+               '</div>' \
+               '<div class="pmd-card-actions">' \
+               '<button class="btn btn-primary pmd-ripple-effect pmd-btn-default" href="#" type="button">primary' \
+               '</button>' \
+               '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="button">Action' \
+               '</button>' \
+               '<button class="btn btn-default pmd-ripple-effect pmd-btn-default" href="#" type="button">third' \
+               '</button>' \
+               '</div>' \
+               '</div>'
+
 RESULT_NAVBAR1 = '<nav class="navbar navbar-inverse navbar-static pmd-navbar pmd-z-depth">' \
                  '<div class="container-fluid">' \
                  '<div class="navbar-header">' \

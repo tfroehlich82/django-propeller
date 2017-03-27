@@ -4,7 +4,7 @@
 
 
 from .card import Card, CardActions, CardBody, CardHeader, CardMediaImage, CardMediaActions, CardSubtitle, CardTitle, \
-    Button, FAB, Image
+    Button, FAB, Image, CardMedia
 from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 
@@ -28,6 +28,23 @@ class DemoMediaImage1(CardMediaImage):
 
 class DemoMediaImage2(CardMediaImage):
     image = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+
+
+class DemoMediaImage3(CardMediaImage):
+    pass
+
+
+class DemoMedia1(CardMedia):
+    content = []
+
+
+class DemoMedia2(CardMedia):
+    content = [DemoMediaImage1(), ]
+
+
+class DemoMedia3(CardMedia):
+    content = [DemoMediaImage2(), ]
+    style_inline = True
 
 
 class DemoBody1(CardBody):
@@ -82,6 +99,10 @@ class DemoCard4(DemoCard1):
     header = None
     media_actions = None
     media = DemoMediaImage2()
+
+
+class DemoCard5(DemoCard4):
+    media = DemoMedia3()
 
 
 class TestNavbar1(NavBar):

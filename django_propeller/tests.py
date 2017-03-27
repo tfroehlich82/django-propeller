@@ -16,9 +16,10 @@ from .exceptions import PropellerError
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
 from .test_data import DemoCard1, DemoCard2, DemoCard3, DemoCard4, TestNavbar1, TestNavbar2, TestNavbar3, \
-    NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar, TestNavbar4
+    NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar, TestNavbar4, DemoMediaImage1, DemoMediaImage3, \
+    DemoMedia1, DemoMedia2, DemoMedia3, DemoCard5
 from .test_results import RESULT_CARD1, RESULT_CARD2, RESULT_CARD3, RESULT_CARD4, RESULT_NAVBAR1, RESULT_NAVBAR2, \
-    RESULT_NAVBAR3
+    RESULT_NAVBAR3, RESULT_CARD5
 
 try:
     from html.parser import HTMLParser
@@ -27,7 +28,9 @@ except ImportError:
 
 
 class TemplateTestCase(TestCase):
-    def render_template(self, string, context=None):
+
+    @staticmethod
+    def render_template(string, context=None):
         context = context or {}
         context = Context(context)
         return Template(string).render(context)
@@ -907,6 +910,23 @@ class PropellerNavBarTests(TestCase):
 
 
 class PropellerCardTests(TestCase):
+    def test_card_media(self):
+        res = DemoMediaImage1().as_html()
+        self.assertEqual('<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive">', res)
+        res = DemoMediaImage3().as_html()
+        self.assertIsNone(res)
+        res = DemoMedia1().as_html()
+        self.assertEqual('<div class="pmd-card-media"><div class="media-body"></div></div>', res)
+        res = DemoMedia2().as_html()
+        self.assertEqual('<div class="pmd-card-media"><div class="media-body">'
+                         '<img src="http://propeller.in/assets/images/profile-pic.png" class="img-responsive">'
+                         '</div></div>', res)
+        res = DemoMedia3().as_html()
+        self.assertEqual('<div class="pmd-card-media"><div class="media-body"></div>'
+                         '<div class="media-right media-middle">'
+                         '<img src="http://propeller.in/assets/images/profile-pic.png" width="80" height="80">'
+                         '</div></div>', res)
+
     def test_rendered_template(self):
         res = self.render_template_with_propeller(
             '{% propeller_card card1 %}',
@@ -926,3 +946,7 @@ class PropellerCardTests(TestCase):
             '{% propeller_card card4 %}', {'card4': DemoCard4()}
         )
         self.assertInHTML(RESULT_CARD4, res)
+        res = self.render_template_with_propeller(
+            '{% propeller_card card5 %}', {'card5': DemoCard5()}
+        )
+        self.assertInHTML(RESULT_CARD5, res)
