@@ -146,21 +146,16 @@ class CardMedia(object):
         attrs = {'class': 'media-body'}
         content = ''
         if self.style_inline:
-            if isinstance(self.content, list):
-                for itm in self.content:
-                    if isinstance(itm, (CardTitle, CardSubtitle)):
-                        content = text_concat(content, mark_safe(itm.as_html()))
-            else:
-                raise Exception("content must be a list")
+            if not isinstance(self.content, list):
+                raise PropellerException("Propeller Card: content must be a list")
+            for itm in self.content:
+                if isinstance(itm, (CardTitle, CardSubtitle)):
+                    content = text_concat(content, mark_safe(itm.as_html()))
             content = text_concat(content, mark_safe('</div>'))
             content = text_concat(content, mark_safe('<div class="media-right media-middle">'))
-            if isinstance(self.content, list):
-                for itm in self.content:
-                    if isinstance(itm, CardMediaImage):
-                        content = text_concat(content, mark_safe(itm.as_html()))
-            else:
-                raise PropellerException("Propeller Card: content must be a list")
-            # content = text_concat(content, mark_safe('</div>'))
+            for itm in self.content:
+                if isinstance(itm, CardMediaImage):
+                    content = text_concat(content, mark_safe(itm.as_html()))
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def get_media_body(self):
@@ -171,12 +166,11 @@ class CardMedia(object):
         tag = 'div'
         attrs = {'class': 'media-body'}
         content = ''
-        if isinstance(self.content, list):
-            for itm in self.content:
-                if isinstance(itm, CardMediaImage):
-                    content = text_concat(content, mark_safe(itm.as_html()))
-        else:
+        if not isinstance(self.content, list):
             raise PropellerException("Propeller Card: content must be a list")
+        for itm in self.content:
+            if isinstance(itm, CardMediaImage):
+                content = text_concat(content, mark_safe(itm.as_html()))
 
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 

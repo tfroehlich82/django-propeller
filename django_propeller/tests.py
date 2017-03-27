@@ -12,12 +12,12 @@ from django.test import TestCase
 from django.core.urlresolvers import NoReverseMatch
 
 from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
-from .exceptions import PropellerError
+from .exceptions import PropellerError, PropellerException
 from .text import text_value, text_concat
 from .utils import add_css_class, render_tag
 from .test_data import DemoCard1, DemoCard2, DemoCard3, DemoCard4, TestNavbar1, TestNavbar2, TestNavbar3, \
     NavBarLinkItem, NavBarDropDownDivider, NavBarDropDownItem, NavBar, TestNavbar4, DemoMediaImage1, DemoMediaImage3, \
-    DemoMedia1, DemoMedia2, DemoMedia3, DemoCard5
+    DemoMedia1, DemoMedia2, DemoMedia3, DemoCard5, DemoMedia4, DemoMedia5
 from .test_results import RESULT_CARD1, RESULT_CARD2, RESULT_CARD3, RESULT_CARD4, RESULT_NAVBAR1, RESULT_NAVBAR2, \
     RESULT_NAVBAR3, RESULT_CARD5
 
@@ -950,3 +950,9 @@ class PropellerCardTests(TestCase):
             '{% propeller_card card5 %}', {'card5': DemoCard5()}
         )
         self.assertInHTML(RESULT_CARD5, res)
+
+    def test_exceptions(self):
+        with self.assertRaises(PropellerException):
+            DemoMedia4().get_media_body()
+        with self.assertRaises(PropellerException):
+            DemoMedia5().get_media_body_inline()

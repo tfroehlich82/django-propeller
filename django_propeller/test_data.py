@@ -47,6 +47,14 @@ class DemoMedia3(CardMedia):
     style_inline = True
 
 
+class DemoMedia4(CardMedia):
+    content = None
+
+
+class DemoMedia5(DemoMedia4):
+    style_inline = True
+
+
 class DemoBody1(CardBody):
     text = "Cards provide context and an entry point to more robust information and views. " \
            "Don't overload cards with extraneous information or actions."
