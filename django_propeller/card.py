@@ -19,7 +19,7 @@ class CardTitle(object):
 
         text
             The display text for the title.
-    
+
         size
             The size for the title as integer. Works with the h-tag, so size=1 is bigger than size=3.
             Optional. (default=3)
