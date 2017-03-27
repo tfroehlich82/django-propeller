@@ -9,7 +9,7 @@ from django.contrib.messages import constants as DEFAULT_MESSAGE_LEVELS
 from django.forms.formsets import formset_factory
 from django.template import Context, Template
 from django.test import TestCase
-from django.urls.exceptions import NoReverseMatch
+from django.core.urlresolvers import NoReverseMatch
 
 from .propeller import PROPELLER_SET_REQUIRED_SET_DISABLED
 from .exceptions import PropellerError
