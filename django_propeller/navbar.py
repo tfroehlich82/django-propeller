@@ -17,19 +17,18 @@ class NavBarLinkItem(object):
 
     """
     Generates a Link navbar item or a Link DropDown item.
-    
+
     **Parameters**:
-        
+
         name
             The display name for the item. (for example: 'Home')
-            
+
         url
             The address for the link item. Can be a absolute URL or a resolvable Django url.
             (for example: 'http://example.org' or 'home'). Optional.
-            
+
         icon
             not yet supported
-            
     """
 
     name = None
@@ -91,22 +90,21 @@ class NavBarDropDownItem(NavBarLinkItem):
 
     """
     Generates a DropDown navbar item.
-    
+
     **Parameters**:
-        
+
         name
             The display name for the item. (for example: 'Home')
-            
+
         url
             The address for the link item. Can be a absolute URL or a resolvable Django url.
             (for example: 'http://example.org' or 'home'). Optional.
-            
+
         icon
             not yet supported
-            
+
         items
             A list containing NavBarLinkItems and/or NavBarDropDownDivider. Optional.
-            
     """
 
     items = []
@@ -134,22 +132,22 @@ class NavBar(object):
 
     """
     NavBar is a class that generates a NavBar.
-    
+
     **Parameters**:
-        
+
         brandname
             The brand shown on the very left of the navbar.
-            
+
         brandurl
             The address for the brand name. Can be a absolute URL or a resolvable Django url.
             (for example: 'http://example.org' or 'home'). Optional.
-            
+
         items
             A list containing NavBarLinkItems and/or NavBarDropDownItems. Optional.
-            
+
         style_inverse
             Generate a dark navbar if true (default) or a light navbar if false.
-            
+
         style_static
             Sets the static style for the navbar. Static if true (default) or floating on top if false.
     """
