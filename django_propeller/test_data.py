@@ -43,7 +43,7 @@ class DemoMedia2(CardMedia):
 
 
 class DemoMedia3(CardMedia):
-    content = [DemoMediaImage2(), ]
+    content = [DemoTitle1, DemoSubtitle1, DemoMediaImage2(), ]
     style_inline = True
 
 
