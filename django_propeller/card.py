@@ -187,19 +187,17 @@ class Card(object):
     style_inline = False
     width = 4
 
-    def as_html(self):
-        """Returns card as html"""
-        tag = 'div'
-        classes = 'pmd-card'
-        if self.style_inline:
-            classes = add_css_class(classes, 'pmd-card-media-inline')
-        if self.style_inverse:
-            classes = add_css_class(classes, 'pmd-card-inverse')
-        else:
-            classes = add_css_class(classes, 'pmd-card-default')
-        classes = add_css_class(classes, 'pmd-z-depth')
-        classes = add_css_class(classes, 'col-md-%d' % self.width)
-        attrs = {'class': classes}
+    def get_actions(self):
+        """Returns actions of card as html"""
+        actions = ''
+        if self.media_actions:
+            actions = text_concat(actions, self.media_actions.as_html())
+        if self.actions:
+            actions = text_concat(actions, self.actions.as_html())
+        return actions
+
+    def get_content(self):
+        """Returns content of card as html"""
         content = ''
         if self.header and not self.style_inline:
             content = text_concat(content, self.header.as_html())
@@ -215,8 +213,21 @@ class Card(object):
                 content = text_concat(content, '</div>')
             if self.body:
                 content = text_concat(content, self.body.as_html())
-        if self.media_actions:
-            content = text_concat(content, self.media_actions.as_html())
-        if self.actions:
-            content = text_concat(content, self.actions.as_html())
+        content = text_concat(content, self.get_actions())
+        return content
+
+    def as_html(self):
+        """Returns card as html"""
+        tag = 'div'
+        classes = 'pmd-card'
+        if self.style_inline:
+            classes = add_css_class(classes, 'pmd-card-media-inline')
+        if self.style_inverse:
+            classes = add_css_class(classes, 'pmd-card-inverse')
+        else:
+            classes = add_css_class(classes, 'pmd-card-default')
+        classes = add_css_class(classes, 'pmd-z-depth')
+        classes = add_css_class(classes, 'col-md-%d' % self.width)
+        attrs = {'class': classes}
+        content = self.get_content()
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
