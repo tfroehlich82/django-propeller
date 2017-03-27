@@ -12,7 +12,18 @@ from .exceptions import PropellerException
 
 class CardTitle(object):
 
-    """Renders a Card Title"""
+    """
+    Renders a Card Title.
+
+    **Parameters**:
+
+        text
+            The display text for the title.
+    
+        size
+            The size for the title as integer. Works with the h-tag, so size=1 is bigger than size=3.
+            Optional. (default=3)
+    """
 
     text = ""
     size = 3
@@ -27,7 +38,14 @@ class CardTitle(object):
 
 class CardSubtitle(object):
 
-    """Renders a Card Subtitle"""
+    """
+    Renders a Card Subtitle.
+
+    **Parameters**:
+
+        text
+            The display text for the subtitle.
+    """
 
     text = ""
 
@@ -41,7 +59,14 @@ class CardSubtitle(object):
 
 class CardBody(object):
 
-    """Renders a Card Body"""
+    """
+    Renders a Card Body.
+
+    **Parameters**:
+
+        text
+            The text to display in the body.
+    """
 
     text = ""
 
@@ -55,7 +80,19 @@ class CardBody(object):
 
 class CardHeader(object):
 
-    """Renders a Card Header"""
+    """
+    Renders a Card Header.
+
+    **Parameters**:
+
+        content_left
+            A list of items to display on the left of header. 
+            May contain Button, FAB, Image, CardTitle, or CardSubtitle.
+
+        content_middle
+            A list of items to display in the middle of header. 
+            May contain Button, FAB, Image, CardTitle, or CardSubtitle.
+    """
 
     content_left = []
     content_middle = []
@@ -88,7 +125,15 @@ class CardHeader(object):
 
 class CardMediaActions(object):
 
-    """Renders Card Media Actions"""
+    """
+    Renders Card Media Actions.
+
+    **Parameters**:
+
+        items
+            A list of items to display in the Card Media Action section. 
+            May contain Button or FAB.
+    """
 
     items = []
 
@@ -105,7 +150,15 @@ class CardMediaActions(object):
 
 class CardActions(object):
 
-    """Renders Card Actions"""
+    """
+    Renders Card Actions.
+
+    **Parameters**:
+
+        items
+            A list of items to display in the Card Action section. 
+            May contain Button or FAB.
+    """
 
     items = []
 
@@ -122,7 +175,14 @@ class CardActions(object):
 
 class CardMediaImage(object):
 
-    """Renders a Card Media Image"""
+    """
+    Renders a Card Media Image.
+
+    **Parameters**:
+
+        image
+            Must be an instance of an Image.
+    """
 
     image = None
 
@@ -135,7 +195,21 @@ class CardMediaImage(object):
 
 class CardMedia(object):
 
-    """Renders Card Media"""
+    """
+    Renders Card Media
+
+    **Parameters**:
+
+        content
+            if style_inline=True:
+                A list of items to display in the card media section. 
+                May contain CardMediaImage, CardTitle, or CardSubtitle.
+            or if style_inline=False: (default)
+                A instance of CardMediaImage
+
+        style_inline
+            Display card with inline style if true. (Default: False)
+    """
 
     content = None
     style_inline = False
@@ -184,7 +258,41 @@ class CardMedia(object):
 
 class Card(object):
 
-    """Card is a class that generates a Propeller Card"""
+    """
+    Card is a class that generates a Propeller Card.
+
+    **Parameters**:
+
+        primary_title
+            An instance of CardTitle. Optional.
+
+        secondary_title
+            An instance of CardSubtitle. Optional.
+
+        header
+            An instance of CardHeader. Optional.
+
+        media
+            An instance of CardMedia. Optional.
+
+        body
+            An instance of CardBody. Optional.
+
+        actions
+            An instance of CardActions. Optional.
+
+        media_actions
+            An instance of CardMediaActions. Optional.
+
+        style_inverse
+            Display dark style if true. (Default: False)
+
+        style_inline
+            Display card with inline style if true. (Default: False)
+
+        width
+            Width of the card in Bootstrap grid (col-md) as integer. (Default: 4)
+    """
 
     primary_title = None
     secondary_title = None
