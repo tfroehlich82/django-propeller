@@ -4,7 +4,8 @@
 
 
 from .card import Card, CardActions, CardBody, CardHeader, CardMediaImage, CardMediaActions, CardSubtitle, CardTitle, \
-    Button, FAB, Image, CardMedia
+    CardMedia
+from .components import Button, FAB, Image
 from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 
