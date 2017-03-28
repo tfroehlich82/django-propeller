@@ -2,7 +2,7 @@ Metadata-Version: 1.1
 Name: django-propeller
 Version: 1.4.1
 Summary: Propeller support for Django projects
-Home-page: https://github.com/dyve/django-propeller
+Home-page: https://github.com/tfroehlich82/django-propeller
 Author: Thorsten Froehlich
 Author-email: tfroehlich82@gmx.ch
 License: MIT License
@@ -19,6 +19,7 @@ Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.3
 Classifier: Programming Language :: Python :: 3.4
 Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
 Classifier: Operating System :: OS Independent
 Classifier: Topic :: Software Development :: Libraries
 Classifier: Topic :: Internet :: WWW/HTTP
