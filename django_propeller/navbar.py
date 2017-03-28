@@ -1,26 +1,48 @@
 # -*- coding: utf-8 -*-
+
+"""This module contains classes for constructing propeller navbars"""
+
 from django.utils.safestring import mark_safe
 
 from .utils import render_tag, add_css_class
 from .text import text_concat
 
-try:
+try:  # pragma: no cover
     from django.urls import reverse
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.core.urlresolvers import reverse
 
 
 class NavBarLinkItem(object):
 
-    """Generates a Link navbar item or a Link DropDown item"""
+    """
+    Generates a Link navbar item or a Link DropDown item.
+
+    **Parameters**:
+
+        name
+            The display name for the item. (for example: 'Home')
+
+        url
+            The address for the link item. Can be a absolute URL or a resolvable Django url.
+            (for example: 'http://example.org' or 'home'). Optional.
+
+        icon
+            not yet supported
+    """
 
     name = None
     url = None
     icon = None
 
-    def __init__(self, name="", url=None):
+    def __init__(self, name="", url=None, icon=None):
+        """
+
+         
+        """
         self.name = name
         self.url = url
+        self.icon = icon
 
     def get_url(self):
         """
@@ -36,7 +58,7 @@ class NavBarLinkItem(object):
 
             or
 
-            an relative URL if ``url`` is reversible
+            an relative URL if ``url`` is a resolvable Django url
         """
         if self.url:
             if not str(self.url).startswith('http'):
@@ -45,6 +67,7 @@ class NavBarLinkItem(object):
         return "javascript:void(0);"
 
     def as_html(self):
+        """Returns navbar link item as html"""
         tag = 'a'
         attrs = {'class': 'pmd-ripple-effect', 'href': self.get_url()}
         content = self.name
@@ -53,10 +76,11 @@ class NavBarLinkItem(object):
 
 class NavBarDropDownDivider(object):
 
-    """Generates a DropDown Divider item"""
+    """Generates a DropDown Divider item."""
 
     @staticmethod
     def as_html():
+        """Returns navbar dropdown divider as html"""
         tag = 'li'
         attrs = {'role': 'separator', 'class': 'divider'}
         return render_tag(tag, attrs=attrs, )
@@ -64,7 +88,24 @@ class NavBarDropDownDivider(object):
 
 class NavBarDropDownItem(NavBarLinkItem):
 
-    """Generates a DropDown navbar item"""
+    """
+    Generates a DropDown navbar item.
+
+    **Parameters**:
+
+        name
+            The display name for the item. (for example: 'Home')
+
+        url
+            The address for the link item. Can be a absolute URL or a resolvable Django url.
+            (for example: 'http://example.org' or 'home'). Optional.
+
+        icon
+            not yet supported
+
+        items
+            A list containing NavBarLinkItems and/or NavBarDropDownDivider. Optional.
+    """
 
     items = []
 
@@ -74,6 +115,7 @@ class NavBarDropDownItem(NavBarLinkItem):
             self.items = items
 
     def as_html(self):
+        """Returns navbar dropdown item as html"""
         tag = 'li'
         attrs = {'class': 'dropdown pmd-dropdown'}
         content = '<a data-toggle="dropdown" class="pmd-ripple-effect dropdown-toggle" data-sidebar="true" ' \
@@ -88,7 +130,27 @@ class NavBarDropDownItem(NavBarLinkItem):
 
 class NavBar(object):
 
-    """NavBar is a class that generates a NavBar"""
+    """
+    NavBar is a class that generates a NavBar.
+
+    **Parameters**:
+
+        brandname
+            The brand shown on the very left of the navbar.
+
+        brandurl
+            The address for the brand name. Can be a absolute URL or a resolvable Django url.
+            (for example: 'http://example.org' or 'home'). Optional.
+
+        items
+            A list containing NavBarLinkItems and/or NavBarDropDownItems. Optional.
+
+        style_inverse
+            Generate a dark navbar if true (default) or a light navbar if false.
+
+        style_static
+            Sets the static style for the navbar. Static if true (default) or floating on top if false.
+    """
 
     brandname = ""
     brandurl = None
@@ -110,7 +172,7 @@ class NavBar(object):
 
             or
 
-            an relative URL if ``brandurl`` is reversible
+            an relative URL if ``brandurl`` is a resolvable Django url
         """
         if self.brandurl:
             if not str(self.brandurl).startswith('http'):
@@ -120,6 +182,7 @@ class NavBar(object):
 
     @staticmethod
     def render_toggle():
+        """Returns navbar toggle as html (for responsive)"""
         tag = 'button'
         attrs = {
             'class': 'navbar-toggle collapsed',
@@ -134,6 +197,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_header(self):
+        """Returns navbar header as html"""
         tag = 'div'
         attrs = {'class': 'navbar-header'}
         content = self.render_toggle()
@@ -142,6 +206,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_items(self):
+        """Returns navbar items as html (for item container)"""
         tag = 'ul'
         attrs = {'class': 'nav navbar-nav'}
         content = ''
@@ -150,12 +215,14 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_item_container(self):
+        """Returns navbar items as html"""
         tag = 'div'
         attrs = {'class': 'collapse navbar-collapse'}
         content = self.render_items()
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def render_content(self):
+        """Returns navbar content as html"""
         tag = 'div'
         attrs = {'class': 'container-fluid'}
         content = self.render_header()
@@ -163,6 +230,7 @@ class NavBar(object):
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
 
     def as_html(self):
+        """Returns navbar as html"""
         tag = 'nav'
         classes = 'navbar'
         if self.style_inverse:

@@ -2,9 +2,9 @@
 from __future__ import unicode_literals
 
 
-try:
+try:  # pragma: no cover
     from django.utils.encoding import force_text
-except ImportError:
+except ImportError:  # pragma: no cover
     from django.utils.encoding import force_unicode as force_text
 
 

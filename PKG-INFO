@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: django-propeller
-Version: 1.4.0
+Version: 1.4.1
 Summary: Propeller support for Django projects
 Home-page: https://github.com/tfroehlich82/django-propeller
 Author: Thorsten Froehlich

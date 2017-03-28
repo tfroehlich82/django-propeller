@@ -4,7 +4,8 @@
 
 
 from .card import Card, CardActions, CardBody, CardHeader, CardMediaImage, CardMediaActions, CardSubtitle, CardTitle, \
-    Button, FAB, Image
+    CardMedia
+from .components import Button, FAB, Image
 from .navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 
@@ -28,6 +29,31 @@ class DemoMediaImage1(CardMediaImage):
 
 class DemoMediaImage2(CardMediaImage):
     image = Image(source="http://propeller.in/assets/images/profile-pic.png", width=80, height=80)
+
+
+class DemoMediaImage3(CardMediaImage):
+    pass
+
+
+class DemoMedia1(CardMedia):
+    content = []
+
+
+class DemoMedia2(CardMedia):
+    content = [DemoMediaImage1(), ]
+
+
+class DemoMedia3(CardMedia):
+    content = [DemoTitle1, DemoSubtitle1, DemoMediaImage2(), ]
+    style_inline = True
+
+
+class DemoMedia4(CardMedia):
+    content = None
+
+
+class DemoMedia5(DemoMedia4):
+    style_inline = True
 
 
 class DemoBody1(CardBody):
@@ -84,6 +110,10 @@ class DemoCard4(DemoCard1):
     media = DemoMediaImage2()
 
 
+class DemoCard5(DemoCard4):
+    media = DemoMedia3()
+
+
 class TestNavbar1(NavBar):
     brandname = 'propeller-test'
     brandurl = 'https://github.com/tfroehlich82/django-propeller'
@@ -101,8 +131,23 @@ class TestNavbar1(NavBar):
 class TestNavbar2(TestNavbar1):
     style_inverse = True
     style_static = False
+    brandurl = None
 
 
 class TestNavbar3(TestNavbar1):
     style_inverse = False
     style_static = False
+
+
+class TestNavbar4(TestNavbar1):
+    brandurl = 'test'
+    items = [
+        NavBarLinkItem('Test1', url='http://example.org'),
+        NavBarDropDownItem('Test2', items=[
+            NavBarLinkItem('Test3', url='test'),
+            NavBarLinkItem('Test4'),
+            NavBarDropDownDivider(),
+            NavBarLinkItem('Test5'),
+        ]),
+    ]
+
