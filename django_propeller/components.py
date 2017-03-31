@@ -7,6 +7,8 @@ from .exceptions import PropellerError
 from .utils import render_tag, add_css_class
 from .text import text_value, text_concat
 
+# ToDo: Refactoring
+
 
 def render_icon(icon, size='sm', **kwargs):
     """Render a Google icon"""
