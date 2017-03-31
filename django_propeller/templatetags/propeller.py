@@ -7,20 +7,20 @@ from math import floor
 from django import template
 from django.contrib.messages import constants as message_constants
 from django.template import Context
-from django.utils.safestring import mark_safe
 from django.utils.html import conditional_escape
+from django.utils.safestring import mark_safe
 
+from ..components import render_icon, render_alert, render_bootstrap_icon
+from ..forms import (
+    render_button, render_field, render_form,
+    render_formset, render_fab,
+    render_label, render_form_errors, render_formset_errors
+)
 from ..propeller import (
     css_url, javascript_url, jquery_url, theme_url, get_propeller_setting
 )
-from ..components import render_icon, render_alert, render_bootstrap_icon
-from ..forms import (
-    render_button, render_field, render_field_and_label, render_form,
-    render_form_group, render_formset, render_fab,
-    render_label, render_form_errors, render_formset_errors
-)
 from ..text import force_text
-from ..utils import handle_var, parse_token_contents, url_replace_param
+from ..utils import url_replace_param
 from ..utils import render_link_tag, render_tag, render_template_file
 
 MESSAGE_LEVEL_CLASSES = {
@@ -793,67 +793,36 @@ def propeller_alert(content, alert_type='info', dismissable=True):
     return render_alert(content, alert_type, dismissable)
 
 
-@register.tag('buttons')
-def propeller_buttons(parser, token):
-    """
-    Render buttons for form
-
-    **Tag name**::
-
-        buttons
-
-    **Parameters**:
-
-        submit
-            Text for a submit button
-
-        reset
-            Text for a reset button
-
-    **Usage**::
-
-        {% buttons %}{% endbuttons %}
-
-    **Example**::
-
-        {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
-
-    """
-    kwargs = parse_token_contents(parser, token)
-    kwargs['nodelist'] = parser.parse(('endbuttons',))
-    parser.delete_first_token()
-    return ButtonsNode(**kwargs)
-
-
-class ButtonsNode(template.Node):
-    def __init__(self, nodelist, args, kwargs, asvar, **kwargs2):
-        self.nodelist = nodelist
-        self.args = args
-        self.kwargs = kwargs
-        self.asvar = asvar
-
-    def render(self, context):
-        output_kwargs = {}
-        for key in self.kwargs:
-            output_kwargs[key] = handle_var(self.kwargs[key], context)
-        buttons = []
-        submit = output_kwargs.get('submit', None)
-        reset = output_kwargs.get('reset', None)
-        if submit:
-            buttons.append(propeller_button(submit, 'submit'))
-        if reset:
-            buttons.append(propeller_button(reset, 'reset'))
-        buttons = ' '.join(buttons) + self.nodelist.render(context)
-        output_kwargs.update({
-            'label': None,
-            'field': buttons,
-        })
-        output = render_form_group(render_field_and_label(**output_kwargs))
-        if self.asvar:
-            context[self.asvar] = output
-            return ''
-        else:
-            return output
+# @register.tag('buttons')
+# def propeller_buttons(parser, token):
+#     """
+#     Render buttons for form
+#
+#     **Tag name**::
+#
+#         buttons
+#
+#     **Parameters**:
+#
+#         submit
+#             Text for a submit button
+#
+#         reset
+#             Text for a reset button
+#
+#     **Usage**::
+#
+#         {% buttons %}{% endbuttons %}
+#
+#     **Example**::
+#
+#         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
+#
+#     """
+#     kwargs = parse_token_contents(parser, token)
+#     kwargs['nodelist'] = parser.parse(('endbuttons',))
+#     parser.delete_first_token()
+#     return ButtonsNode(**kwargs)
 
 
 @register.simple_tag(takes_context=True)
@@ -1039,8 +1008,8 @@ def get_pagination_context(page, pages_to_show=11,
     }
 
 
-@register.filter(needs_autoescape=True)
-def pmd_muted_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_muted_text(text):
     """
     Render a muted text (secondary heading).
 
@@ -1052,16 +1021,13 @@ def pmd_muted_text(text, autoescape=True):
 
         {{ text_variable|pmd_muted_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<span class="text-muted">%s</span>' % esc(text)
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_display_text(text, size=1, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_display_text(text, size=1):
     """
     Render text as a Propeller display text (heading).
 
@@ -1086,16 +1052,13 @@ def pmd_display_text(text, size=1, autoescape=True):
 
         {{ my_text|pmd_display_text:3 }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<span class="pmd-display%d">%s</span>' % (int(size), esc(text))
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_lead_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_lead_text(text):
     """
     Render text as a Propeller lead text (intro).
 
@@ -1107,16 +1070,13 @@ def pmd_lead_text(text, autoescape=True):
 
         {{ text_variable|pmd_lead_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<span class="lead">%s</span>' % esc(text)
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_mark_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_mark_text(text):
     """
     Render highligthed text.
 
@@ -1128,10 +1088,7 @@ def pmd_mark_text(text, autoescape=True):
 
         {{ text_variable|pmd_mark_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<mark>%s</mark>' % esc(text)
     return mark_safe(result)
 
@@ -1157,8 +1114,8 @@ def pmd_strike_text(text, autoescape=True):
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_underline_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_underline_text(text):
     """
     Render underlined text.
 
@@ -1170,16 +1127,13 @@ def pmd_underline_text(text, autoescape=True):
 
         {{ text_variable|pmd_underline_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<u>%s</u>' % esc(text)
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_bold_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_bold_text(text):
     """
     Render bold text.
 
@@ -1191,16 +1145,13 @@ def pmd_bold_text(text, autoescape=True):
 
         {{ text_variable|pmd_bold_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<strong>%s</strong>' % esc(text)
     return mark_safe(result)
 
 
-@register.filter(needs_autoescape=True)
-def pmd_italic_text(text, autoescape=True):
+@register.filter(is_safe=True)
+def pmd_italic_text(text):
     """
     Render italic text.
 
@@ -1212,10 +1163,7 @@ def pmd_italic_text(text, autoescape=True):
 
         {{ text_variable|pmd_italic_text }}
     """
-    if autoescape:
-        esc = conditional_escape
-    else:
-        esc = lambda x: x
+    esc = conditional_escape
     result = '<em>%s</em>' % esc(text)
     return mark_safe(result)
 

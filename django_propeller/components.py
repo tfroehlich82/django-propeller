@@ -3,9 +3,8 @@ from __future__ import unicode_literals
 
 from django.utils.safestring import mark_safe
 
-from django_propeller.exceptions import PropellerError
-from django_propeller.utils import render_tag, add_css_class
-
+from .exceptions import PropellerError
+from .utils import render_tag, add_css_class
 from .text import text_value, text_concat
 
 

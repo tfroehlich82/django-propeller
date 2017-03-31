@@ -309,28 +309,6 @@ class FormTest(TestCase):
         self.assertIn('hlabel', res)
         self.assertIn('hfield', res)
 
-    def test_buttons_tag(self):
-        form = TestForm()
-        res = self.render_template_with_form(
-            '{% buttons layout="horizontal" %}{% endbuttons %}', {'form': form})
-        self.assertIn('col-md-3', res)
-        self.assertIn('col-md-9', res)
-
-    # def test_error_class(self):
-    #     form = TestForm({'sender': 'sender'})
-    #     res = render_template_with_form('{% propeller_form form %}', {'form': form})
-    #     self.assertIn('bootstrap3-err', res)
-    #
-    #     res = render_template_with_form(
-    #         '{% propeller_form form error_css_class="successful-test" %}',
-    #         {'form': form}
-    #     )
-    #     self.assertIn('successful-test', res)
-    #
-    #     res = render_template_with_form('{% propeller_form form error_css_class="" %}',
-    #                                     {'form': form})
-    #     self.assertNotIn('bootstrap3-err', res)
-
     def test_required_class(self):
         form = TestForm({'sender': 'sender'})
         res = self.render_template_with_form('{% propeller_form form %}', {'form': form})
@@ -345,24 +323,6 @@ class FormTest(TestCase):
         res = self.render_template_with_form('{% propeller_form form required_css_class="" %}',
                                         {'form': form})
         self.assertNotIn('bootstrap3-req', res)
-
-    # def test_bound_class(self):
-    #     form = TestForm({'sender': 'sender'})
-    #
-    #     res = render_template_with_form('{% propeller_form form %}', {'form': form})
-    #     self.assertIn('bootstrap3-bound', res)
-    #
-    #     res = render_template_with_form(
-    #         '{% propeller_form form bound_css_class="successful-test" %}',
-    #         {'form': form}
-    #     )
-    #     self.assertIn('successful-test', res)
-    #
-    #     res = render_template_with_form(
-    #         '{% propeller_form form bound_css_class="" %}',
-    #         {'form': form}
-    #     )
-    #     self.assertNotIn('bootstrap3-bound', res)
 
 
 class FieldTest(TestCase):
