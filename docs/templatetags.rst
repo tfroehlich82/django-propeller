@@ -73,7 +73,7 @@ propeller_alert
 buttons
 ~~~~~~~
 
-.. autofunction:: django_propeller.templatetags.propeller.propeller_buttons
+.. autofunction:: django_propeller.templatetags.propeller.propeller_button
 
 .. autofunction:: django_propeller.templatetags.propeller.propeller_fab
 

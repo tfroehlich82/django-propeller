@@ -110,6 +110,13 @@ Donation
 [![Donation](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARFDZCBQTWRSQ)
 
 
+[BTC Donation] 35bfZEE6NknfBVnEd86XZpGgqKeVjmXQxn
+
+[ETH Donation] 0xc9eb5eaed97c94cd47def84fd23a9802fa40384b
+
+[LTC Donation] LW4cbjTYCYuymdCBQRzgkRWMGfLBaG5g4C
+
+
 License
 -------
 

@@ -15,8 +15,6 @@ except ImportError:  # pragma: no cover
     from urlparse import urlparse, parse_qs, urlunparse
 
 from django.forms.utils import flatatt
-from django.template import Variable, VariableDoesNotExist
-from django.template.base import FilterExpression, kwarg_re, TemplateSyntaxError
 from django.template.loader import get_template
 from django.utils.encoding import force_str, force_text
 from django.utils.safestring import mark_safe
@@ -26,52 +24,6 @@ from .text import text_value
 
 # RegEx for quoted string
 QUOTED_STRING = re.compile(r'^["\'](?P<noquotes>.+)["\']$')
-
-
-def handle_var(value, context):
-    """Handle template tag variable"""
-    # Resolve FilterExpression and Variable immediately
-    if isinstance(value, FilterExpression) or isinstance(value, Variable):
-        return value.resolve(context)
-    # Return quoted strings unquoted
-    # http://djangosnippets.org/snippets/886
-    stringval = QUOTED_STRING.search(value)
-    if stringval:
-        return stringval.group('noquotes')
-    # Resolve variable or return string value
-    try:
-        return Variable(value).resolve(context)
-    except VariableDoesNotExist:
-        return value
-
-
-def parse_token_contents(parser, token):
-    """Parse template tag contents"""
-    bits = token.split_contents()
-    tag = bits.pop(0)
-    args = []
-    kwargs = {}
-    asvar = None
-    if len(bits) >= 2 and bits[-2] == 'as':
-        asvar = bits[-1]
-        bits = bits[:-2]
-    if len(bits):
-        for bit in bits:
-            match = kwarg_re.match(bit)
-            if not match:
-                raise TemplateSyntaxError(
-                    'Malformed arguments to tag "{}"'.format(tag))
-            name, value = match.groups()
-            if name:
-                kwargs[name] = parser.compile_filter(value)
-            else:
-                args.append(parser.compile_filter(value))
-    return {
-        'tag': tag,
-        'args': args,
-        'kwargs': kwargs,
-        'asvar': asvar,
-    }
 
 
 def split_css_classes(css_classes):
@@ -89,14 +41,6 @@ def add_css_class(css_classes, css_class, prepend=False):
         classes_list = classes_to_add + classes_list
     else:
         classes_list += classes_to_add
-    return ' '.join(classes_list)
-
-
-def remove_css_class(css_classes, css_class):
-    """Remove a CSS class from a string of CSS classes"""
-    remove = set(split_css_classes(css_class))
-    classes_list = [c for c in split_css_classes(css_classes)
-                    if c not in remove]
     return ' '.join(classes_list)
 
 

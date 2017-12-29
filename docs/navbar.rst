@@ -21,6 +21,12 @@ NavBarDropDownItem
 .. autoclass:: django_propeller.navbar.NavBarDropDownItem
 
 
+CustomItem
+~~~~~~~~~~
+
+.. autoclass:: django_propeller.navbar.CustomItem
+
+
 NavBar
 ~~~~~~
 

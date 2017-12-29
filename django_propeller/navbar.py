@@ -245,3 +245,18 @@ class NavBar(object):
         content = self.render_content()
         content = text_concat(content, '<div class="pmd-sidebar-overlay"></div>')
         return render_tag(tag, attrs=attrs, content=mark_safe(content), )
+
+
+class CustomItem(object):
+    """
+    Returns a custom NavBar item.
+
+    Just assign some raw HTML code to `html` attribute.
+    """
+    html = ""
+
+    def __init__(self, html=""):
+        self.html = html
+    
+    def as_html(self):
+        return self.html
