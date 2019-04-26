@@ -1,7 +1,7 @@
-Propeller for Django
+Propeller for Django2
 ====================
 
-Write Django as usual, and let ``django-propeller`` make template output into code based on Google's Material Design Standards & Bootstrap.
+Write Django as usual, and let ``django2-propeller`` make template output into code based on Google's Material Design Standards & Bootstrap.
 
 
 [![Build Status](https://travis-ci.org/tfroehlich82/django-propeller.svg?branch=stable)](https://travis-ci.org/tfroehlich82/django-propeller)
@@ -16,8 +16,8 @@ Write Django as usual, and let ``django-propeller`` make template output into co
 Requirements
 ------------
 
-- Python 2.7, 3.3, 3.4, 3.5, or 3.6
-- Django >= 1.10
+- Python 3.3, 3.4, 3.5, or 3.6
+- Django >= 2.0
 
 
 Installation
@@ -25,16 +25,16 @@ Installation
 
 1. Install using pip:
 ```
-    pip install django-propeller
+    pip install django2-propeller
 ```
 
 2. Add to INSTALLED_APPS in your ``settings.py``:
 
    ```
-   'django_propeller',
+   'django2_propeller',
    ```
 
-3. In your templates, load the ``django_propeller`` library and use the ``propeller_*`` tags:
+3. In your templates, load the ``django2_propeller`` library and use the ``propeller_*`` tags:
 
 
 
@@ -61,7 +61,7 @@ Example template
 Documentation
 -------------
 
-The full documentation is at http://django-propeller.readthedocs.io/en/stable/
+The full documentation is at http://django-propeller.readthedocs.io/en/stable/ (currently for the previous version of django-propeller)
 
 
 Demo application
@@ -71,11 +71,11 @@ The demo application provides a number of useful examples.
 
 clone the repo:
 
-    $ git clone https://github.com/tfroehlich82/django-propeller.git
+    $ git clone https://github.com/RaddishIoW/django2-propeller.git
 
 cd into the cloned directory:
 
-    $ cd django-propeller
+    $ cd django2-propeller
 
 run the testserver:
 
@@ -91,7 +91,7 @@ Bugs and suggestions
 
 If you have found a bug or if you have a request for additional functionality, please use the issue tracker on GitHub.
 
-https://github.com/tfroehlich82/django-propeller/issues
+https://github.com/RaddishIoW/django2-propeller/issues
 
 
 Further Information
@@ -104,19 +104,6 @@ Bootstrap: http://getbootstrap.com/
 Google Material Design: https://material.io/
 
 
-Donation
---------
-
-[![Donation](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ARFDZCBQTWRSQ)
-
-
-[BTC Donation] 35bfZEE6NknfBVnEd86XZpGgqKeVjmXQxn
-
-[ETH Donation] 0xc9eb5eaed97c94cd47def84fd23a9802fa40384b
-
-[LTC Donation] LW4cbjTYCYuymdCBQRzgkRWMGfLBaG5g4C
-
-
 License
 -------
 
@@ -126,5 +113,6 @@ You can use this under MIT License. See [LICENSE](LICENSE) file for details.
 Author
 ------
 
-Developed and maintained by [Thorsten Fröhlich](https://github.com/tfroehlich82),
+Originally developed and maintained by [Thorsten Fröhlich](https://github.com/tfroehlich82),
 based on the idea of [django-bootstrap3](https://github.com/dyve/django-bootstrap3) from [Dylan Verheul](https://github.com/dyve).
+This package is updated by [Adam Radestock](https://github.com/RaddishIoW) to work with Django 2
