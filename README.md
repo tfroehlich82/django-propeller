@@ -4,7 +4,7 @@ Propeller for Django2
 Write Django as usual, and let ``django2-propeller`` make template output into code based on Google's Material Design Standards & Bootstrap.
 
 
-[![Build Status](https://travis-ci.com/RaddishIoW/django-propeller.svg?branch=stable)](https://travis-ci.com/RaddishIoW/django-propeller)
+[![Build Status](https://travis-ci.com/RaddishIoW/django2-propeller.svg?branch=stable)](https://travis-ci.com/RaddishIoW/django2-propeller)
 [![Coverage Status](https://coveralls.io/repos/github/RaddishIoW/django2-propeller/badge.svg?branch=stable)](https://coveralls.io/github/RaddishIoW/django2-propeller?branch=stable)
 [![Updates](https://pyup.io/repos/github/RaddishIoW/django2-propeller/shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
 [![Python 3](https://pyup.io/repos/github/RaddishIoW/django2-propeller/python-3-shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
