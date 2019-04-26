@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'djangopropeller'
+SECRET_KEY = 'django2propeller'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_propeller',
+    'django2_propeller',
 ]
 
 MIDDLEWARE = [
@@ -50,12 +50,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'django_propeller_demo.urls'
+ROOT_URLCONF = 'django2_propeller_demo.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['django_propeller_demo/templates', ],
+        'DIRS': ['django2_propeller_demo/templates', ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_propeller_demo.wsgi.application'
+WSGI_APPLICATION = 'django2_propeller_demo.wsgi.application'
 
 
 # Database
@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'django_propeller_demo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'django_propeller_demo/db.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'django2_propeller_demo/db.sqlite3'),
     }
 }
 
