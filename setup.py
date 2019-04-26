@@ -4,14 +4,14 @@
 import os
 import sys
 
-import django_propeller
+import django2_propeller
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = django_propeller.__version__
+version = django2_propeller.__version__
 
 if sys.argv[-1] == 'publish':
     os.system('cd docs && make html')
@@ -31,28 +31,26 @@ with open('README.md') as readme_file:
     readme = readme_file.read()
 
 setup(
-    name='django-propeller',
+    name='django2-propeller',
     version=version,
     description="""Propeller support for Django projects""",
     long_description=readme + '\n',
-    author='Thorsten Froehlich',
-    author_email='tfroehlich82@gmx.ch   ',
-    url='https://github.com/dyve/django-propeller',
+    author='Adam Radestock',
+    author_email='raddishiow@gmail.com   ',
+    url='https://github.com/RaddishIoW/django2-propeller',
     packages=[
-        'django_propeller',
+        'django2_propeller',
     ],
     include_package_data=True,
     install_requires=[
     ],
     license="MIT License",
     zip_safe=False,
-    keywords='django-propeller',
+    keywords='django2-propeller',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',

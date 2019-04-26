@@ -7,11 +7,10 @@ uses:
 autodetect: yes
 ignore-paths:
   - docs
-  - django_propeller_demo
+  - django2_propeller_demo
 ignore-patterns:
   - ^manage.py$
   - (^|/)docs(/|$)
   - ^tests.py$
 python-targets:
-  - 2
   - 3
