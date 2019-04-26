@@ -810,8 +810,8 @@ class FABsTests(TestCase):
 
 class DjangoAppTests(TestCase):
     def test_app_config(self):
-        from django_propeller.apps import DjangoPropellerConfig
-        self.assertEqual(DjangoPropellerConfig.name, 'django_propeller')
+        from django2_propeller.apps import DjangoPropellerConfig
+        self.assertEqual(DjangoPropellerConfig.name, 'django2_propeller')
 
 
 class PropellerMixinTests(TestCase):
@@ -819,7 +819,7 @@ class PropellerMixinTests(TestCase):
         pass
 
     def test_navbar_mixin(self):
-        from django_propeller.views import NavBarMixin, ContextMixin
+        from django2_propeller.views import NavBarMixin, ContextMixin
         test_mixin = NavBarMixin()
         self.assertIsInstance(test_mixin, ContextMixin)
         test_mixin.navbar_class = self.TestNavbar

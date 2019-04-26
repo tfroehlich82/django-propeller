@@ -1,6 +1,6 @@
-from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
+from django2_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
     CardMediaImage, CardBody, CardMedia
-from django_propeller.components import Image, Button, FAB
+from django2_propeller.components import Image, Button, FAB
 
 
 class DemoTitle1(CardTitle):

@@ -8,7 +8,7 @@ from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
 
-from django_propeller.views import NavBarMixin
+from django2_propeller.views import NavBarMixin
 from .navbars import MainNavBar, DemoNavBar1, DemoNavBar2
 from .forms import ContactForm, FilesForm, ContactFormSet
 from .cards import DemoCard1, DemoCard2, DemoCard3, DemoCard4
