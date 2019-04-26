@@ -30,6 +30,10 @@ script:
 
 matrix:
   exclude:
+    - python: "3.4"
+      env: DJANGO_VERSION='>=2.1,<2.2'
+    - python: "3.4"
+      env: DJANGO_VERSION='>=2.2,<3.0'
 
 # Report to coveralls
 after_success:
