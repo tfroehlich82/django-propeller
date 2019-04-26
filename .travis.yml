@@ -2,6 +2,7 @@
 sudo: false
 
 # Python versions for matrix
+dist: xenial   # required for Python >= 3.7
 language: python
 python:
   - "3.4"
@@ -11,7 +12,9 @@ python:
 
 # Django versions for matrix
 env:
-  - DJANGO_VERSION='>=2.0,<2.1'
+  - DJANGO_VERSION='=2.0'
+  - DJANGO_VERSION='=2.1'
+  - DJANGO_VERSION='=2.2'
 
 # Command to install dependencies, e.g. pip install -r requirements.txt
 install:
@@ -22,7 +25,7 @@ install:
 # Command to run tests, e.g. python setup.py test
 script:
   - pip install -r requirements.txt
-  - coverage run --source=django_propeller manage.py test
+  - coverage run --source=django2_propeller manage.py test
   - python manage.py check
 
 matrix:

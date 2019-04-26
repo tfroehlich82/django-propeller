@@ -4,13 +4,13 @@ Propeller for Django2
 Write Django as usual, and let ``django2-propeller`` make template output into code based on Google's Material Design Standards & Bootstrap.
 
 
-[![Build Status](https://travis-ci.org/tfroehlich82/django-propeller.svg?branch=stable)](https://travis-ci.org/tfroehlich82/django-propeller)
-[![Coverage Status](https://coveralls.io/repos/github/tfroehlich82/django-propeller/badge.svg?branch=stable)](https://coveralls.io/github/tfroehlich82/django-propeller?branch=stable)
+[![Build Status](https://travis-ci.com/RaddishIoW/django-propeller.svg?branch=stable)](https://travis-ci.com/RaddishIoW/django-propeller)
+[![Coverage Status](https://coveralls.io/repos/github/RaddishIoW/django2-propeller/badge.svg?branch=stable)](https://coveralls.io/github/RaddishIoW/django2-propeller?branch=stable)
 [![Code Health](https://landscape.io/github/tfroehlich82/django-propeller/stable/landscape.svg?style=flat)](https://landscape.io/github/tfroehlich82/django-propeller/stable)
 ![PyPI version](http://img.shields.io/pypi/v/django-propeller.svg)
 ![PyPI downloads](http://img.shields.io/pypi/dm/django-propeller.svg)
-[![Updates](https://pyup.io/repos/github/tfroehlich82/django-propeller/shield.svg)](https://pyup.io/repos/github/tfroehlich82/django-propeller/)
-[![Python 3](https://pyup.io/repos/github/tfroehlich82/django-propeller/python-3-shield.svg)](https://pyup.io/repos/github/tfroehlich82/django-propeller/)
+[![Updates](https://pyup.io/repos/github/RaddishIoW/django2-propeller/shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
+[![Python 3](https://pyup.io/repos/github/RaddishIoW/django2-propeller/python-3-shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
 
 
 Requirements
