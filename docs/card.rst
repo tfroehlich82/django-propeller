@@ -6,55 +6,55 @@ Card
 CardTitle
 ~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardTitle
+.. autoclass:: django2_propeller.card.CardTitle
 
 
 CardSubtitle
 ~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardSubtitle
+.. autoclass:: django2_propeller.card.CardSubtitle
 
 
 CardBody
 ~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardBody
+.. autoclass:: django2_propeller.card.CardBody
 
 
 CardHeader
 ~~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardHeader
+.. autoclass:: django2_propeller.card.CardHeader
 
 
 CardMediaActions
 ~~~~~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardMediaActions
+.. autoclass:: django2_propeller.card.CardMediaActions
 
 
 CardActions
 ~~~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardActions
+.. autoclass:: django2_propeller.card.CardActions
 
 
 CardMediaImage
 ~~~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardMediaImage
+.. autoclass:: django2_propeller.card.CardMediaImage
 
 
 CardMedia
 ~~~~~~~~~
 
-.. autoclass:: django_propeller.card.CardMedia
+.. autoclass:: django2_propeller.card.CardMedia
 
 
 Card
 ~~~~
 
-.. autoclass:: django_propeller.card.Card
+.. autoclass:: django2_propeller.card.Card
 
 
 Card Example
@@ -62,9 +62,9 @@ Card Example
 
 card.py::
 
-    from django_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
+    from django2_propeller.card import Card, CardHeader, CardActions, CardMediaActions, CardTitle, CardSubtitle, \
     CardMediaImage, CardBody, CardMedia
-    from django_propeller.components import Image, Button, FAB
+    from django2_propeller.components import Image, Button, FAB
 
     class DemoTitle(CardTitle):
         text = "Title goes here"

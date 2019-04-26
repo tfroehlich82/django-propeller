@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block propeller_title %}django_propeller template title{% endblock %}</title>
+    <title>{% block propeller_title %}django2_propeller template title{% endblock %}</title>
 
     <!-- Bootstrap css-->
     {% propeller_css %}
@@ -31,7 +31,7 @@
 </head>
 
 <body>
-{% block propeller_content %}django-propeller template content{% endblock %}
+{% block propeller_content %}django2-propeller template content{% endblock %}
 {% if not 'javascript_in_head'|propeller_setting %}
     {% propeller_javascript jquery=True %}
     <script type="text/javascript" src="{% static 'js/propeller.min.js' %}"></script>

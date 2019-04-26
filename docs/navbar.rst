@@ -6,31 +6,31 @@ Navbar
 NavBarLinkItem
 ~~~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.navbar.NavBarLinkItem
+.. autoclass:: django2_propeller.navbar.NavBarLinkItem
 
 
 NavBarDropDownDivider
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.navbar.NavBarDropDownDivider
+.. autoclass:: django2_propeller.navbar.NavBarDropDownDivider
 
 
 NavBarDropDownItem
 ~~~~~~~~~~~~~~~~~~
 
-.. autoclass:: django_propeller.navbar.NavBarDropDownItem
+.. autoclass:: django2_propeller.navbar.NavBarDropDownItem
 
 
 CustomItem
 ~~~~~~~~~~
 
-.. autoclass:: django_propeller.navbar.CustomItem
+.. autoclass:: django2_propeller.navbar.CustomItem
 
 
 NavBar
 ~~~~~~
 
-.. autoclass:: django_propeller.navbar.NavBar
+.. autoclass:: django2_propeller.navbar.NavBar
 
 
 NavBar Example
@@ -38,7 +38,7 @@ NavBar Example
 
 navbar.py::
 
-    from django_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
+    from django2_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
     class DemoNavBar(NavBar):
         brandname = "Brand"
@@ -60,7 +60,7 @@ navbar.py::
 your_view.py::
 
     from django.views.generic.base import TemplateView
-    from django_propeller.views import NavBarMixin
+    from django2_propeller.views import NavBarMixin
     from your_project.navbar import DemoNavBar
 
     class HomePageView(TemplateView, NavBarMixin):

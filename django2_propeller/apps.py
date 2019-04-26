@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class DjangoPropellerConfig(AppConfig):
-    name = 'django_propeller'
+    name = 'django2_propeller'

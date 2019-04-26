@@ -28,14 +28,14 @@ PROPELLER_DEFAULTS = {
     'error_css_class': 'has-error',
     'success_css_class': 'has-success',
     'formset_renderers': {
-        'default': 'django_propeller.renderers.FormsetRenderer',
+        'default': 'django2_propeller.renderers.FormsetRenderer',
     },
     'form_renderers': {
-        'default': 'django_propeller.renderers.FormRenderer',
+        'default': 'django2_propeller.renderers.FormRenderer',
     },
     'field_renderers': {
-        'default': 'django_propeller.renderers.FieldRenderer',
-        'inline': 'django_propeller.renderers.InlineFieldRenderer',
+        'default': 'django2_propeller.renderers.FieldRenderer',
+        'inline': 'django2_propeller.renderers.InlineFieldRenderer',
     },
 }
 

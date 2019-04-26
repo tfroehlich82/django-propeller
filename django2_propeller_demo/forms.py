@@ -5,7 +5,7 @@ from django import forms
 from django.forms.formsets import BaseFormSet, formset_factory
 
 
-from django_propeller.tests import TestForm
+from django2_propeller.tests import TestForm
 
 RADIO_CHOICES = (
     ('1', 'Radio 1'),

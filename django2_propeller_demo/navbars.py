@@ -1,9 +1,9 @@
-from django_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
+from django2_propeller.navbar import NavBar, NavBarLinkItem, NavBarDropDownItem, NavBarDropDownDivider
 
 
 class MainNavBar(NavBar):
-    brandname = "django-propeller"
-    brandurl = "https://github.com/tfroehlich82/django-propeller"
+    brandname = "django2-propeller"
+    brandurl = "https://github.com/RaddishIoW/django2-propeller"
     items = [
         NavBarLinkItem("Home", "home"),
         NavBarLinkItem("Typography", "typo"),
