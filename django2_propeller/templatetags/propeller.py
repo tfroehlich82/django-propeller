@@ -793,38 +793,6 @@ def propeller_alert(content, alert_type='info', dismissable=True):
     return render_alert(content, alert_type, dismissable)
 
 
-# @register.tag('buttons')
-# def propeller_buttons(parser, token):
-#     """
-#     Render buttons for form
-#
-#     **Tag name**::
-#
-#         buttons
-#
-#     **Parameters**:
-#
-#         submit
-#             Text for a submit button
-#
-#         reset
-#             Text for a reset button
-#
-#     **Usage**::
-#
-#         {% buttons %}{% endbuttons %}
-#
-#     **Example**::
-#
-#         {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
-#
-#     """
-#     kwargs = parse_token_contents(parser, token)
-#     kwargs['nodelist'] = parser.parse(('endbuttons',))
-#     parser.delete_first_token()
-#     return ButtonsNode(**kwargs)
-
-
 @register.simple_tag(takes_context=True)
 def propeller_messages(context, *args, **kwargs):
     """
