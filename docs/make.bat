@@ -9,7 +9,7 @@ if "%SPHINXBUILD%" == "" (
 )
 set SOURCEDIR=.
 set BUILDDIR=_build
-set SPHINXPROJ=django-propeller
+set SPHINXPROJ=django2-propeller
 
 if "%1" == "" goto help
 

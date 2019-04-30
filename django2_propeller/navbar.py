@@ -38,7 +38,6 @@ class NavBarLinkItem(object):
     def __init__(self, name="", url=None, icon=None):
         """
 
-         
         """
         self.name = name
         self.url = url

@@ -5,6 +5,7 @@ Write Django as usual, and let ``django2-propeller`` make template output into c
 
 
 [![Build Status](https://travis-ci.com/RaddishIoW/django2-propeller.svg?branch=stable)](https://travis-ci.com/RaddishIoW/django2-propeller)
+[![Documentation Status](https://readthedocs.org/projects/django2-propeller/badge/?version=latest)](https://django2-propeller.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/RaddishIoW/django2-propeller/badge.svg?branch=stable)](https://coveralls.io/github/RaddishIoW/django2-propeller?branch=stable)
 [![Updates](https://pyup.io/repos/github/RaddishIoW/django2-propeller/shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
 [![Python 3](https://pyup.io/repos/github/RaddishIoW/django2-propeller/python-3-shield.svg)](https://pyup.io/repos/github/RaddishIoW/django2-propeller/)
@@ -58,7 +59,7 @@ Example template
 Documentation
 -------------
 
-The full documentation is at http://django-propeller.readthedocs.io/en/stable/ (currently for the previous version of django-propeller)
+The full documentation is at https://django2-propeller.readthedocs.io/en/latest/
 
 
 Demo application

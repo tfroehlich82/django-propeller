@@ -2,6 +2,8 @@
 Templates
 =========
 
+Extend ``propeller/propeller.html`` template to automatically include the needed CSS and JS for Bootstrap and Propeller.
+
 You can customize the output of ``django-propeller`` by writing your own templates. These templates are available:
 
 

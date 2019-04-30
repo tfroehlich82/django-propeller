@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = django-propeller
+SPHINXPROJ    = django2-propeller
 SOURCEDIR     = .
 BUILDDIR      = _build
 
