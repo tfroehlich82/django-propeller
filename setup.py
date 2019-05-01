@@ -9,7 +9,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-version = '2.0.1'
+version = '2.0.0'
 
 if sys.argv[-1] == 'publish':
     os.system('cd docs && make html')
