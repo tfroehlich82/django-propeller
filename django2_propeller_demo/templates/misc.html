@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load propeller %}
+
+{% block title %}
+    Miscellaneous
+{% endblock %}
+
+{% block content %}
+<p>Buttons</p>
+    {% propeller_button 'button' size='lg' %}
+
+    {% propeller_button 'button' size='lg' icon='info-sign' %}
+<p>Error alert</p>
+    {% propeller_alert "Something went wrong" alert_type='danger' %}
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'bootstrap.html' %}
+
+{% load propeller %}
+
+{% block propeller_content %}
+
+    {% propeller_navbar navbar %}
+
+    <div class="container">
+        <h2>{% block title %}django2-propeller{% endblock %}</h2>
+        {% autoescape off %}{% propeller_messages %}{% endautoescape %}
+
+        {% block content %}(no content){% endblock %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load propeller %}
+
+{% block title %}
+    Forms
+{% endblock %}
+
+{% block content %}
+
+    <form role="form" method="post" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
+        {% csrf_token %}
+        {% propeller_form form layout=layout %}
+        {% propeller_button  content="Submit" button_type="submit" %} {% propeller_button content="Reset" button_type="reset" %}
+    </form>
+
+{% endblock %}

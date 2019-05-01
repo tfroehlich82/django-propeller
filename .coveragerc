@@ -1,7 +1,7 @@
 [run]
 omit =
     docs/*
-    django_propeller_demo/*
+    django2_propeller_demo/*
     manage.py
 
 [report]
