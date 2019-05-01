@@ -4,14 +4,12 @@
 import os
 import sys
 
-import django2_propeller
-
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-version = django2_propeller.__version__
+version = '2.0.1'
 
 if sys.argv[-1] == 'publish':
     os.system('cd docs && make html')
