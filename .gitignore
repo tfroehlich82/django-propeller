@@ -142,3 +142,5 @@ fabric.properties
 db.sqlite3
 docs/_build/
 /MANIFEST
+/*.sublime-project
+/*.sublime-workspace
