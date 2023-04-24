@@ -1,4 +1,4 @@
 Django>=1.8
-Sphinx==1.5.5
+Sphinx==6.2.0
 sphinx-rtd-theme==0.2.4
 enum34==1.1.6; python_version < '3.4'
